@@ -90,6 +90,59 @@
             letter-spacing: 0.05em;
         }
 
+        /* Special styling for first slide title */
+        .title-main {
+            position: relative;
+            animation: titleReveal 1s ease-out;
+        }
+
+        .title-main::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: var(--gradient-purple);
+            animation: expandLine 1.5s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+
+        @keyframes titleReveal {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes expandLine {
+            to {
+                width: 200px;
+                opacity: 1;
+            }
+        }
+
+        /* Hero logo styling */
+        .logo-hero {
+            animation: logoFade 1.2s ease-out;
+        }
+
+        @keyframes logoFade {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
         .h2 {
             font-size: 2rem;
             font-weight: 700;
@@ -430,11 +483,23 @@
         /* Scroll hint */
         .scroll-hint {
             position: fixed;
-            bottom: 1rem;
+            bottom: 2rem;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.75rem;
-            color: #6b7280;
+            font-size: 0.875rem;
+            color: var(--primary-gray);
+            font-family: 'Youth', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            z-index: 50;
+            animation: bounce 2s ease-in-out infinite;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-8px); }
         }
 
         /* Responsive design */
@@ -537,7 +602,7 @@
         <!-- 1. Cover -->
         <section class="slide">
             <div class="max text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 236 44" fill="#111827" class="mx-auto h-20 mb-8">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 236 44" fill="#111827" class="mx-auto h-20 mb-8 logo-hero">
                     <path d="M161.583 34.9776C158.255 34.9776 157.141 33.7515 157.141 30.4192V9.01063H161.85V30.7022H170.139V34.9619H161.583V34.9776Z" fill="currentColor"/>
                     <path d="M188.617 23.9904C188.617 19.9507 185.697 16.9799 181.804 16.9799C177.91 16.9799 175.022 19.9507 175.022 23.9904C175.022 28.03 177.942 31.0322 181.804 31.0322C185.697 31.048 188.617 28.0772 188.617 23.9904ZM188.507 13.176H192.95V34.9776H188.507V32.164C186.984 34.1602 184.441 35.4334 181.364 35.4334C175.147 35.4334 170.296 30.655 170.296 24.0847C170.296 17.5143 175.147 12.7359 181.364 12.7359C184.284 12.7359 186.843 13.8834 188.507 15.9582V13.176Z" fill="currentColor"/>
                     <path d="M214.159 23.9904C214.159 19.9507 211.239 16.9799 207.377 16.9799C203.515 16.9799 200.564 19.9507 200.564 23.9904C200.564 28.03 203.484 31.0322 207.377 31.0322C211.239 31.048 214.159 28.0772 214.159 23.9904ZM218.9 24.0689C218.9 30.6393 214.081 35.4177 207.864 35.4177C204.756 35.4177 202.197 34.1602 200.674 32.1168V34.9776H196.262V9.01063H200.894V15.7224C202.479 13.8676 204.96 12.7202 207.848 12.7202C214.097 12.7202 218.9 17.5458 218.9 24.0689Z" fill="currentColor"/>
@@ -552,7 +617,7 @@
                     <path d="M3.00786 21.9941L14.0913 20.1236L5.53539 7.69028C-1.51345 15.9425 -1.48206 28.1558 5.61389 36.3765L14.3111 24.0689L3.00786 21.9941Z" fill="currentColor"/>
                     <path d="M44.2177 44L24.123 30.1677L22.2391 41.0449L22.2077 41.2021L20.2297 30.2306L7.90594 38.6871C12.0191 42.2238 17.137 44 22.2391 44H44.2177Z" fill="currentColor"/>
                 </svg>
-                <h1 class="h1 mb-4"><span class="gradient-text">AI</span> (micro-influencers)-as-a-Service</h1>
+                <h1 class="h1 mb-4 title-main"><span class="gradient-text">AI</span> (micro-influencers)<span class="gradient-text">-as-a-Service</span></h1>
                 <p class="muted">Strategic Funding Round — September 2025</p>
             </div>
         </section>
