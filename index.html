@@ -45,7 +45,7 @@
         .footer-logo {
             position: fixed;
             bottom: 5rem;
-            right: -0.5rem;
+            right: -1.5rem;
             transform: rotate(-90deg);
             transform-origin: center;
             opacity: 0.8;
@@ -79,6 +79,7 @@
             color: #6b7280;
             font-family: 'Youth', sans-serif;
             font-weight: 300;
+            margin-top: -1rem;
         }
 
         .h1 {
@@ -144,6 +145,81 @@
             }
         }
 
+        /* Platform icons */
+        .platform-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            height: 2rem;
+        }
+
+        .platform-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: var(--primary-black);
+            transition: all 0.3s ease;
+        }
+
+        .platform-icon:hover {
+            fill: var(--primary-violet);
+            transform: scale(1.1);
+        }
+
+        /* Challenge section */
+        .challenge-section {
+            background: rgba(139, 92, 246, 0.03);
+            border-radius: 1rem;
+            padding: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .challenge-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .challenge-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--primary-violet);
+            font-family: 'Youth', sans-serif;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .challenge-card {
+            text-align: center;
+            padding: 1rem;
+            background: white;
+            border-radius: 0.75rem;
+            border: 1px solid var(--light-gray);
+        }
+
+        .challenge-card h4 {
+            font-size: 0.875rem;
+        }
+
+        .challenge-icon {
+            margin-bottom: 1rem;
+            color: var(--primary-violet);
+        }
+
+        .challenge-icon svg {
+            width: 2.5rem;
+            height: 2.5rem;
+            margin: 0 auto;
+        }
+
         .h2 {
             font-size: 2rem;
             font-weight: 700;
@@ -158,21 +234,19 @@
         }
 
         .pill {
-            border: 2px solid #111827;
+            border: 1px solid var(--light-gray);
             border-radius: 2rem;
-            padding: 0.9rem 1.1rem;
-            background: #fff;
+            padding: 0.7rem 2rem;
+            background: rgba(139, 92, 246, 0.05);
             display: inline-block;
-            font-family: 'Youth', sans-serif;
-            font-weight: 300;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
         }
 
         .card {
             border: 1px solid #e5e7eb;
             border-radius: 1rem;
-            padding: 1.25rem;
+            padding: 1rem;
             background: #fff;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
         }
@@ -243,6 +317,19 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .metric-card-tall {
+            min-height: 140px;
+            padding: 1.25rem 0.75rem;
+        }
+
+        .metric-description {
+            line-height: 1.3;
         }
 
         .card-enhanced::before {
@@ -406,6 +493,30 @@
             font-size: 1.875rem;
         }
 
+        .text-4xl {
+            font-size: 2.25rem;
+        }
+
+        .text-5xl {
+            font-size: 3rem;
+        }
+
+        .hero-metric {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .hero-metric::after {
+            content: '';
+            position: absolute;
+            bottom: -1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 1px;
+            background: var(--light-gray);
+        }
+
         .font-medium {
             font-weight: 500;
         }
@@ -547,6 +658,17 @@
             }
         }
 
+        @keyframes cardReveal {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
         .slide {
             animation: fadeIn 0.5s ease-in-out;
         }
@@ -554,6 +676,16 @@
         .slide > * {
             animation: slideUp 0.6s ease-out;
         }
+
+        /* Staggered animation for metric cards */
+        .card-enhanced {
+            animation: cardReveal 0.6s ease-out backwards;
+        }
+
+        .card-enhanced:nth-child(1) { animation-delay: 0.1s; }
+        .card-enhanced:nth-child(2) { animation-delay: 0.2s; }
+        .card-enhanced:nth-child(3) { animation-delay: 0.3s; }
+        .card-enhanced:nth-child(4) { animation-delay: 0.4s; }
 
         /* Progress indicator */
         .progress-bar {
@@ -619,34 +751,47 @@
                     <path d="M44.2177 44L24.123 30.1677L22.2391 41.0449L22.2077 41.2021L20.2297 30.2306L7.90594 38.6871C12.0191 42.2238 17.137 44 22.2391 44H44.2177Z" fill="currentColor"/>
                 </svg>
                 <h1 class="h1 mb-4 title-main">AI (micro-influencers)-as-a-Service</h1>
-                <p class="muted mt-8">Strategic Funding Round — September 2025</p>
+                <p class="kicker mt-8">Strategic Funding Round — September 2025</p>
             </div>
         </section>
 
         <!-- 2. Vision & Impact -->
         <section class="slide">
-            <div class="max">
-                <h2 class="h1 mb-6">
-                    Our AI Micro-Influencers are Driving <strong>Millions</strong> of Impressions at Scale for Operators, Affiliates, and Media Companies
+            <div class="max text-center">
+                <div class="kicker mb-4">QStarLabs is revolutionizing the iGaming marketing stack</div>
+                <h2 class="h1 mb-4">
+                    AI Micro-Influencers Driving <strong class="highlight-text">Millions</strong> of Impressions at Scale
                 </h2>
-                <div class="pill mb-10 text-center font-medium">
-                    QStarLabs is revolutionizing the iGaming marketing stack with AI micro-influencers
+                <p class="text-xl mb-8 muted">For Operators, Affiliates, and Media Companies</p>
+                <div class="hero-metric mb-8">
+                    <div class="text-5xl metric-value mb-2">20M+</div>
+                    <div class="text-xl muted">Monthly Impressions</div>
                 </div>
-                <div class="grid grid-cols-4 gap-6">
-                    <div class="card card-enhanced text-center">
-                        <div class="text-3xl metric-value mb-2">20M+</div>
-                        <div class="muted">Impressions</div>
-                    </div>
+                
+                <div class="grid grid-cols-3 gap-6">
                     <div class="card card-enhanced text-center">
                         <div class="text-3xl metric-value mb-2">100k+</div>
-                        <div class="muted">Interactions</div>
+                        <div class="muted">Engagements</div>
                     </div>
                     <div class="card card-enhanced text-center">
                         <div class="text-3xl metric-value mb-2">24/7</div>
-                        <div class="muted">Availability</div>
+                        <div class="muted">Always Active</div>
                     </div>
                     <div class="card card-enhanced text-center">
-                        <img src="images/platform-icons.png" alt="Platforms" class="h-8 mx-auto mb-2">
+                        <div class="platform-icons mb-2">
+                            <!-- X (Twitter) Icon -->
+                            <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                            <!-- Instagram Icon -->
+                            <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+                            </svg>
+                            <!-- Telegram Icon -->
+                            <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                            </svg>
+                        </div>
                         <div class="muted">Multi-Platform</div>
                     </div>
                 </div>
@@ -655,53 +800,142 @@
 
         <!-- 3. Market Opportunity -->
         <section class="slide">
-            <div class="max grid grid-cols-2 gap-10" style="align-items: center;">
-                <div>
-                    <div class="kicker mb-2">THERE'S A CRITICAL GAP IN DIGITAL MARKETING: MICRO-INFLUENCERS</div>
-                    <h2 class="h1 mb-6">Legalization + digital transformation are fueling secular growth</h2>
-                    <ul class="p space-y-4">
-                        <li>iGaming is a digital social experience — meet players where they spend time</li>
-                        <li>Micro-influencers deliver targeted engagement but are costly to scale manually</li>
-                    </ul>
-                    <div class="mt-8 grid grid-cols-4 gap-4 text-center">
-                        <div class="card card-enhanced">
-                            <div class="font-extrabold metric-value">$100B+</div>
-                            <div class="muted text-sm">iGaming global market</div>
+            <div class="max" style="padding-top: 2rem;">
+                <div class="kicker mb-2 text-center">LEGALIZATION + DIGITAL TRANSFORMATION DRIVING RAPID GROWTH</div>
+                <h2 class="h1 mb-4 text-center" style="font-size: 2.5rem;">A Critical Gap: <span class="highlight-text">Micro-Influencers</span> at Scale</h2>
+                
+                <div class="grid grid-cols-4 gap-4 mb-4 mt-6">
+                    <div class="card card-enhanced text-center metric-card-tall">
+                        <div class="text-3xl metric-value mb-3">$100B+</div>
+                        <div class="metric-description">
+                            <div class="muted text-sm font-semibold">Global iGaming</div>
+                            <div class="muted text-sm">Market Size</div>
+                            <div class="text-xs mt-2" style="color: var(--primary-violet); font-weight: 600;">Double-digit<br/>growth rate</div>
                         </div>
-                        <div class="card card-enhanced">
-                            <div class="font-extrabold metric-value">$182B+</div>
-                            <div class="muted text-sm">Sports betting by 2030</div>
+                    </div>
+                    <div class="card card-enhanced text-center metric-card-tall">
+                        <div class="text-3xl metric-value mb-3">$182B+</div>
+                        <div class="metric-description">
+                            <div class="muted text-sm font-semibold">Global Sports</div>
+                            <div class="muted text-sm">Betting Market</div>
+                            <div class="text-xs mt-2" style="color: var(--primary-violet); font-weight: 600;">Projected<br/>by 2030</div>
                         </div>
-                        <div class="card card-enhanced">
-                            <div class="font-extrabold growth-metric">11.9%</div>
-                            <div class="muted text-sm">Online gambling CAGR</div>
+                    </div>
+                    <div class="card card-enhanced text-center metric-card-tall">
+                        <div class="text-3xl metric-value mb-3">11.9%</div>
+                        <div class="metric-description">
+                            <div class="muted text-sm font-semibold">CAGR Online</div>
+                            <div class="muted text-sm">Gambling</div>
+                            <div class="text-xs mt-2" style="color: var(--primary-violet); font-weight: 600;">2025-2030<br/>forecast</div>
                         </div>
-                        <div class="card card-enhanced">
-                            <div class="font-extrabold growth-metric">34.7%</div>
-                            <div class="muted text-sm">US iGaming YoY growth</div>
+                    </div>
+                    <div class="card card-enhanced text-center metric-card-tall">
+                        <div class="text-3xl metric-value mb-3">34.7%</div>
+                        <div class="metric-description">
+                            <div class="muted text-sm font-semibold">US iGaming</div>
+                            <div class="muted text-sm">Market Growth</div>
+                            <div class="text-xs mt-2" style="color: var(--primary-violet); font-weight: 600;">Year-over-Year<br/>Jan 2025</div>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <img src="images/market-hero.jpg" alt="Market growth" class="rounded-xl w-full object-cover" style="height: 56vh;">
+                
+                <div class="challenge-section">
+                    <div class="challenge-header">
+                        <span class="challenge-label">THE CHALLENGE</span>
+                        <h3 class="text-2xl font-bold">Micro-Influencers Work — But Don't Scale</h3>
+                    </div>
+                    <div class="challenge-grid">
+                        <div class="challenge-card">
+                            <div class="challenge-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <circle cx="12" cy="12" r="6"/>
+                                    <circle cx="12" cy="12" r="2"/>
+                                </svg>
+                            </div>
+                            <h4 class="font-bold mb-2">Engagement Matters</h4>
+                            <p class="text-sm muted">Players trust micro-influencers 3x more than traditional ads</p>
+                        </div>
+                        <div class="challenge-card">
+                            <div class="challenge-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
+                                    <path d="M2 17L12 22L22 17"/>
+                                    <path d="M2 12L12 17L22 12"/>
+                                </svg>
+                            </div>
+                            <h4 class="font-bold mb-2">Scaling is Complex</h4>
+                            <p class="text-sm muted">Managing hundreds of influencers manually is operationally impossible</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- 4. Product: PERSONAS -->
         <section class="slide">
-            <div class="max grid grid-cols-2 gap-10" style="align-items: flex-start;">
-                <div>
-                    <h2 class="h1 mb-6"><span class="highlight-text">PERSONAS</span> — QStarLabs AI Micro-Influencer Platform</h2>
-                    <div class="p space-y-4">
-                        <div><span class="font-semibold">White-glove AIaaS</span> with managed deployment</div>
-                        <div><span class="font-semibold">Enterprise integrations for iGaming</span> — odds API, pre-built bet slips, promotion highlights</div>
-                        <div><span class="font-semibold">Reinforcement learning</span> drives audience engagement</div>
-                        <div><span class="font-semibold">Pulse on trending</span> topics to capture demand</div>
-                    </div>
+            <div class="max">
+                <div class="kicker mb-1 text-center">PLATFORM LIVE AND SCALING</div>
+                <div class="text-center mb-8">
+                    <h2 class="h1 mb-4"><span class="highlight-text">PERSONAS</span></h2>
+                    <p class="text-xl font-light">AI Micro-Influencer Platform</p>
                 </div>
-                <div>
-                    <img src="images/personas-x.png" alt="Parlay post example" class="rounded-xl w-full object-cover border border-zinc-200" style="height: 56vh;">
+                
+                <div class="grid grid-cols-2 gap-10 items-start">
+                    <!-- Left column: Features -->
+                    <div>
+                        <div class="challenge-section" style="background: rgba(139, 92, 246, 0.03); padding: 1.5rem;">
+                            <div class="challenge-header mb-3">
+                                <span class="challenge-label">KEY FEATURES</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <!-- White-glove AIaaS -->
+                                <div class="card card-enhanced p-4 text-center">
+                                    <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #8b5cf6;">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                    <h3 class="font-bold mb-1 gradient-text">White-glove<br/>AIaaS</h3>
+                                    <p class="text-xs muted">Managed deployment<br/>with full service support</p>
+                                </div>
+
+                                <!-- Enterprise Integrations -->
+                                <div class="card card-enhanced p-4 text-center">
+                                    <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #8b5cf6;">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    <h3 class="font-bold mb-1 gradient-text">Enterprise<br/>Integrations</h3>
+                                    <p class="text-xs muted">Odds API, bet slips,<br/>promotion highlights</p>
+                                </div>
+
+                                <!-- Reinforcement Learning -->
+                                <div class="card card-enhanced p-4 text-center">
+                                    <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #8b5cf6;">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                    </svg>
+                                    <h3 class="font-bold mb-1 gradient-text">Reinforcement<br/>Learning</h3>
+                                    <p class="text-xs muted">AI-driven audience<br/>engagement optimization</p>
+                                </div>
+
+                                <!-- Pulse on Trending -->
+                                <div class="card card-enhanced p-4 text-center">
+                                    <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #8b5cf6;">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                    </svg>
+                                    <h3 class="font-bold mb-1 gradient-text">Pulse on<br/>Trending</h3>
+                                    <p class="text-xs muted">Real-time monitoring<br/>to capture demand</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right column: Parlay picture -->
+                    <div class="h-full">
+                        <div class="challenge-section h-full" style="background: rgba(139, 92, 246, 0.03); padding: 1.5rem; display: flex; flex-direction: column;">
+                            <div class="relative flex-1 flex justify-center items-center">
+                                <img src="images/parlay.png" alt="PERSONAS Parlay Example" class="rounded-lg shadow-lg mx-auto" style="max-height: 300px; width: auto; margin-left: 80px;">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
