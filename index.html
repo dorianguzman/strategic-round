@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QStarLabs Strategic Funding Deck</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: 'Youth';
+            src: url("assets/Youth-Light.woff2") format('woff2'),
+                 url("assets/Youth-Light.otf") format("opentype");
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: 'Youth';
+            src: url("assets/Youth-Medium.woff2") format('woff2'),
+                 url("assets/Youth-Medium.otf") format("opentype");
+            font-weight: 700;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #ffffff;
+            color: #111827;
+            overflow: hidden;
+        }
+
+        .deck-container {
+            width: 100%;
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            background-color: white;
+            color: #18181b;
+        }
+
+        /* Fixed footer logo */
+        .footer-logo {
+            position: fixed;
+            bottom: 5rem;
+            right: -0.5rem;
+            transform: rotate(-90deg);
+            transform-origin: center;
+            opacity: 0.8;
+            z-index: 10;
+        }
+
+        .footer-logo svg {
+            height: 2rem;
+            width: auto;
+        }
+
+        /* Slide styles */
+        .slide {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3.5rem;
+            scroll-snap-align: start;
+        }
+
+        .max {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .kicker {
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            color: #6b7280;
+            font-family: 'Youth', sans-serif;
+            font-weight: 300;
+        }
+
+        .h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            font-family: 'Youth', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: 'Youth', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .p {
+            font-size: 1.05rem;
+            color: #111827;
+        }
+
+        .pill {
+            border: 2px solid #111827;
+            border-radius: 2rem;
+            padding: 0.9rem 1.1rem;
+            background: #fff;
+            display: inline-block;
+            font-family: 'Youth', sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .card {
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+            padding: 1.25rem;
+            background: #fff;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .muted {
+            color: #6b7280;
+        }
+
+        .brand {
+            color: #111827;
+        }
+
+        .accent {
+            color: #6d28d9;
+        }
+
+        /* Brand colors - Black and White */
+        :root {
+            --primary-black: #111827;
+            --primary-gray: #6b7280;
+            --light-gray: #e5e7eb;
+            --hover-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Professional text styles */
+        .gradient-text {
+            color: var(--primary-black);
+            font-weight: 900;
+            font-family: 'Youth', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* Metric value - black and bold */
+        .metric-value {
+            color: var(--primary-black);
+            font-weight: 900;
+            font-family: 'Youth', sans-serif;
+        }
+
+        /* Growth metrics - now in black */
+        .growth-metric {
+            color: var(--primary-black);
+            font-weight: 900;
+            font-family: 'Youth', sans-serif;
+        }
+
+        /* Minimal cards */
+        .card-enhanced {
+            border: 1px solid var(--light-gray);
+            background: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .card-enhanced:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--hover-shadow);
+            border-color: var(--primary-gray);
+        }
+
+        /* Special text styles */
+        .highlight-text {
+            position: relative;
+            font-weight: 800;
+            color: var(--primary-black);
+            font-family: 'Youth', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .highlight-text::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary-black);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .slide:hover .highlight-text::after {
+            transform: scaleX(1);
+        }
+
+        /* Grid utilities */
+        .grid {
+            display: grid;
+        }
+
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .grid-cols-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .grid-cols-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .gap-4 {
+            gap: 1rem;
+        }
+
+        .gap-6 {
+            gap: 1.5rem;
+        }
+
+        .gap-8 {
+            gap: 2rem;
+        }
+
+        .gap-10 {
+            gap: 2.5rem;
+        }
+
+        /* Spacing utilities */
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+
+        .mb-10 {
+            margin-bottom: 2.5rem;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem;
+        }
+
+        .mt-4 {
+            margin-top: 1rem;
+        }
+
+        .mt-6 {
+            margin-top: 1.5rem;
+        }
+
+        .mt-8 {
+            margin-top: 2rem;
+        }
+
+        .mt-12 {
+            margin-top: 3rem;
+        }
+
+        .space-y-1 > * + * {
+            margin-top: 0.25rem;
+        }
+
+        .space-y-3 > * + * {
+            margin-top: 0.75rem;
+        }
+
+        .space-y-4 > * + * {
+            margin-top: 1rem;
+        }
+
+        /* Text utilities */
+        .text-center {
+            text-align: center;
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+        }
+
+        .text-xs {
+            font-size: 0.75rem;
+        }
+
+        .text-xl {
+            font-size: 1.25rem;
+        }
+
+        .text-2xl {
+            font-size: 1.5rem;
+        }
+
+        .text-3xl {
+            font-size: 1.875rem;
+        }
+
+        .font-medium {
+            font-weight: 500;
+        }
+
+        .font-semibold {
+            font-weight: 600;
+        }
+
+        .font-bold {
+            font-weight: 700;
+        }
+
+        .font-extrabold {
+            font-weight: 800;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        /* Image utilities */
+        .rounded-xl {
+            border-radius: 0.75rem;
+        }
+
+        .rounded-md {
+            border-radius: 0.375rem;
+        }
+
+        .object-cover {
+            object-fit: cover;
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .h-8 {
+            height: 2rem;
+        }
+
+        .h-10 {
+            height: 2.5rem;
+        }
+
+        .h-12 {
+            height: 3rem;
+        }
+
+        .h-20 {
+            height: 5rem;
+        }
+
+        .h-40 {
+            height: 10rem;
+        }
+
+        .opacity-80 {
+            opacity: 0.8;
+        }
+
+        /* Border utilities */
+        .border {
+            border-width: 1px;
+        }
+
+        .border-zinc-200 {
+            border-color: #e4e4e7;
+        }
+
+        /* Scroll hint */
+        .scroll-hint {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .h1 {
+                font-size: 2rem;
+            }
+
+            .h2 {
+                font-size: 1.5rem;
+            }
+
+            .grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-cols-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .slide {
+                padding: 2rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .slide > * {
+            animation: slideUp 0.6s ease-out;
+        }
+
+        /* Progress indicator */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--light-gray);
+            z-index: 100;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-black);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress bar -->
+    <div class="progress-bar">
+        <div class="progress-fill"></div>
+    </div>
+
+    <div class="deck-container">
+        <!-- Global footer logo watermark -->
+        <div class="footer-logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="140" height="26" viewBox="0 0 236 44" fill="currentColor">
+                <path d="M161.583 34.9776C158.255 34.9776 157.141 33.7515 157.141 30.4192V9.01063H161.85V30.7022H170.139V34.9619H161.583V34.9776Z" fill="currentColor"/>
+                <path d="M188.617 23.9904C188.617 19.9507 185.697 16.9799 181.804 16.9799C177.91 16.9799 175.022 19.9507 175.022 23.9904C175.022 28.03 177.942 31.0322 181.804 31.0322C185.697 31.048 188.617 28.0772 188.617 23.9904ZM188.507 13.176H192.95V34.9776H188.507V32.164C186.984 34.1602 184.441 35.4334 181.364 35.4334C175.147 35.4334 170.296 30.655 170.296 24.0847C170.296 17.5143 175.147 12.7359 181.364 12.7359C184.284 12.7359 186.843 13.8834 188.507 15.9582V13.176Z" fill="currentColor"/>
+                <path d="M214.159 23.9904C214.159 19.9507 211.239 16.9799 207.377 16.9799C203.515 16.9799 200.564 19.9507 200.564 23.9904C200.564 28.03 203.484 31.0322 207.377 31.0322C211.239 31.048 214.159 28.0772 214.159 23.9904ZM218.9 24.0689C218.9 30.6393 214.081 35.4177 207.864 35.4177C204.756 35.4177 202.197 34.1602 200.674 32.1168V34.9776H196.262V9.01063H200.894V15.7224C202.479 13.8676 204.96 12.7202 207.848 12.7202C214.097 12.7202 218.9 17.5458 218.9 24.0689Z" fill="currentColor"/>
+                <path d="M220.376 28.4387H224.929C225.117 30.4349 226.483 31.6295 228.257 31.6295C230.031 31.6295 231.224 30.5607 231.224 29.1146C231.224 27.2284 229.811 26.7097 226.483 25.8137C223.155 24.8863 220.596 22.9215 220.596 19.1333C220.596 15.3452 223.563 12.7202 227.959 12.7202C232.354 12.7202 235.149 15.2352 235.479 19.3534H230.926C230.816 17.5301 229.56 16.4612 227.959 16.4612C226.248 16.4612 225.149 17.5301 225.149 18.8347C225.149 20.5009 226.216 21.0667 229.623 22.0255C233.029 22.9844 235.73 25.0592 235.73 28.7373C235.73 32.8556 232.731 35.4177 228.21 35.4177C223.689 35.4177 220.643 32.8241 220.376 28.4387Z" fill="currentColor"/>
+                <path d="M70.6077 30.8908C65.7096 30.8908 61.7221 26.8983 61.7221 21.9941C61.7221 17.0899 65.7096 13.0974 70.6077 13.0974C75.5058 13.0974 79.4934 17.0899 79.4934 21.9941C79.4934 23.9118 78.8811 25.688 77.845 27.1498L75.8826 25.185H70.1367L74.7837 29.8376C73.5434 30.4978 72.1148 30.8908 70.6077 30.8908ZM85.6787 34.9776L81.0789 30.3721C82.9157 28.0772 84.0147 25.1535 84.0147 21.9941C84.0147 14.575 78.0176 8.57051 70.6077 8.57051C63.1978 8.57051 57.2008 14.575 57.2008 21.9941C57.2008 29.4132 63.1978 35.4177 70.6077 35.4177C73.3707 35.4177 75.9454 34.5846 78.0804 33.1385L79.9172 34.9776H85.6787Z" fill="currentColor"/>
+                <path d="M114.879 30.8908C112.728 30.8908 111.802 30.6393 111.802 28.4858L111.833 18.9133H114.973V14.8422H111.833V9.08922H107.249V28.5487C107.249 33.6729 110.106 34.9619 114.172 34.9619H115.177V30.8908H114.879Z" fill="currentColor"/>
+                <path d="M134.864 23.9904C134.864 19.9507 131.944 16.9799 128.05 16.9799C124.157 16.9799 121.268 19.9507 121.268 23.9904C121.268 28.03 124.188 31.0322 128.05 31.0322C131.928 31.048 134.864 28.0772 134.864 23.9904ZM134.754 13.176H139.197V34.9776H134.754V32.164C133.231 34.1602 130.688 35.4334 127.611 35.4334C121.394 35.4334 116.543 30.655 116.543 24.0847C116.543 17.5143 121.394 12.7359 127.611 12.7359C130.531 12.7359 133.09 13.8834 134.754 15.9582V13.176Z" fill="currentColor"/>
+                <path d="M153.812 12.9403V17.4986H153.546C150.327 17.4986 147.109 18.6775 147.109 24.9177V34.9619H142.525V13.176H146.889V16.3983C148.192 14.1663 150.547 12.956 153.624 12.956H153.812V12.9403Z" fill="currentColor"/>
+                <path d="M87.1545 27.1183H91.8956C92.1624 29.9005 93.8579 31.378 96.15 31.378C98.442 31.378 99.745 29.9634 99.745 28.0772C99.745 25.5936 98.1124 24.7448 94.376 23.6603C90.5611 22.5914 87.5312 20.5009 87.5312 16.0525C87.5312 11.6042 90.8594 8.57051 95.7889 8.57051C100.718 8.57051 103.78 11.4313 104.188 16.3197H99.4782C99.2898 13.9148 97.7356 12.6102 95.7732 12.6102C93.8108 12.6102 92.288 13.9148 92.288 15.7224C92.288 17.9545 93.7637 18.6932 97.3588 19.7935C101.205 20.941 104.549 23.4245 104.549 27.6528C104.549 32.5098 101.142 35.402 96.1029 35.402C90.8908 35.4177 87.5155 32.3369 87.1545 27.1183Z" fill="currentColor"/>
+                <path d="M22.2548 2.73895L24.1701 14.2135L36.6194 5.37966C28.3617 -1.80369 16.0537 -1.78797 7.79605 5.39538L20.1041 14.1034L22.2548 2.73895Z" fill="currentColor"/>
+                <path d="M41.4704 21.9312L30.0572 24.0218L38.8487 36.408C45.9917 28.1715 46.0231 15.8953 38.9115 7.64312L30.2927 20.0765L41.4704 21.9312Z" fill="currentColor"/>
+                <path d="M3.00786 21.9941L14.0913 20.1236L5.53539 7.69028C-1.51345 15.9425 -1.48206 28.1558 5.61389 36.3765L14.3111 24.0689L3.00786 21.9941Z" fill="currentColor"/>
+                <path d="M44.2177 44L24.123 30.1677L22.2391 41.0449L22.2077 41.2021L20.2297 30.2306L7.90594 38.6871C12.0191 42.2238 17.137 44 22.2391 44H44.2177Z" fill="currentColor"/>
+            </svg>
+        </div>
+
+        <!-- 1. Cover -->
+        <section class="slide">
+            <div class="max text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 236 44" fill="#111827" class="mx-auto h-20 mb-8">
+                    <path d="M161.583 34.9776C158.255 34.9776 157.141 33.7515 157.141 30.4192V9.01063H161.85V30.7022H170.139V34.9619H161.583V34.9776Z" fill="currentColor"/>
+                    <path d="M188.617 23.9904C188.617 19.9507 185.697 16.9799 181.804 16.9799C177.91 16.9799 175.022 19.9507 175.022 23.9904C175.022 28.03 177.942 31.0322 181.804 31.0322C185.697 31.048 188.617 28.0772 188.617 23.9904ZM188.507 13.176H192.95V34.9776H188.507V32.164C186.984 34.1602 184.441 35.4334 181.364 35.4334C175.147 35.4334 170.296 30.655 170.296 24.0847C170.296 17.5143 175.147 12.7359 181.364 12.7359C184.284 12.7359 186.843 13.8834 188.507 15.9582V13.176Z" fill="currentColor"/>
+                    <path d="M214.159 23.9904C214.159 19.9507 211.239 16.9799 207.377 16.9799C203.515 16.9799 200.564 19.9507 200.564 23.9904C200.564 28.03 203.484 31.0322 207.377 31.0322C211.239 31.048 214.159 28.0772 214.159 23.9904ZM218.9 24.0689C218.9 30.6393 214.081 35.4177 207.864 35.4177C204.756 35.4177 202.197 34.1602 200.674 32.1168V34.9776H196.262V9.01063H200.894V15.7224C202.479 13.8676 204.96 12.7202 207.848 12.7202C214.097 12.7202 218.9 17.5458 218.9 24.0689Z" fill="currentColor"/>
+                    <path d="M220.376 28.4387H224.929C225.117 30.4349 226.483 31.6295 228.257 31.6295C230.031 31.6295 231.224 30.5607 231.224 29.1146C231.224 27.2284 229.811 26.7097 226.483 25.8137C223.155 24.8863 220.596 22.9215 220.596 19.1333C220.596 15.3452 223.563 12.7202 227.959 12.7202C232.354 12.7202 235.149 15.2352 235.479 19.3534H230.926C230.816 17.5301 229.56 16.4612 227.959 16.4612C226.248 16.4612 225.149 17.5301 225.149 18.8347C225.149 20.5009 226.216 21.0667 229.623 22.0255C233.029 22.9844 235.73 25.0592 235.73 28.7373C235.73 32.8556 232.731 35.4177 228.21 35.4177C223.689 35.4177 220.643 32.8241 220.376 28.4387Z" fill="currentColor"/>
+                    <path d="M70.6077 30.8908C65.7096 30.8908 61.7221 26.8983 61.7221 21.9941C61.7221 17.0899 65.7096 13.0974 70.6077 13.0974C75.5058 13.0974 79.4934 17.0899 79.4934 21.9941C79.4934 23.9118 78.8811 25.688 77.845 27.1498L75.8826 25.185H70.1367L74.7837 29.8376C73.5434 30.4978 72.1148 30.8908 70.6077 30.8908ZM85.6787 34.9776L81.0789 30.3721C82.9157 28.0772 84.0147 25.1535 84.0147 21.9941C84.0147 14.575 78.0176 8.57051 70.6077 8.57051C63.1978 8.57051 57.2008 14.575 57.2008 21.9941C57.2008 29.4132 63.1978 35.4177 70.6077 35.4177C73.3707 35.4177 75.9454 34.5846 78.0804 33.1385L79.9172 34.9776H85.6787Z" fill="currentColor"/>
+                    <path d="M114.879 30.8908C112.728 30.8908 111.802 30.6393 111.802 28.4858L111.833 18.9133H114.973V14.8422H111.833V9.08922H107.249V28.5487C107.249 33.6729 110.106 34.9619 114.172 34.9619H115.177V30.8908H114.879Z" fill="currentColor"/>
+                    <path d="M134.864 23.9904C134.864 19.9507 131.944 16.9799 128.05 16.9799C124.157 16.9799 121.268 19.9507 121.268 23.9904C121.268 28.03 124.188 31.0322 128.05 31.0322C131.928 31.048 134.864 28.0772 134.864 23.9904ZM134.754 13.176H139.197V34.9776H134.754V32.164C133.231 34.1602 130.688 35.4334 127.611 35.4334C121.394 35.4334 116.543 30.655 116.543 24.0847C116.543 17.5143 121.394 12.7359 127.611 12.7359C130.531 12.7359 133.09 13.8834 134.754 15.9582V13.176Z" fill="currentColor"/>
+                    <path d="M153.812 12.9403V17.4986H153.546C150.327 17.4986 147.109 18.6775 147.109 24.9177V34.9619H142.525V13.176H146.889V16.3983C148.192 14.1663 150.547 12.956 153.624 12.956H153.812V12.9403Z" fill="currentColor"/>
+                    <path d="M87.1545 27.1183H91.8956C92.1624 29.9005 93.8579 31.378 96.15 31.378C98.442 31.378 99.745 29.9634 99.745 28.0772C99.745 25.5936 98.1124 24.7448 94.376 23.6603C90.5611 22.5914 87.5312 20.5009 87.5312 16.0525C87.5312 11.6042 90.8594 8.57051 95.7889 8.57051C100.718 8.57051 103.78 11.4313 104.188 16.3197H99.4782C99.2898 13.9148 97.7356 12.6102 95.7732 12.6102C93.8108 12.6102 92.288 13.9148 92.288 15.7224C92.288 17.9545 93.7637 18.6932 97.3588 19.7935C101.205 20.941 104.549 23.4245 104.549 27.6528C104.549 32.5098 101.142 35.402 96.1029 35.402C90.8908 35.4177 87.5155 32.3369 87.1545 27.1183Z" fill="currentColor"/>
+                    <path d="M22.2548 2.73895L24.1701 14.2135L36.6194 5.37966C28.3617 -1.80369 16.0537 -1.78797 7.79605 5.39538L20.1041 14.1034L22.2548 2.73895Z" fill="currentColor"/>
+                    <path d="M41.4704 21.9312L30.0572 24.0218L38.8487 36.408C45.9917 28.1715 46.0231 15.8953 38.9115 7.64312L30.2927 20.0765L41.4704 21.9312Z" fill="currentColor"/>
+                    <path d="M3.00786 21.9941L14.0913 20.1236L5.53539 7.69028C-1.51345 15.9425 -1.48206 28.1558 5.61389 36.3765L14.3111 24.0689L3.00786 21.9941Z" fill="currentColor"/>
+                    <path d="M44.2177 44L24.123 30.1677L22.2391 41.0449L22.2077 41.2021L20.2297 30.2306L7.90594 38.6871C12.0191 42.2238 17.137 44 22.2391 44H44.2177Z" fill="currentColor"/>
+                </svg>
+                <h1 class="h1 mb-4"><span class="gradient-text">AI</span> (micro-influencers)-as-a-Service</h1>
+                <p class="muted">Strategic Funding Round — September 2025</p>
+            </div>
+        </section>
+
+        <!-- 2. Vision & Impact -->
+        <section class="slide">
+            <div class="max">
+                <h2 class="h1 mb-6">
+                    Our AI Micro-Influencers are Driving <strong>Millions</strong> of Impressions at Scale for Operators, Affiliates, and Media Companies
+                </h2>
+                <div class="pill mb-10 text-center font-medium">
+                    QStarLabs is revolutionizing the iGaming marketing stack with AI micro-influencers
+                </div>
+                <div class="grid grid-cols-4 gap-6">
+                    <div class="card card-enhanced text-center">
+                        <div class="text-3xl metric-value mb-2">20M+</div>
+                        <div class="muted">Impressions</div>
+                    </div>
+                    <div class="card card-enhanced text-center">
+                        <div class="text-3xl metric-value mb-2">100k+</div>
+                        <div class="muted">Interactions</div>
+                    </div>
+                    <div class="card card-enhanced text-center">
+                        <div class="text-3xl metric-value mb-2">24/7</div>
+                        <div class="muted">Availability</div>
+                    </div>
+                    <div class="card card-enhanced text-center">
+                        <img src="images/platform-icons.png" alt="Platforms" class="h-8 mx-auto mb-2">
+                        <div class="muted">Multi-Platform</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Market Opportunity -->
+        <section class="slide">
+            <div class="max grid grid-cols-2 gap-10" style="align-items: center;">
+                <div>
+                    <div class="kicker mb-2">THERE'S A CRITICAL GAP IN DIGITAL MARKETING: MICRO-INFLUENCERS</div>
+                    <h2 class="h1 mb-6">Legalization + digital transformation are fueling secular growth</h2>
+                    <ul class="p space-y-4">
+                        <li>iGaming is a digital social experience — meet players where they spend time</li>
+                        <li>Micro-influencers deliver targeted engagement but are costly to scale manually</li>
+                    </ul>
+                    <div class="mt-8 grid grid-cols-4 gap-4 text-center">
+                        <div class="card card-enhanced">
+                            <div class="font-extrabold metric-value">$100B+</div>
+                            <div class="muted text-sm">iGaming global market</div>
+                        </div>
+                        <div class="card card-enhanced">
+                            <div class="font-extrabold metric-value">$182B+</div>
+                            <div class="muted text-sm">Sports betting by 2030</div>
+                        </div>
+                        <div class="card card-enhanced">
+                            <div class="font-extrabold growth-metric">11.9%</div>
+                            <div class="muted text-sm">Online gambling CAGR</div>
+                        </div>
+                        <div class="card card-enhanced">
+                            <div class="font-extrabold growth-metric">34.7%</div>
+                            <div class="muted text-sm">US iGaming YoY growth</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <img src="images/market-hero.jpg" alt="Market growth" class="rounded-xl w-full object-cover" style="height: 56vh;">
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Product: PERSONAS -->
+        <section class="slide">
+            <div class="max grid grid-cols-2 gap-10" style="align-items: flex-start;">
+                <div>
+                    <h2 class="h1 mb-6"><span class="highlight-text">PERSONAS</span> — QStarLabs AI Micro-Influencer Platform</h2>
+                    <div class="p space-y-4">
+                        <div><span class="font-semibold">White-glove AIaaS</span> with managed deployment</div>
+                        <div><span class="font-semibold">Enterprise integrations for iGaming</span> — odds API, pre-built bet slips, promotion highlights</div>
+                        <div><span class="font-semibold">Reinforcement learning</span> drives audience engagement</div>
+                        <div><span class="font-semibold">Pulse on trending</span> topics to capture demand</div>
+                    </div>
+                </div>
+                <div>
+                    <img src="images/personas-x.png" alt="Parlay post example" class="rounded-xl w-full object-cover border border-zinc-200" style="height: 56vh;">
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Scale & Automation -->
+        <section class="slide">
+            <div class="max grid grid-cols-2 gap-10" style="align-items: center;">
+                <div>
+                    <img src="images/feed-ui.png" alt="Feed UI" class="rounded-xl w-full object-cover border border-zinc-200" style="height: 60vh;">
+                </div>
+                <div>
+                    <h2 class="h1 mb-4">PERSONAS delivers scale</h2>
+                    <p class="p mb-6">Scale influencer results at a fraction of the cost of traditional campaigns.</p>
+                    <ul class="p space-y-4">
+                        <li>Engage <strong>24/7</strong></li>
+                        <li>Curate content based on audience engagement</li>
+                        <li>Deliver impressions and clicks</li>
+                        <li>Integrate with brand tech stacks</li>
+                        <li>Deploy in days (Co-Pilot or Auto-Pilot)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Case Study: Divvy.bet -->
+        <section class="slide">
+            <div class="max grid grid-cols-2 gap-10" style="align-items: center;">
+                <div>
+                    <h2 class="h1 mb-4">Case Study: Divina (Divvy.bet)</h2>
+                    <p class="p mb-6">Divvy.bet launched Divina in early March to promote the March Madness Tournament.</p>
+                    <ul class="p space-y-3">
+                        <li><strong class="growth-metric">+15%</strong> YoY college basketball bets</li>
+                        <li><strong class="metric-value">143k</strong> impressions in first 15 days</li>
+                        <li><strong class="metric-value">2.6k</strong> engagements same period</li>
+                        <li><strong class="growth-metric">58%</strong> win rate on tournament picks</li>
+                    </ul>
+                    <p class="mt-6 italic muted text-sm">Despite a decline in brackets entered industry-wide, Divvy.bet achieved a 15% YoY increase in college basketball bets.</p>
+                </div>
+                <div>
+                    <img src="images/divina.jpg" alt="Divina campaign" class="rounded-xl w-full object-cover" style="height: 56vh;">
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Competitive Advantage -->
+        <section class="slide">
+            <div class="max grid grid-cols-2 gap-10" style="align-items: center;">
+                <div>
+                    <img src="images/scheduler-ui.png" alt="Scheduler" class="rounded-xl w-full object-cover border border-zinc-200" style="height: 60vh;">
+                </div>
+                <div>
+                    <h2 class="h1 mb-4">AI-as-a-Service: Competitive Advantage</h2>
+                    <p class="p mb-6">Deploying AI at scale is difficult even for advanced IT teams. QStarLabs removes the complexity with a turnkey solution:</p>
+                    <ul class="p space-y-3">
+                        <li>Create and configure the agent</li>
+                        <li>Build social infrastructure</li>
+                        <li>Integrate with client tech stack</li>
+                        <li>Compound learnings across agents</li>
+                    </ul>
+                    <p class="p mt-6">Clients focus on <strong>conversion</strong>, not infrastructure.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Client Traction -->
+        <section class="slide">
+            <div class="max grid grid-cols-2 gap-10" style="align-items: center;">
+                <div>
+                    <h2 class="h1 mb-6">Client Traction</h2>
+                    <ul class="p space-y-4">
+                        <li>Working with operators, affiliates, media companies, and celebrities</li>
+                        <li>Fast-growing pipeline via investor introductions and word-of-mouth</li>
+                        <li>Expansion interest across prediction markets, political campaigns, and adult entertainment</li>
+                    </ul>
+                    <p class="mt-6 italic muted text-sm">Near-term growth: affiliates, agencies, and media networks that can deploy many agents quickly.</p>
+                </div>
+                <div>
+                    <img src="images/traction-podcast.jpg" alt="Client traction" class="rounded-xl w-full object-cover" style="height: 56vh;">
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Revenue Model -->
+        <section class="slide">
+            <div class="max grid grid-cols-2 gap-10" style="align-items: flex-start;">
+                <div>
+                    <h2 class="h1 mb-6">Revenue Model</h2>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="card card-enhanced">
+                            <div class="h2 mb-2 gradient-text">Revenue Share</div>
+                            <p class="muted">Share of influencer-generated revenue (or CPA) with a monthly minimum to cover compute.</p>
+                        </div>
+                        <div class="card card-enhanced">
+                            <div class="h2 mb-2 gradient-text">Metering</div>
+                            <p class="muted">Compute cost plus markup.</p>
+                        </div>
+                    </div>
+                    <p class="p mt-6"><strong>Both models</strong> allow QStarLabs to scale profitably and capital-efficiently.</p>
+                </div>
+                <div class="grid grid-cols-1 gap-6">
+                    <img src="images/revenue-cashback.jpg" alt="Cashback promo" class="rounded-xl w-full object-cover" style="height: 26vh;">
+                    <img src="images/revenue-luckyfriday.jpg" alt="Lucky Friday" class="rounded-xl w-full object-cover" style="height: 26vh;">
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. Team -->
+        <section class="slide">
+            <div class="max">
+                <h2 class="h1 mb-8">Team: Decades of Experience Deploying AI Applications at Scale</h2>
+                <div class="grid grid-cols-3 gap-8">
+                    <div class="card">
+                        <img src="images/team-yang.jpg" alt="Yang Tang" class="w-full h-40 object-cover rounded-md mb-4">
+                        <div class="font-bold">YANG TANG | CEO</div>
+                        <ul class="muted text-sm mt-2 space-y-1">
+                            <li>Head of Solutions Sales Americas — Credit Agricole CIB</li>
+                            <li>Rates Solutions — Morgan Stanley & Citi</li>
+                            <li>Co-founder/CEO at applied AI company</li>
+                            <li>MBA — Columbia Business School</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <img src="images/team-carlos.jpg" alt="Carlos Zendejas" class="w-full h-40 object-cover rounded-md mb-4">
+                        <div class="font-bold">CARLOS ZENDEJAS | CPO</div>
+                        <ul class="muted text-sm mt-2 space-y-1">
+                            <li>Head of electronic FX trading — Deutsche Bank & BofA</li>
+                            <li>Co-founder/CDS at predictive social analytics co.</li>
+                            <li>MBA — Columbia Business School</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <img src="images/team-matthew.jpg" alt="Matthew Reid" class="w-full h-40 object-cover rounded-md mb-4">
+                        <div class="font-bold">MATTHEW REID | CHIEF AI RESEARCHER</div>
+                        <ul class="muted text-sm mt-2 space-y-1">
+                            <li>Head of US Treasury trading — Deutsche Bank</li>
+                            <li>PhD — Warwick (HEP); post-doc at CERN</li>
+                            <li>MSc Theoretical & Mathematical Physics — Nottingham</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <img src="images/logos-strip.png" alt="Logos" class="h-12 opacity-80">
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. Round Details -->
+        <section class="slide">
+            <div class="max">
+                <h2 class="h1 mb-8">Round Details</h2>
+                <p class="p mb-10">QStarLabs is raising a strategic round with partners/investors to fuel growth and expand distribution.</p>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="card card-enhanced">
+                        <div class="muted text-xs">Size</div>
+                        <div class="text-2xl font-extrabold metric-value">$1–1.5M</div>
+                    </div>
+                    <div class="card card-enhanced">
+                        <div class="muted text-xs">Valuation</div>
+                        <div class="text-2xl font-extrabold metric-value">$30M post-money</div>
+                    </div>
+                    <div class="card card-enhanced">
+                        <div class="muted text-xs">Instrument</div>
+                        <div class="text-2xl font-extrabold highlight-text">SAFE</div>
+                    </div>
+                </div>
+                <div class="mt-12 text-xl font-semibold">Join us in building the future of social engagement.</div>
+            </div>
+        </section>
+
+        <!-- Scroll hint -->
+        <div class="scroll-hint">Scroll ↓</div>
+    </div>
+
+    <script>
+        // Keyboard navigation
+        document.addEventListener('keydown', (event) => {
+            const container = document.querySelector('.deck-container');
+            const slides = document.querySelectorAll('.slide');
+            const currentScrollPosition = container.scrollTop;
+            const slideHeight = window.innerHeight;
+            let currentSlide = Math.round(currentScrollPosition / slideHeight);
+
+            switch (event.key) {
+                case 'ArrowDown':
+                case ' ':
+                case 'PageDown':
+                    event.preventDefault();
+                    if (currentSlide < slides.length - 1) {
+                        container.scrollTo({
+                            top: (currentSlide + 1) * slideHeight,
+                            behavior: 'smooth'
+                        });
+                    }
+                    break;
+                case 'ArrowUp':
+                case 'PageUp':
+                    event.preventDefault();
+                    if (currentSlide > 0) {
+                        container.scrollTo({
+                            top: (currentSlide - 1) * slideHeight,
+                            behavior: 'smooth'
+                        });
+                    }
+                    break;
+                case 'Home':
+                    event.preventDefault();
+                    container.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    break;
+                case 'End':
+                    event.preventDefault();
+                    container.scrollTo({
+                        top: (slides.length - 1) * slideHeight,
+                        behavior: 'smooth'
+                    });
+                    break;
+            }
+        });
+
+        // Hide scroll hint when user scrolls and update progress
+        const container = document.querySelector('.deck-container');
+        const scrollHint = document.querySelector('.scroll-hint');
+        const progressFill = document.querySelector('.progress-fill');
+        const slides = document.querySelectorAll('.slide');
+        
+        container.addEventListener('scroll', () => {
+            // Update scroll hint
+            if (container.scrollTop > 100) {
+                scrollHint.style.display = 'none';
+            } else {
+                scrollHint.style.display = 'block';
+            }
+            
+            // Update progress bar
+            const scrolled = container.scrollTop;
+            const maxScroll = container.scrollHeight - container.clientHeight;
+            const progress = (scrolled / maxScroll) * 100;
+            progressFill.style.width = progress + '%';
+        });
+    </script>
+</body>
+</html>
