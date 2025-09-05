@@ -135,27 +135,44 @@
             color: #6d28d9;
         }
 
-        /* Brand colors - Black and White */
+        /* Brand colors - Black and White with Purple Accents */
         :root {
             --primary-black: #111827;
             --primary-gray: #6b7280;
             --light-gray: #e5e7eb;
-            --hover-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --primary-violet: #8b5cf6;
+            --primary-fuchsia: #d946ef;
+            --gradient-purple: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+            --hover-shadow: 0 10px 30px rgba(139, 92, 246, 0.15);
+            --glow-purple: 0 0 20px rgba(139, 92, 246, 0.2);
         }
 
         /* Professional text styles */
         .gradient-text {
-            color: var(--primary-black);
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: 900;
             font-family: 'Youth', sans-serif;
             text-transform: uppercase;
         }
 
-        /* Metric value - black and bold */
+        /* Metric value - purple gradient */
         .metric-value {
-            color: var(--primary-black);
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: 900;
             font-family: 'Youth', sans-serif;
+            filter: drop-shadow(var(--glow-purple));
+            animation: glowPulse 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowPulse {
+            0% { filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.2)); }
+            100% { filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.4)); }
         }
 
         /* Growth metrics - now in black */
@@ -170,19 +187,40 @@
             border: 1px solid var(--light-gray);
             background: #ffffff;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-enhanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-purple);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
         .card-enhanced:hover {
             transform: translateY(-4px);
             box-shadow: var(--hover-shadow);
-            border-color: var(--primary-gray);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .card-enhanced:hover::before {
+            transform: scaleX(1);
         }
 
         /* Special text styles */
         .highlight-text {
             position: relative;
             font-weight: 800;
-            color: var(--primary-black);
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-family: 'Youth', sans-serif;
             text-transform: uppercase;
         }
@@ -194,7 +232,7 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: var(--primary-black);
+            background: var(--gradient-purple);
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
@@ -464,7 +502,7 @@
 
         .progress-fill {
             height: 100%;
-            background: var(--primary-black);
+            background: var(--gradient-purple);
             width: 0%;
             transition: width 0.3s ease;
         }
