@@ -100,13 +100,12 @@
             content: '';
             position: absolute;
             bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
+            left: 0;
+            right: 0;
             height: 2px;
             background: var(--gradient-purple);
+            transform: scaleX(0);
             animation: expandLine 1.5s ease-out 0.5s forwards;
-            opacity: 0;
         }
 
         @keyframes titleReveal {
@@ -121,9 +120,11 @@
         }
 
         @keyframes expandLine {
+            from {
+                transform: scaleX(0);
+            }
             to {
-                width: 200px;
-                opacity: 1;
+                transform: scaleX(1);
             }
         }
 
@@ -617,8 +618,8 @@
                     <path d="M3.00786 21.9941L14.0913 20.1236L5.53539 7.69028C-1.51345 15.9425 -1.48206 28.1558 5.61389 36.3765L14.3111 24.0689L3.00786 21.9941Z" fill="currentColor"/>
                     <path d="M44.2177 44L24.123 30.1677L22.2391 41.0449L22.2077 41.2021L20.2297 30.2306L7.90594 38.6871C12.0191 42.2238 17.137 44 22.2391 44H44.2177Z" fill="currentColor"/>
                 </svg>
-                <h1 class="h1 mb-4 title-main"><span class="gradient-text">AI</span> (micro-influencers)<span class="gradient-text">-as-a-Service</span></h1>
-                <p class="muted">Strategic Funding Round — September 2025</p>
+                <h1 class="h1 mb-4 title-main">AI (micro-influencers)-as-a-Service</h1>
+                <p class="muted mt-8">Strategic Funding Round — September 2025</p>
             </div>
         </section>
 
