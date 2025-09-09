@@ -807,6 +807,52 @@
             width: 0%;
             transition: width 0.3s ease;
         }
+
+        /* Print styles for PDF generation */
+        @media print {
+            .deck-container {
+                height: auto !important;
+                overflow: visible !important;
+                scroll-snap-type: none !important;
+            }
+            
+            .slide {
+                height: 100vh !important;
+                min-height: 100vh !important;
+                page-break-after: always !important;
+                page-break-inside: avoid !important;
+                scroll-snap-align: none !important;
+                display: flex !important;
+                flex-shrink: 0 !important;
+            }
+            
+            /* Hide interactive elements in print */
+            .scroll-hint,
+            .progress-bar,
+            #footerLogo {
+                display: none !important;
+            }
+            
+            /* Ensure content fits properly */
+            body {
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            /* Make sure images print properly */
+            img {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            
+            /* Ensure watermarks are visible in print */
+            .watermark-logo,
+            .watermark-logo-left {
+                opacity: 0.15 !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+        }
     </style>
 </head>
 <body>
