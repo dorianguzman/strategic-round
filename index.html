@@ -953,8 +953,9 @@
                 break-after: avoid !important;
             }
             
-            /* Hide highlight text underlines in print */
-            .highlight-text::after {
+            /* Hide all underlines in print */
+            .highlight-text::after,
+            .scale-underline::after {
                 display: none !important;
             }
             
