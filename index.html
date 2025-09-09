@@ -1048,6 +1048,20 @@
                 transform: scaleX(1) !important;
             }
             
+            /* Extra specific removal for slide 3 purple lines */
+            .slide:nth-child(3) .highlight-text::before,
+            .slide:nth-child(3) .highlight-text::after,
+            .slide:nth-child(3) span.highlight-text::before,
+            .slide:nth-child(3) span.highlight-text::after {
+                display: none !important;
+                content: none !important;
+                background: none !important;
+                border: none !important;
+                box-shadow: none !important;
+                border-bottom: none !important;
+                border-top: none !important;
+            }
+            
             /* Clean up all decorative elements */
             * {
                 text-decoration: none !important;
