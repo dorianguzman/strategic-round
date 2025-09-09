@@ -1052,8 +1052,10 @@
                                 </div>
                             </div>
                             
-                            <div class="mt-4 text-center p-3" style="background: rgba(76, 29, 149, 0.05); border-radius: 0.5rem;">
-                                <p class="text-sm font-semibold" style="color: #4c1d95;">Deploy in days • Co-Pilot or Auto-Pilot modes</p>
+                            <div class="mt-4 p-4 text-center" style="background: rgba(76, 29, 149, 0.05); border-radius: 0.5rem;">
+                                <h3 class="text-lg font-black" style="font-family: 'Youth', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.6;">
+                                    Deploy in days • <span class="highlight-text">Co-Pilot or Auto-Pilot</span> modes
+                                </h3>
                             </div>
                         </div>
                     </div>
@@ -1117,38 +1119,193 @@
 
         <!-- 7. Competitive Advantage -->
         <section class="slide">
-            <div class="max grid grid-cols-2 gap-10" style="align-items: center;">
-                <div>
-                    <img src="images/scheduler-ui.png" alt="Scheduler" class="rounded-xl w-full object-cover border border-zinc-200" style="height: 60vh;">
-                </div>
-                <div>
-                    <h2 class="h1 mb-4">AI-as-a-Service: Competitive Advantage</h2>
-                    <p class="p mb-6">Deploying AI at scale is difficult even for advanced IT teams. QStarLabs removes the complexity with a turnkey solution:</p>
-                    <ul class="p space-y-3">
-                        <li>Create and configure the agent</li>
-                        <li>Build social infrastructure</li>
-                        <li>Integrate with client tech stack</li>
-                        <li>Compound learnings across agents</li>
-                    </ul>
-                    <p class="p mt-6">Clients focus on <strong>conversion</strong>, not infrastructure.</p>
+            <div class="max" style="height: 100vh; display: flex; align-items: center;">
+                <div class="grid grid-cols-2 gap-12" style="width: 100%; align-items: center;">
+                    <!-- Left column: Overlapping Images -->
+                    <div style="position: relative; height: 600px; display: flex; align-items: center; justify-content: center;">
+                        <!-- Capabilities Image (Back Card) -->
+                        <div style="position: absolute; width: 70%; transform: rotate(-1deg) translateX(-50px) translateY(-40px); animation: fadeIn 0.6s ease-out; transition: all 0.3s ease; z-index: 1;" 
+                             onmouseover="this.style.transform='rotate(-1deg) translateX(-50px) translateY(-40px) scale(1.02)'" 
+                             onmouseout="this.style.transform='rotate(-1deg) translateX(-50px) translateY(-40px)'">
+                            <div style="position: relative; overflow: hidden; border-radius: 1rem; box-shadow: 0 15px 35px rgba(76, 29, 149, 0.12), 0 5px 15px rgba(0,0,0,0.08);">
+                                <img src="images/capabilities.png" 
+                                     alt="Platform Capabilities" 
+                                     class="w-full"
+                                     style="height: 320px; object-fit: cover;">
+                                <div style="position: absolute; top: 1rem; left: 1rem; background: rgba(76, 29, 149, 0.9); color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.875rem; font-weight: 600; backdrop-filter: blur(10px);">
+                                    Platform Capabilities
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Schedule Image (Front Card) -->
+                        <div style="position: absolute; width: 75%; transform: rotate(1deg) translateX(40px) translateY(60px); animation: fadeIn 0.6s ease-out 0.3s both; transition: all 0.3s ease; z-index: 2;" 
+                             onmouseover="this.style.transform='rotate(1deg) translateX(40px) translateY(60px) scale(1.05)'; this.style.zIndex='3'" 
+                             onmouseout="this.style.transform='rotate(1deg) translateX(40px) translateY(60px)'; this.style.zIndex='2'">
+                            <div style="position: relative; overflow: hidden; border-radius: 1rem; box-shadow: 0 20px 45px rgba(76, 29, 149, 0.2), 0 10px 20px rgba(0,0,0,0.12);">
+                                <img src="images/schedule.png" 
+                                     alt="Automated Scheduler" 
+                                     class="w-full"
+                                     style="height: 340px; object-fit: cover;">
+                                <div style="position: absolute; bottom: 1rem; right: 1rem; background: rgba(76, 29, 149, 0.9); color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.875rem; font-weight: 600; backdrop-filter: blur(10px);">
+                                    Automated Scheduler
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right column: Content -->
+                    <div>
+                        <div class="kicker mb-2 text-center" style="font-size: 1rem; animation: fadeIn 0.5s ease-out;">DIFFERENTIATION</div>
+                        <h2 class="mb-4 text-center" style="font-size: 1.75rem; font-weight: 900; font-family: 'Youth', sans-serif; line-height: 1.2; letter-spacing: -0.01em; animation: fadeIn 0.7s ease-out 0.2s both; text-transform: uppercase;">
+                            <span style="background: linear-gradient(135deg, #111827 0%, #374151 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">AI-as-a-Service:</span><br/>
+                            <span class="highlight-text">COMPETITIVE ADVANTAGE</span>
+                        </h2>
+                        <p class="text-center mb-8 text-lg" style="color: #6b7280; animation: fadeIn 0.7s ease-out 0.3s both;">Deploying AI at scale is difficult even for advanced IT teams. QStarLabs removes the complexity with a turnkey solution</p>
+                        
+                        <div class="challenge-section" style="background: rgba(76, 29, 149, 0.03); padding: 1.5rem; animation: fadeIn 0.8s ease-out 0.4s both;">
+                            <div class="challenge-header mb-3">
+                                <span class="challenge-label">TURNKEY SOLUTION</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="card card-enhanced p-4 text-center" style="animation: cardReveal 0.8s ease-out 0.5s both;">
+                                    <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #4c1d95;">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    <h3 class="font-bold mb-1 gradient-text">Setup</h3>
+                                    <p class="text-xs muted">Create and configure<br/>the agent</p>
+                                </div>
+                                <div class="card card-enhanced p-4 text-center" style="animation: cardReveal 0.8s ease-out 0.6s both;">
+                                    <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #4c1d95;">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                    </svg>
+                                    <h3 class="font-bold mb-1 gradient-text">Infrastructure</h3>
+                                    <p class="text-xs muted">Build social<br/>infrastructure</p>
+                                </div>
+                                <div class="card card-enhanced p-4 text-center" style="animation: cardReveal 0.8s ease-out 0.7s both;">
+                                    <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #4c1d95;">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
+                                    </svg>
+                                    <h3 class="font-bold mb-1 gradient-text">Integrate</h3>
+                                    <p class="text-xs muted">Integrate with client<br/>tech stack</p>
+                                </div>
+                                <div class="card card-enhanced p-4 text-center" style="animation: cardReveal 0.8s ease-out 0.8s both;">
+                                    <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #4c1d95;">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                    <h3 class="font-bold mb-1 gradient-text">Scale</h3>
+                                    <p class="text-xs muted">Compound learnings<br/>across agents</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 text-center" style="background: rgba(76, 29, 149, 0.05); border-radius: 0.5rem;">
+                                <h3 class="text-lg font-black" style="font-family: 'Youth', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.6;">
+                                    Clients focus on <span class="highlight-text">conversion</span>, not infrastructure.
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- 8. Client Traction -->
         <section class="slide">
-            <div class="max grid grid-cols-2 gap-10" style="align-items: center;">
-                <div>
-                    <h2 class="h1 mb-6">Client Traction</h2>
-                    <ul class="p space-y-4">
-                        <li>Working with operators, affiliates, media companies, and celebrities</li>
-                        <li>Fast-growing pipeline via investor introductions and word-of-mouth</li>
-                        <li>Expansion interest across prediction markets, political campaigns, and adult entertainment</li>
-                    </ul>
-                    <p class="mt-6 italic muted text-sm">Near-term growth: affiliates, agencies, and media networks that can deploy many agents quickly.</p>
-                </div>
-                <div>
-                    <img src="images/traction-podcast.jpg" alt="Client traction" class="rounded-xl w-full object-cover" style="height: 56vh;">
+            <div class="max" style="height: 100vh; display: flex; align-items: center;">
+                <div class="grid grid-cols-2 gap-12" style="width: 100%; align-items: center;">
+                    <!-- Left column: Content -->
+                    <div>
+                        <div class="kicker mb-2 text-center" style="font-size: 1rem; animation: fadeIn 0.5s ease-out;">MARKET MOMENTUM</div>
+                        <h2 class="mb-4 text-center" style="font-size: 1.75rem; font-weight: 900; font-family: 'Youth', sans-serif; line-height: 1.2; letter-spacing: -0.01em; animation: fadeIn 0.7s ease-out 0.2s both; text-transform: uppercase;">
+                            <span class="highlight-text">CLIENT TRACTION</span>
+                        </h2>
+                        <p class="text-center mb-8 text-lg" style="color: #6b7280; animation: fadeIn 0.7s ease-out 0.3s both;">Strong market adoption and growing demand across verticals</p>
+                        
+                        <div class="challenge-section" style="background: rgba(76, 29, 149, 0.03); padding: 1.5rem; animation: fadeIn 0.8s ease-out 0.4s both;">
+                            <div class="challenge-header mb-3">
+                                <span class="challenge-label">CURRENT ENGAGEMENT</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="card card-enhanced p-4 text-center" style="animation: cardReveal 0.8s ease-out 0.5s both;">
+                                    <h3 class="font-bold mb-2 gradient-text">Partnerships</h3>
+                                    <p class="text-xs muted">Working with operators, affiliates, media companies, and celebrities</p>
+                                </div>
+                                <div class="card card-enhanced p-4 text-center" style="animation: cardReveal 0.8s ease-out 0.6s both;">
+                                    <h3 class="font-bold mb-2 gradient-text">Pipeline</h3>
+                                    <p class="text-xs muted">Fast-growing pipeline via investor introductions and word-of-mouth</p>
+                                </div>
+                                <div class="card card-enhanced p-4 text-center" style="animation: cardReveal 0.8s ease-out 0.7s both;">
+                                    <h3 class="font-bold mb-2 gradient-text">Expansion</h3>
+                                    <p class="text-xs muted">Clients have expressed interest in expanding agents</p>
+                                </div>
+                                <div class="card card-enhanced p-4 text-center" style="animation: cardReveal 0.8s ease-out 0.8s both;">
+                                    <h3 class="font-bold mb-2 gradient-text">Tangential market opportunities</h3>
+                                    <p class="text-xs muted">Prediction markets, political campaigns, and adult entertainment</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 text-center" style="background: rgba(76, 29, 149, 0.05); border-radius: 0.5rem;">
+                                <h3 class="text-lg font-black" style="font-family: 'Youth', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.6;">
+                                    Near-term growth: <span class="highlight-text">affiliates, agencies, and media networks</span> that can deploy many agents quickly.
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right column: Agent Collage -->
+                    <div style="position: relative; height: 600px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 0.75rem; animation: fadeIn 0.8s ease-out;">
+                        <!-- Top Row -->
+                        <div style="grid-column: span 2; position: relative; overflow: hidden; border-radius: 0.75rem; box-shadow: 0 10px 25px rgba(76, 29, 149, 0.15); animation: fadeIn 0.8s ease-out 0.2s both;">
+                            <img src="images/liam.jpeg" alt="Liam" class="w-full h-full object-cover" style="transform: scale(1.1);">
+                            <div style="position: absolute; bottom: 0.5rem; left: 0.5rem; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.75rem; font-weight: 600;">
+                                Liam
+                            </div>
+                        </div>
+                        <div style="position: relative; overflow: hidden; border-radius: 0.75rem; box-shadow: 0 10px 25px rgba(76, 29, 149, 0.15); animation: fadeIn 0.8s ease-out 0.3s both;">
+                            <img src="images/juma.jpeg" alt="Juma" class="w-full h-full object-cover">
+                            <div style="position: absolute; bottom: 0.5rem; right: 0.5rem; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.75rem; font-weight: 600;">
+                                Juma
+                            </div>
+                        </div>
+                        
+                        <!-- Middle Row -->
+                        <div style="position: relative; overflow: hidden; border-radius: 0.75rem; box-shadow: 0 10px 25px rgba(76, 29, 149, 0.15); animation: fadeIn 0.8s ease-out 0.4s both;">
+                            <img src="images/evan.png" alt="Evan" class="w-full h-full object-cover">
+                            <div style="position: absolute; top: 0.5rem; left: 0.5rem; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.75rem; font-weight: 600;">
+                                Evan
+                            </div>
+                        </div>
+                        <div style="position: relative; overflow: hidden; border-radius: 0.75rem; box-shadow: 0 10px 25px rgba(76, 29, 149, 0.15); animation: fadeIn 0.8s ease-out 0.5s both;">
+                            <img src="images/ruby.jpeg" alt="Ruby" class="w-full h-full object-cover">
+                            <div style="position: absolute; bottom: 0.5rem; left: 0.5rem; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.75rem; font-weight: 600;">
+                                Ruby
+                            </div>
+                        </div>
+                        <div style="position: relative; overflow: hidden; border-radius: 0.75rem; box-shadow: 0 10px 25px rgba(76, 29, 149, 0.15); animation: fadeIn 0.8s ease-out 0.6s both;">
+                            <img src="images/saif.jpeg" alt="Saif" class="w-full h-full object-cover">
+                            <div style="position: absolute; top: 0.5rem; right: 0.5rem; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.75rem; font-weight: 600;">
+                                Saif
+                            </div>
+                        </div>
+                        
+                        <!-- Bottom Row -->
+                        <div style="position: relative; overflow: hidden; border-radius: 0.75rem; box-shadow: 0 10px 25px rgba(76, 29, 149, 0.15); animation: fadeIn 0.8s ease-out 0.7s both;">
+                            <img src="images/tobe.jpeg" alt="Tobe" class="w-full h-full object-cover">
+                            <div style="position: absolute; bottom: 0.5rem; left: 0.5rem; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.75rem; font-weight: 600;">
+                                Tobe
+                            </div>
+                        </div>
+                        <div style="grid-column: span 2; position: relative; overflow: hidden; border-radius: 0.75rem; box-shadow: 0 10px 25px rgba(76, 29, 149, 0.15); animation: fadeIn 0.8s ease-out 0.8s both;">
+                            <img src="images/valentina.jpeg" alt="Valentina" class="w-full h-full" style="object-fit: cover; object-position: center 20%;">
+                            <div style="position: absolute; bottom: 0.5rem; right: 0.5rem; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.75rem; font-weight: 600;">
+                                Valentina
+                            </div>
+                        </div>
+                        
+                        <!-- Top Left Badge -->
+                        <div style="position: absolute; top: -0.5rem; left: -0.5rem; background: rgba(76, 29, 149, 0.95); color: white; padding: 0.75rem 1.5rem; border-radius: 2rem; font-size: 0.875rem; font-weight: 700; box-shadow: 0 10px 30px rgba(76, 29, 149, 0.4); backdrop-filter: blur(10px); z-index: 10;">
+                            AI PERSONAS
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
