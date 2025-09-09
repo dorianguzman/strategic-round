@@ -1313,6 +1313,21 @@
                 margin-bottom: 0.75rem !important;
             }
             
+            /* Fix slide 5 specific issues - print only */
+            /* Remove space before PERSONAS-powered box */
+            .slide:nth-child(5) .text-lg.mb-8 {
+                margin-bottom: 1rem !important;
+            }
+            
+            /* Remove purple lines from specific text in slide 5 */
+            .slide:nth-child(5) .gradient-text::before,
+            .slide:nth-child(5) .gradient-text::after {
+                display: none !important;
+                content: none !important;
+                background: none !important;
+                border: none !important;
+            }
+            
         }
     </style>
 </head>
