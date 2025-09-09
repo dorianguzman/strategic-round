@@ -1025,7 +1025,9 @@
             
             /* Remove text decorations that create unwanted lines but preserve colors */
             .highlight-text,
-            .gradient-text {
+            .gradient-text,
+            .metric-value,
+            .hero-metric {
                 text-decoration: none !important;
                 background-image: none !important;
                 /* Preserve purple text color */
@@ -1033,12 +1035,22 @@
             }
             
             /* Ensure gradient text shows purple color in print */
-            .gradient-text {
+            .gradient-text,
+            .metric-value {
                 background: none !important;
                 -webkit-background-clip: unset !important;
                 -webkit-text-fill-color: #4c1d95 !important;
                 background-clip: unset !important;
                 color: #4c1d95 !important;
+            }
+            
+            /* Fix hero-metric pseudo-elements that might create lines */
+            .hero-metric::before,
+            .hero-metric::after {
+                display: none !important;
+                content: none !important;
+                background: none !important;
+                border: none !important;
             }
             
             /* Keep card borders and other legitimate styling intact */
