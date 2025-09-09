@@ -1138,6 +1138,92 @@
                 object-position: center !important;
             }
             
+            /* Slide 7 specific fixes - print only */
+            .slide:nth-child(7) .highlight-text::before,
+            .slide:nth-child(7) .highlight-text::after,
+            .slide:nth-child(7) span.highlight-text::before,
+            .slide:nth-child(7) span.highlight-text::after {
+                display: none !important;
+                content: none !important;
+                background: none !important;
+                border: none !important;
+                box-shadow: none !important;
+                border-bottom: none !important;
+                border-top: none !important;
+            }
+            
+            /* Slide 7 image layout fixes - print only */
+            .slide:nth-child(7) .grid {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                width: 100% !important;
+                height: 100% !important;
+            }
+            
+            .slide:nth-child(7) .grid > div:first-child {
+                position: relative !important;
+                height: 100% !important;
+                overflow: visible !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+                gap: 1rem !important;
+                padding: 2rem !important;
+            }
+            
+            /* Reset image positioning for print */
+            .slide:nth-child(7) .grid > div:first-child > div {
+                position: static !important;
+                transform: none !important;
+                width: 100% !important;
+                max-width: 400px !important;
+                z-index: auto !important;
+                margin: 0.5rem 0 !important;
+            }
+            
+            .slide:nth-child(7) img[src*="capabilities"],
+            .slide:nth-child(7) img[src*="schedule"] {
+                width: 100% !important;
+                height: auto !important;
+                max-height: 200px !important;
+                object-fit: contain !important;
+                border-radius: 0.5rem !important;
+            }
+            
+            /* Remove hover effects and animations for print */
+            .slide:nth-child(7) .grid > div:first-child > div {
+                animation: none !important;
+                transition: none !important;
+            }
+            
+            /* Slide 10 (Team) fixes - print only */
+            .slide:nth-child(10) .highlight-text::before,
+            .slide:nth-child(10) .highlight-text::after,
+            .slide:nth-child(10) span.highlight-text::before,
+            .slide:nth-child(10) span.highlight-text::after {
+                display: none !important;
+                content: none !important;
+                background: none !important;
+                border: none !important;
+                box-shadow: none !important;
+                border-bottom: none !important;
+                border-top: none !important;
+            }
+            
+            .slide:nth-child(10) .flex.justify-center.items-center img {
+                height: 25px !important;
+                max-height: 25px !important;
+                width: auto !important;
+                object-fit: contain !important;
+            }
+            
+            .slide:nth-child(10) .flex.justify-center.items-center {
+                gap: 1rem !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+            }
+            
             /* Clean up all decorative elements */
             * {
                 text-decoration: none !important;
