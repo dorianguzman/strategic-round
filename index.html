@@ -953,15 +953,36 @@
                 break-after: avoid !important;
             }
             
-            /* Hide all underlines in print */
+            /* Hide all underlines and decorative elements in print */
             .highlight-text::after,
-            .scale-underline::after {
+            .scale-underline::after,
+            *::after,
+            *::before {
                 display: none !important;
+            }
+            
+            /* Remove any text decorations */
+            * {
+                text-decoration: none !important;
+                border-bottom: none !important;
             }
             
             /* Remove scroll bars in print */
             * {
                 overflow: visible !important;
+            }
+            
+            /* Reduce spacing around market insights box in slide 3 - print only */
+            .slide h2.mb-6 {
+                margin-bottom: 1rem !important;
+            }
+            
+            .challenge-section {
+                margin-bottom: 1rem !important;
+            }
+            
+            .grid[style*="margin-top: 1.5rem"] {
+                margin-top: 0.5rem !important;
             }
             
             /* Specific fix for slide content areas */
