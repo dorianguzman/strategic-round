@@ -966,6 +966,34 @@
                 display: block !important;
             }
             
+            /* Extra specific rules to remove all purple lines in slide 3 */
+            .highlight-text {
+                position: static !important;
+            }
+            
+            .highlight-text::before,
+            .highlight-text::after {
+                display: none !important;
+                content: none !important;
+            }
+            
+            span.highlight-text::after,
+            span.highlight-text::before {
+                display: none !important;
+                content: none !important;
+            }
+            
+            /* Remove any borders or decorations from gradient text */
+            span[style*="background: linear-gradient"] {
+                border: none !important;
+                text-decoration: none !important;
+            }
+            
+            span[style*="background: linear-gradient"]::before,
+            span[style*="background: linear-gradient"]::after {
+                display: none !important;
+            }
+            
             /* Remove any text decorations */
             * {
                 text-decoration: none !important;
