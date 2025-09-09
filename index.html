@@ -1062,6 +1062,47 @@
                 border-top: none !important;
             }
             
+            /* Replace pipe separators with bullets in slide 5 for print */
+            .slide:nth-child(5) .text-lg {
+                visibility: hidden !important;
+                position: relative !important;
+            }
+            
+            .slide:nth-child(5) .text-lg::after {
+                content: "Zero Human Management • Automated • Self-Learning" !important;
+                visibility: visible !important;
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                color: #4c1d95 !important;
+                font-weight: 600 !important;
+                font-size: 1.25rem !important;
+                text-align: center !important;
+            }
+            
+            /* Clean up the bottom text in slide 5 */
+            .slide:nth-child(5) h3.font-black {
+                visibility: hidden !important;
+                position: relative !important;
+            }
+            
+            .slide:nth-child(5) h3.font-black::after {
+                content: "Deploy in days • Co-Pilot or Auto-Pilot modes" !important;
+                visibility: visible !important;
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                font-family: 'Youth', sans-serif !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.05em !important;
+                line-height: 1.6 !important;
+                font-size: 1.25rem !important;
+                font-weight: 900 !important;
+                text-align: center !important;
+            }
+            
             /* Clean up all decorative elements */
             * {
                 text-decoration: none !important;
