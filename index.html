@@ -376,6 +376,7 @@
         /* Special text styles */
         .highlight-text {
             position: relative;
+            display: inline-block;
             font-weight: 800;
             background: var(--gradient-purple);
             -webkit-background-clip: text;
@@ -388,13 +389,14 @@
         .highlight-text::after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: -4px;
             left: 0;
             right: 0;
-            height: 2px;
+            height: 3px;
             background: var(--gradient-purple);
             transform: scaleX(0);
             transition: transform 0.3s ease;
+            z-index: -1;
         }
 
         .slide:hover .highlight-text::after {
@@ -834,16 +836,16 @@
                 <div class="grid grid-cols-2 gap-12" style="width: 100%; align-items: center;">
                     <!-- Left column: Sports celebration image -->
                     <div style="animation: fadeIn 0.8s ease-out;">
-                        <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=600&h=800&fit=crop" 
-                             alt="Sports celebration" 
+                        <img src="https://images.unsplash.com/photo-1709718993034-a91369c4c500?w=600&h=800&fit=crop" 
+                             alt="Large crowd watching match" 
                              class="rounded-xl" 
                              style="width: 100%; height: 600px; object-fit: cover; box-shadow: 0 20px 40px rgba(76, 29, 149, 0.15);">
                     </div>
                     
                     <!-- Right column: Content -->
                     <div>
-                        <div class="kicker mb-2" style="animation: fadeIn 0.5s ease-out;">MARKET OPPORTUNITY</div>
-                        <h2 class="mb-8" style="font-size: 2.5rem; font-weight: 900; font-family: 'Youth', sans-serif; line-height: 1.1; letter-spacing: -0.02em; animation: fadeIn 0.7s ease-out 0.2s both; text-transform: uppercase;">
+                        <div class="kicker mb-2 text-center" style="font-size: 1rem; animation: fadeIn 0.5s ease-out;">MARKET OPPORTUNITY</div>
+                        <h2 class="mb-6 text-center" style="font-size: 1.75rem; font-weight: 900; font-family: 'Youth', sans-serif; line-height: 1.2; letter-spacing: -0.01em; animation: fadeIn 0.7s ease-out 0.2s both; text-transform: uppercase;">
                             <span class="highlight-text">Legalization</span> <span style="background: linear-gradient(135deg, #111827 0%, #374151 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">and</span> <span class="highlight-text">Digital Transformation</span> <span style="background: linear-gradient(135deg, #111827 0%, #374151 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">are driving rapid secular growth in iGaming</span>
                         </h2>
                         
@@ -854,11 +856,11 @@
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="card card-enhanced p-4 text-center">
                                     <h3 class="font-bold mb-2 gradient-text">OPPORTUNITY</h3>
-                                    <p class="text-sm muted">iGaming is a digital social experience:<br/>meeting players where they spend their time</p>
+                                    <p class="text-sm muted">Digital social experience<br/>meeting players where they are</p>
                                 </div>
                                 <div class="card card-enhanced p-4 text-center">
                                     <h3 class="font-bold mb-2 gradient-text">INSIGHT</h3>
-                                    <p class="text-sm muted">Micro-influencers drive higher targeted engagement rates<br/>BUT hard to scale due to cost of manual influencer management</p>
+                                    <p class="text-sm muted">Micro-influencers drive engagement<br/>but hard to scale manually</p>
                                 </div>
                             </div>
                             <div class="mt-4 p-4 text-center" style="background: rgba(76, 29, 149, 0.05); border-radius: 0.5rem;">
@@ -868,31 +870,31 @@
                             </div>
                         </div>
                         
-                        <!-- Market data section - 2x2 grid -->
-                        <div class="grid grid-cols-2 gap-2 mt-10" style="animation: fadeIn 1s ease-out 0.8s both;">
-                            <div class="card card-enhanced text-center p-2" style="min-height: auto;">
-                                <div class="text-base metric-value">$100B+</div>
-                                <div style="font-size: 0.6rem; font-weight: 600; color: #4c1d95; line-height: 1.2;">Global iGaming</div>
-                                <div style="font-size: 0.55rem; color: #6b7280; line-height: 1.2;">Market Size</div>
-                                <div style="font-size: 0.55rem; font-weight: 600; color: #4c1d95; line-height: 1.2; margin-top: 2px;">Double-digit growth rate</div>
+                        <!-- Market data section - 1x4 grid -->
+                        <div class="grid grid-cols-4 gap-1 mt-10" style="animation: fadeIn 1s ease-out 0.8s both;">
+                            <div class="card card-enhanced text-center p-1" style="min-height: auto;">
+                                <div class="text-sm metric-value">$100B+</div>
+                                <div style="font-size: 0.5rem; font-weight: 600; color: #4c1d95; line-height: 1.1;">Global iGaming</div>
+                                <div style="font-size: 0.45rem; color: #6b7280; line-height: 1;">Market Size</div>
+                                <div style="font-size: 0.45rem; font-weight: 600; color: #4c1d95; line-height: 1;">Double-digit growth</div>
                             </div>
-                            <div class="card card-enhanced text-center p-2" style="min-height: auto;">
-                                <div class="text-base metric-value">$182B+</div>
-                                <div style="font-size: 0.6rem; font-weight: 600; color: #4c1d95; line-height: 1.2;">Global Sports</div>
-                                <div style="font-size: 0.55rem; color: #6b7280; line-height: 1.2;">Betting Market</div>
-                                <div style="font-size: 0.55rem; font-weight: 600; color: #4c1d95; line-height: 1.2; margin-top: 2px;">Projected by 2030</div>
+                            <div class="card card-enhanced text-center p-1" style="min-height: auto;">
+                                <div class="text-sm metric-value">$182B+</div>
+                                <div style="font-size: 0.5rem; font-weight: 600; color: #4c1d95; line-height: 1.1;">Global Sports</div>
+                                <div style="font-size: 0.45rem; color: #6b7280; line-height: 1;">Betting Market</div>
+                                <div style="font-size: 0.45rem; font-weight: 600; color: #4c1d95; line-height: 1;">by 2030</div>
                             </div>
-                            <div class="card card-enhanced text-center p-2" style="min-height: auto;">
-                                <div class="text-base metric-value">11.9%</div>
-                                <div style="font-size: 0.6rem; font-weight: 600; color: #4c1d95; line-height: 1.2;">CAGR Online</div>
-                                <div style="font-size: 0.55rem; color: #6b7280; line-height: 1.2;">Gambling</div>
-                                <div style="font-size: 0.55rem; font-weight: 600; color: #4c1d95; line-height: 1.2; margin-top: 2px;">2025-2030 forecast</div>
+                            <div class="card card-enhanced text-center p-1" style="min-height: auto;">
+                                <div class="text-sm metric-value">11.9%</div>
+                                <div style="font-size: 0.5rem; font-weight: 600; color: #4c1d95; line-height: 1.1;">CAGR Online</div>
+                                <div style="font-size: 0.45rem; color: #6b7280; line-height: 1;">Gambling</div>
+                                <div style="font-size: 0.45rem; font-weight: 600; color: #4c1d95; line-height: 1;">2025-2030</div>
                             </div>
-                            <div class="card card-enhanced text-center p-2" style="min-height: auto;">
-                                <div class="text-base metric-value">34.7%</div>
-                                <div style="font-size: 0.6rem; font-weight: 600; color: #4c1d95; line-height: 1.2;">US iGaming</div>
-                                <div style="font-size: 0.55rem; color: #6b7280; line-height: 1.2;">Market Growth</div>
-                                <div style="font-size: 0.55rem; font-weight: 600; color: #4c1d95; line-height: 1.2; margin-top: 2px;">Year-over-Year Jan 2025</div>
+                            <div class="card card-enhanced text-center p-1" style="min-height: auto;">
+                                <div class="text-sm metric-value">34.7%</div>
+                                <div style="font-size: 0.5rem; font-weight: 600; color: #4c1d95; line-height: 1.1;">US iGaming</div>
+                                <div style="font-size: 0.45rem; color: #6b7280; line-height: 1;">Market Growth</div>
+                                <div style="font-size: 0.45rem; font-weight: 600; color: #4c1d95; line-height: 1;">YoY Jan 2025</div>
                             </div>
                         </div>
                     </div>
