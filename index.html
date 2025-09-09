@@ -1033,10 +1033,26 @@
             
             /* Slide 3 image cropping - print only */
             .slide img[src*="elio-santos"] {
-                object-position: center 80% !important;
+                object-position: center bottom !important;
                 object-fit: cover !important;
                 height: 100% !important;
                 width: 100% !important;
+                margin-top: 0 !important;
+                padding-top: 0 !important;
+            }
+            
+            /* Ensure slide 3 container doesn't overflow */
+            .slide:nth-child(3) {
+                overflow: hidden !important;
+                margin-top: 0 !important;
+                padding-top: 0 !important;
+            }
+            
+            /* Slide 3 left column specific */
+            .slide:nth-child(3) .grid > div:first-child {
+                overflow: hidden !important;
+                margin-top: 0 !important;
+                padding-top: 0 !important;
             }
         }
     </style>
