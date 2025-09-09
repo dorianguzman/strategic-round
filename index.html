@@ -808,19 +808,23 @@
             transition: width 0.3s ease;
         }
 
-        /* Print styles for PDF generation - One slide per page */
+        /* PRINT-ONLY OPTIMIZED STYLES - Complete PDF Generation */
         @media print {
+            /* Page setup */
             @page {
                 size: A4 landscape;
                 margin: 0;
             }
             
+            /* Universal color preservation */
             * {
                 -webkit-print-color-adjust: exact !important;
                 color-adjust: exact !important;
                 print-color-adjust: exact !important;
+                box-sizing: border-box !important;
             }
             
+            /* Document structure */
             html, body {
                 height: auto !important;
                 width: auto !important;
@@ -839,6 +843,7 @@
                 background: none !important;
             }
             
+            /* Slide layout - one per page */
             .slide {
                 width: 100vw !important;
                 height: 100vh !important;
@@ -855,61 +860,50 @@
                 justify-content: center !important;
                 align-items: center !important;
                 position: relative !important;
-                overflow: hidden !important;
+                overflow: visible !important;
                 margin: 0 !important;
                 padding: 0 !important;
-                box-sizing: border-box !important;
             }
             
-            /* First slide shouldn't have page break before */
             .slide:first-child {
                 page-break-before: auto !important;
                 break-before: auto !important;
             }
             
-            /* Last slide shouldn't have page break after */
             .slide:last-child {
                 page-break-after: auto !important;
                 break-after: auto !important;
             }
             
-            /* Hide interactive elements in print */
+            /* Hide interactive elements */
             .scroll-hint,
             .progress-bar,
             #footerLogo {
                 display: none !important;
             }
             
-            /* Ensure slide content fits properly */
+            /* Content containers */
             .max {
                 width: 100% !important;
                 height: 100% !important;
                 max-width: none !important;
                 max-height: none !important;
                 padding: 2rem !important;
-                box-sizing: border-box !important;
+                overflow: visible !important;
             }
             
-            /* Grid layouts for print */
+            /* Grid systems */
             .grid {
                 display: grid !important;
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
             }
             
-            .grid-cols-2 {
-                grid-template-columns: 1fr 1fr !important;
-            }
+            .grid-cols-2 { grid-template-columns: 1fr 1fr !important; }
+            .grid-cols-3 { grid-template-columns: 1fr 1fr 1fr !important; }
+            .grid-cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr !important; }
             
-            .grid-cols-3 {
-                grid-template-columns: 1fr 1fr 1fr !important;
-            }
-            
-            .grid-cols-4 {
-                grid-template-columns: 1fr 1fr 1fr 1fr !important;
-            }
-            
-            /* Images for print */
+            /* Images */
             img {
                 -webkit-print-color-adjust: exact !important;
                 color-adjust: exact !important;
@@ -920,153 +914,47 @@
                 break-inside: avoid !important;
             }
             
-            /* Watermarks visible in print */
+            /* Watermarks */
             .watermark-logo,
             .watermark-logo-left {
-                opacity: 0.2 !important;
+                opacity: 0.15 !important;
                 -webkit-print-color-adjust: exact !important;
                 color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
             
-            /* Text and styling preservation */
-            .highlight-text,
-            .gradient-text,
+            /* Cards and sections */
             .card,
             .challenge-section {
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-            
-            /* Ensure backgrounds print */
-            .challenge-section,
-            .card {
                 background: rgba(248, 248, 250, 0.8) !important;
                 -webkit-print-color-adjust: exact !important;
                 color-adjust: exact !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
             }
             
-            /* Font sizes for print readability */
-            h1, h2, h3 {
+            /* Typography - Print optimized sizes */
+            h1, .h1 {
+                font-size: 2.5rem !important;
                 page-break-after: avoid !important;
                 break-after: avoid !important;
             }
             
-            /* Hide all underlines and decorative elements in print */
-            .highlight-text::after,
-            .scale-underline::after,
-            *::after,
-            *::before {
-                display: none !important;
-            }
-            
-            /* Exception: Keep the purple line under title in slide 1 */
-            .title-main::after {
-                display: block !important;
-            }
-            
-            /* Extra specific rules to remove all purple lines in slide 3 */
-            .highlight-text {
-                position: static !important;
-            }
-            
-            .highlight-text::before,
-            .highlight-text::after {
-                display: none !important;
-                content: none !important;
-            }
-            
-            span.highlight-text::after,
-            span.highlight-text::before {
-                display: none !important;
-                content: none !important;
-            }
-            
-            /* Remove any borders or decorations from gradient text */
-            span[style*="background: linear-gradient"] {
-                border: none !important;
-                text-decoration: none !important;
-            }
-            
-            span[style*="background: linear-gradient"]::before,
-            span[style*="background: linear-gradient"]::after {
-                display: none !important;
-            }
-            
-            /* Nuclear option: Remove ALL pseudo-elements and decorations */
-            h1::before, h1::after,
-            h2::before, h2::after,
-            h3::before, h3::after,
-            span::before, span::after,
-            div::before, div::after {
-                display: none !important;
-                content: none !important;
-                background: none !important;
-                border: none !important;
-            }
-            
-            /* Specifically target slide 3 title area */
-            .slide h2 span {
-                position: static !important;
-                border: none !important;
-                text-decoration: none !important;
-            }
-            
-            .slide h2 span::before,
-            .slide h2 span::after {
-                display: none !important;
-                content: "" !important;
-                background: transparent !important;
-            }
-            
-            /* Remove any box-shadow or outline that might appear as lines */
-            * {
-                box-shadow: none !important;
-                outline: none !important;
-                text-shadow: none !important;
-            }
-            
-            /* Remove any text decorations */
-            * {
-                text-decoration: none !important;
-                border-bottom: none !important;
-            }
-            
-            /* Remove scroll bars in print */
-            * {
-                overflow: visible !important;
-            }
-            
-            /* Reduce spacing around market insights box in slide 3 - print only */
-            .slide h2.mb-6 {
-                margin-bottom: 1rem !important;
-            }
-            
-            .challenge-section {
-                margin-bottom: 1rem !important;
-            }
-            
-            .grid[style*="margin-top: 1.5rem"] {
-                margin-top: 0.5rem !important;
-            }
-            
-            /* Specific fix for slide content areas */
-            .slide div[style*="overflow-y: auto"] {
-                overflow: visible !important;
-            }
-            
-            /* Print-specific font size adjustments */
-            h1, .h1 {
-                font-size: 2.5rem !important;
-            }
-            
             h2 {
                 font-size: 1.8rem !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
             }
             
             h3 {
                 font-size: 1.3rem !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+            
+            .title-main {
+                font-size: 2.8rem !important;
+                position: relative !important;
             }
             
             .kicker {
@@ -1081,22 +969,66 @@
                 font-size: 2.5rem !important;
             }
             
-            /* Specific adjustments for key elements */
-            .title-main {
-                font-size: 2.8rem !important;
-            }
-            
             .card p, .muted {
                 font-size: 0.9rem !important;
             }
             
-            /* Market data cards - smaller text */
+            /* Market data grid specific */
             .grid-cols-4 .card {
                 font-size: 0.8rem !important;
             }
             
             .grid-cols-4 .metric-value {
                 font-size: 1.4rem !important;
+            }
+            
+            /* Remove ALL decorative pseudo-elements EXCEPT slide 1 title line */
+            *::before,
+            *::after {
+                display: none !important;
+                content: none !important;
+                background: none !important;
+                border: none !important;
+            }
+            
+            /* EXCEPTION: Keep slide 1 title line */
+            .title-main::after {
+                display: block !important;
+                content: '' !important;
+                position: absolute !important;
+                bottom: -20px !important;
+                left: 0 !important;
+                right: 0 !important;
+                height: 2px !important;
+                background: linear-gradient(135deg, #4c1d95 0%, #7c1ba0 100%) !important;
+                transform: scaleX(1) !important;
+            }
+            
+            /* Clean up all decorative elements */
+            * {
+                text-decoration: none !important;
+                border-bottom: none !important;
+                box-shadow: none !important;
+                outline: none !important;
+                overflow: visible !important;
+            }
+            
+            /* Slide 3 specific spacing adjustments */
+            .slide h2.mb-6 {
+                margin-bottom: 1rem !important;
+            }
+            
+            .challenge-section {
+                margin-bottom: 1rem !important;
+            }
+            
+            .grid[style*="margin-top: 1.5rem"] {
+                margin-top: 0.5rem !important;
+            }
+            
+            /* Force visibility of all content */
+            .slide div[style*="overflow-y: auto"] {
+                overflow: visible !important;
             }
         }
     </style>
