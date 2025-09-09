@@ -810,20 +810,47 @@
 
         /* Print styles for PDF generation */
         @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            
+            html, body {
+                height: auto !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: visible !important;
+            }
+            
             .deck-container {
                 height: auto !important;
                 overflow: visible !important;
                 scroll-snap-type: none !important;
+                display: block !important;
             }
             
             .slide {
-                height: 100vh !important;
-                min-height: 100vh !important;
+                height: 297mm !important; /* A4 height */
+                min-height: 297mm !important;
+                width: 210mm !important; /* A4 width */
+                max-width: 210mm !important;
                 page-break-after: always !important;
                 page-break-inside: avoid !important;
+                break-after: page !important;
+                break-inside: avoid !important;
                 scroll-snap-align: none !important;
                 display: flex !important;
                 flex-shrink: 0 !important;
+                position: relative !important;
+                overflow: visible !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            /* Last slide shouldn't have page break */
+            .slide:last-child {
+                page-break-after: auto !important;
+                break-after: auto !important;
             }
             
             /* Hide interactive elements in print */
@@ -833,22 +860,34 @@
                 display: none !important;
             }
             
-            /* Ensure content fits properly */
-            body {
-                margin: 0 !important;
-                padding: 0 !important;
-            }
-            
             /* Make sure images print properly */
             img {
                 -webkit-print-color-adjust: exact !important;
                 color-adjust: exact !important;
+                max-width: 100% !important;
+                height: auto !important;
+                page-break-inside: avoid !important;
             }
             
             /* Ensure watermarks are visible in print */
             .watermark-logo,
             .watermark-logo-left {
                 opacity: 0.15 !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            
+            /* Ensure all content is visible */
+            .grid, .max, .challenge-section {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+            
+            /* Force backgrounds and colors */
+            .highlight-text,
+            .gradient-text,
+            .card,
+            .challenge-section {
                 -webkit-print-color-adjust: exact !important;
                 color-adjust: exact !important;
             }
