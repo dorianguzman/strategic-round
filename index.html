@@ -957,6 +957,16 @@
             .highlight-text::after {
                 display: none !important;
             }
+            
+            /* Remove scroll bars in print */
+            * {
+                overflow: visible !important;
+            }
+            
+            /* Specific fix for slide content areas */
+            .slide div[style*="overflow-y: auto"] {
+                overflow: visible !important;
+            }
         }
     </style>
 </head>
