@@ -1007,50 +1007,32 @@
                 transform: scaleX(1) !important;
             }
             
-            /* UNIVERSAL REMOVAL OF ALL PURPLE LINES AND PIPE CHARACTERS - PRINT ONLY */
+            /* SELECTIVE REMOVAL OF UNWANTED PURPLE DECORATIVE LINES - PRINT ONLY */
             
-            /* NUCLEAR OPTION: Remove ALL pseudo-elements */
-            *::before,
-            *::after {
+            /* Only remove pseudo-elements that create unwanted purple underlines */
+            .highlight-text::before,
+            .highlight-text::after,
+            .scale-underline::before,
+            .scale-underline::after,
+            .gradient-text::before,
+            .gradient-text::after {
                 display: none !important;
                 content: none !important;
                 background: none !important;
-                background-image: none !important;
                 border: none !important;
-                box-shadow: none !important;
                 text-decoration: none !important;
-                outline: none !important;
-                visibility: hidden !important;
             }
             
-            /* Remove ALL decorative styling that could create lines */
-            * {
-                text-decoration: none !important;
-                border: none !important;
-                box-shadow: none !important;
-                background-image: none !important;
-                outline: none !important;
-            }
-            
-            /* Specifically target all classes that create decorative elements */
+            /* Remove text decorations that create unwanted lines */
             .highlight-text,
-            .scale-underline,
-            .gradient-text,
-            .card-enhanced,
-            .hero-metric,
-            span,
-            h1, h2, h3, h4, h5, h6,
-            div, p {
+            .gradient-text {
                 text-decoration: none !important;
-                border: none !important;
-                box-shadow: none !important;
                 background-image: none !important;
-                outline: none !important;
             }
             
-            /* Hide pipe characters by replacing them with spaces */
-            .slide * {
-                font-variant-ligatures: none !important;
+            /* Keep card borders and other legitimate styling intact */
+            .card-enhanced {
+                /* Preserve card styling - don't remove borders/shadows */
             }
             
             /* EXCEPTION 1: Keep slide 1 title line */
