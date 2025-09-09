@@ -1301,29 +1301,39 @@
                 margin-bottom: 0.75rem !important;
             }
             
-            /* Match card sizes to slide 4 for slides 5 and 6 - print only */
+            /* Smaller card sizes for slides 5 and 6 to fit content - print only */
             .slide:nth-child(5) .card.card-enhanced,
             .slide:nth-child(6) .card.card-enhanced {
-                padding: 1rem !important;
+                padding: 0.75rem !important;
                 min-height: auto !important;
+                margin-bottom: 0.5rem !important;
             }
             
             .slide:nth-child(5) .card.card-enhanced h3,
             .slide:nth-child(6) .card.card-enhanced h3 {
-                font-size: 1.1rem !important;
-                margin-bottom: 0.5rem !important;
+                font-size: 1rem !important;
+                margin-bottom: 0.25rem !important;
+                line-height: 1.2 !important;
             }
             
             .slide:nth-child(5) .card.card-enhanced p,
             .slide:nth-child(6) .card.card-enhanced p {
-                font-size: 0.9rem !important;
+                font-size: 0.8rem !important;
+                line-height: 1.3 !important;
+                margin: 0 !important;
             }
             
             .slide:nth-child(5) .card.card-enhanced svg,
             .slide:nth-child(6) .card.card-enhanced svg {
-                width: 2rem !important;
-                height: 2rem !important;
-                margin-bottom: 0.75rem !important;
+                width: 1.75rem !important;
+                height: 1.75rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            /* Reduce grid gap for tighter layout */
+            .slide:nth-child(5) .grid.grid-cols-2,
+            .slide:nth-child(6) .grid.grid-cols-2 {
+                gap: 0.75rem !important;
             }
             
             /* Fix slide 5 specific issues - print only */
