@@ -1055,6 +1055,19 @@
                 margin-top: 0 !important;
                 padding-top: 0 !important;
             }
+            
+            /* Slide 5 image sizing - print only */
+            .slide:nth-child(5) img[src*="personas_cards"] {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+                object-position: center !important;
+            }
+            
+            .slide:nth-child(5) .grid > div:first-child {
+                width: 100% !important;
+                height: 100% !important;
+            }
         }
     </style>
 </head>
