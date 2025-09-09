@@ -1134,7 +1134,7 @@
             }
             
             
-            /* Slide 7 image layout fixes - print only */
+            /* Slide 7 layout fixes - preserve overlapping card style for print */
             .slide:nth-child(7) .grid {
                 display: grid !important;
                 grid-template-columns: 1fr 1fr !important;
@@ -1142,41 +1142,51 @@
                 height: 100% !important;
             }
             
+            /* Preserve the overlapping card layout but make it print-friendly */
             .slide:nth-child(7) .grid > div:first-child {
                 position: relative !important;
                 height: 100% !important;
-                overflow: visible !important;
                 display: flex !important;
-                flex-direction: column !important;
-                justify-content: center !important;
                 align-items: center !important;
-                gap: 1rem !important;
-                padding: 2rem !important;
+                justify-content: center !important;
+                overflow: visible !important;
             }
             
-            /* Reset image positioning for print */
-            .slide:nth-child(7) .grid > div:first-child > div {
-                position: static !important;
-                transform: none !important;
-                width: 100% !important;
-                max-width: 400px !important;
-                z-index: auto !important;
-                margin: 0.5rem 0 !important;
+            /* Back card (capabilities.png) - maintain rotation and positioning */
+            .slide:nth-child(7) .grid > div:first-child > div:first-child {
+                position: absolute !important;
+                width: 65% !important;
+                top: 15% !important;
+                transform: rotate(-1deg) translateX(-30px) !important;
+                z-index: 1 !important;
+                animation: none !important;
+                transition: none !important;
             }
             
+            /* Front card (schedule.png) - maintain rotation and positioning */
+            .slide:nth-child(7) .grid > div:first-child > div:last-child {
+                position: absolute !important;
+                width: 70% !important;
+                bottom: 15% !important;
+                transform: rotate(1deg) translateX(25px) !important;
+                z-index: 2 !important;
+                animation: none !important;
+                transition: none !important;
+            }
+            
+            /* Image sizing for both cards */
             .slide:nth-child(7) img[src*="capabilities"],
             .slide:nth-child(7) img[src*="schedule"] {
                 width: 100% !important;
-                height: auto !important;
-                max-height: 200px !important;
-                object-fit: contain !important;
-                border-radius: 0.5rem !important;
+                height: 35vh !important;
+                object-fit: cover !important;
+                border-radius: 1rem !important;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
             }
             
-            /* Remove hover effects and animations for print */
-            .slide:nth-child(7) .grid > div:first-child > div {
-                animation: none !important;
-                transition: none !important;
+            /* Remove hover effects for print */
+            .slide:nth-child(7) .grid > div:first-child > div:hover {
+                transform: none !important;
             }
             
             /* Slide 10 (Team) fixes - print only */
@@ -1266,6 +1276,41 @@
                 height: 100% !important;
                 object-fit: cover !important;
                 object-position: center !important;
+            }
+            
+            /* Fix spacing for "PERSONAS-powered influencers" text in slide 5 - print only */
+            .slide:nth-child(5) .challenge-section {
+                padding: 1rem 1.5rem !important;
+                margin-top: 0 !important;
+            }
+            
+            .slide:nth-child(5) .challenge-header {
+                margin-bottom: 0.75rem !important;
+            }
+            
+            /* Match card sizes to slide 4 for slides 5 and 6 - print only */
+            .slide:nth-child(5) .card.card-enhanced,
+            .slide:nth-child(6) .card.card-enhanced {
+                padding: 1rem !important;
+                min-height: auto !important;
+            }
+            
+            .slide:nth-child(5) .card.card-enhanced h3,
+            .slide:nth-child(6) .card.card-enhanced h3 {
+                font-size: 1.1rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            .slide:nth-child(5) .card.card-enhanced p,
+            .slide:nth-child(6) .card.card-enhanced p {
+                font-size: 0.9rem !important;
+            }
+            
+            .slide:nth-child(5) .card.card-enhanced svg,
+            .slide:nth-child(6) .card.card-enhanced svg {
+                width: 2rem !important;
+                height: 2rem !important;
+                margin-bottom: 0.75rem !important;
             }
             
         }
