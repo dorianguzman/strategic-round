@@ -1007,7 +1007,10 @@
                 transform: scaleX(1) !important;
             }
             
-            /* Comprehensive purple line removal for ALL slides */
+            /* COMPREHENSIVE PURPLE LINE REMOVAL FOR ALL SLIDES - PRINT ONLY */
+            /* Remove ALL pseudo-elements that could create purple lines */
+            *::before,
+            *::after,
             .highlight-text::before,
             .highlight-text::after,
             .scale-underline::before,
@@ -1025,7 +1028,11 @@
             h3::before,
             h3::after,
             div::before,
-            div::after {
+            div::after,
+            p::before,
+            p::after,
+            .gradient-text::before,
+            .gradient-text::after {
                 display: none !important;
                 content: none !important;
                 background: none !important;
@@ -1033,9 +1040,24 @@
                 box-shadow: none !important;
                 border-bottom: none !important;
                 border-top: none !important;
+                text-decoration: none !important;
+                outline: none !important;
             }
             
-            /* EXCEPTION: Keep SCALE underline in slide 5 */
+            /* EXCEPTION 1: Keep slide 1 title line */
+            .slide:nth-child(1) .title-main::after {
+                display: block !important;
+                content: '' !important;
+                position: absolute !important;
+                bottom: -20px !important;
+                left: 0 !important;
+                right: 0 !important;
+                height: 2px !important;
+                background: linear-gradient(135deg, #4c1d95 0%, #7c1ba0 100%) !important;
+                transform: scaleX(1) !important;
+            }
+            
+            /* EXCEPTION 2: Keep SCALE underline in slide 5 */
             .slide:nth-child(5) .scale-underline::after {
                 display: block !important;
                 content: '' !important;
@@ -1046,20 +1068,6 @@
                 height: 3px !important;
                 background: linear-gradient(135deg, #4c1d95 0%, #7c1ba0 100%) !important;
                 transform: scaleX(1) !important;
-            }
-            
-            /* Extra specific removal for slide 3 purple lines */
-            .slide:nth-child(3) .highlight-text::before,
-            .slide:nth-child(3) .highlight-text::after,
-            .slide:nth-child(3) span.highlight-text::before,
-            .slide:nth-child(3) span.highlight-text::after {
-                display: none !important;
-                content: none !important;
-                background: none !important;
-                border: none !important;
-                box-shadow: none !important;
-                border-bottom: none !important;
-                border-top: none !important;
             }
             
             /* Replace pipe separators with bullets in slide 5 for print */
@@ -1103,19 +1111,6 @@
                 text-align: center !important;
             }
             
-            /* Slide 6 specific fixes - print only */
-            .slide:nth-child(6) .highlight-text::before,
-            .slide:nth-child(6) .highlight-text::after,
-            .slide:nth-child(6) span.highlight-text::before,
-            .slide:nth-child(6) span.highlight-text::after {
-                display: none !important;
-                content: none !important;
-                background: none !important;
-                border: none !important;
-                box-shadow: none !important;
-                border-bottom: none !important;
-                border-top: none !important;
-            }
             
             /* Slide 6 image sizing - print only */
             .slide:nth-child(6) .grid {
@@ -1138,19 +1133,6 @@
                 object-position: center !important;
             }
             
-            /* Slide 7 specific fixes - print only */
-            .slide:nth-child(7) .highlight-text::before,
-            .slide:nth-child(7) .highlight-text::after,
-            .slide:nth-child(7) span.highlight-text::before,
-            .slide:nth-child(7) span.highlight-text::after {
-                display: none !important;
-                content: none !important;
-                background: none !important;
-                border: none !important;
-                box-shadow: none !important;
-                border-bottom: none !important;
-                border-top: none !important;
-            }
             
             /* Slide 7 image layout fixes - print only */
             .slide:nth-child(7) .grid {
@@ -1198,18 +1180,6 @@
             }
             
             /* Slide 10 (Team) fixes - print only */
-            .slide:nth-child(10) .highlight-text::before,
-            .slide:nth-child(10) .highlight-text::after,
-            .slide:nth-child(10) span.highlight-text::before,
-            .slide:nth-child(10) span.highlight-text::after {
-                display: none !important;
-                content: none !important;
-                background: none !important;
-                border: none !important;
-                box-shadow: none !important;
-                border-bottom: none !important;
-                border-top: none !important;
-            }
             
             .slide:nth-child(10) .flex.justify-center.items-center img {
                 height: 25px !important;
