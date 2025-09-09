@@ -1023,11 +1023,22 @@
                 text-decoration: none !important;
             }
             
-            /* Remove text decorations that create unwanted lines */
+            /* Remove text decorations that create unwanted lines but preserve colors */
             .highlight-text,
             .gradient-text {
                 text-decoration: none !important;
                 background-image: none !important;
+                /* Preserve purple text color */
+                color: #4c1d95 !important;
+            }
+            
+            /* Ensure gradient text shows purple color in print */
+            .gradient-text {
+                background: none !important;
+                -webkit-background-clip: unset !important;
+                -webkit-text-fill-color: #4c1d95 !important;
+                background-clip: unset !important;
+                color: #4c1d95 !important;
             }
             
             /* Keep card borders and other legitimate styling intact */
