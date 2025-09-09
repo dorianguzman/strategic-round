@@ -1030,8 +1030,13 @@
             .hero-metric {
                 text-decoration: none !important;
                 background-image: none !important;
-                /* Preserve purple text color */
+                /* Preserve purple text color ONLY for these specific classes */
                 color: #4c1d95 !important;
+            }
+            
+            /* Ensure headings themselves are black by default */
+            h1, h2, h3, h4, h5, h6 {
+                color: #111827 !important;
             }
             
             /* Ensure gradient text shows purple color in print */
@@ -1053,19 +1058,19 @@
                 border: none !important;
             }
             
-            /* Override ALL inline gradient styles to show purple text in print */
-            span[style*="background: linear-gradient"],
-            span[style*="-webkit-background-clip: text"],
-            span[style*="-webkit-text-fill-color: transparent"] {
+            /* Override inline gradient styles to show BLACK text in print (not purple) */
+            span[style*="background: linear-gradient(135deg, #111827"],
+            span[style*="-webkit-background-clip: text"]:not(.highlight-text):not(.scale-underline) {
                 background: none !important;
                 -webkit-background-clip: unset !important;
-                -webkit-text-fill-color: #4c1d95 !important;
+                -webkit-text-fill-color: #111827 !important;
                 background-clip: unset !important;
-                color: #4c1d95 !important;
+                color: #111827 !important;
             }
             
-            /* Ensure all spans in titles show purple color */
-            h1 span, h2 span, h3 span {
+            /* ONLY highlight-text elements should be purple */
+            .highlight-text,
+            span.highlight-text {
                 color: #4c1d95 !important;
                 background: none !important;
                 -webkit-background-clip: unset !important;
