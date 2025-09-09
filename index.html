@@ -1103,6 +1103,41 @@
                 text-align: center !important;
             }
             
+            /* Slide 6 specific fixes - print only */
+            .slide:nth-child(6) .highlight-text::before,
+            .slide:nth-child(6) .highlight-text::after,
+            .slide:nth-child(6) span.highlight-text::before,
+            .slide:nth-child(6) span.highlight-text::after {
+                display: none !important;
+                content: none !important;
+                background: none !important;
+                border: none !important;
+                box-shadow: none !important;
+                border-bottom: none !important;
+                border-top: none !important;
+            }
+            
+            /* Slide 6 image sizing - print only */
+            .slide:nth-child(6) .grid {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                width: 100% !important;
+                height: 100% !important;
+            }
+            
+            .slide:nth-child(6) .grid > div:last-child {
+                width: 100% !important;
+                height: 100% !important;
+                overflow: hidden !important;
+            }
+            
+            .slide:nth-child(6) img[src*="divina"] {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+                object-position: center !important;
+            }
+            
             /* Clean up all decorative elements */
             * {
                 text-decoration: none !important;
