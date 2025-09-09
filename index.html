@@ -994,6 +994,39 @@
                 display: none !important;
             }
             
+            /* Nuclear option: Remove ALL pseudo-elements and decorations */
+            h1::before, h1::after,
+            h2::before, h2::after,
+            h3::before, h3::after,
+            span::before, span::after,
+            div::before, div::after {
+                display: none !important;
+                content: none !important;
+                background: none !important;
+                border: none !important;
+            }
+            
+            /* Specifically target slide 3 title area */
+            .slide h2 span {
+                position: static !important;
+                border: none !important;
+                text-decoration: none !important;
+            }
+            
+            .slide h2 span::before,
+            .slide h2 span::after {
+                display: none !important;
+                content: "" !important;
+                background: transparent !important;
+            }
+            
+            /* Remove any box-shadow or outline that might appear as lines */
+            * {
+                box-shadow: none !important;
+                outline: none !important;
+                text-shadow: none !important;
+            }
+            
             /* Remove any text decorations */
             * {
                 text-decoration: none !important;
