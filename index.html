@@ -1053,6 +1053,26 @@
                 border: none !important;
             }
             
+            /* Override ALL inline gradient styles to show purple text in print */
+            span[style*="background: linear-gradient"],
+            span[style*="-webkit-background-clip: text"],
+            span[style*="-webkit-text-fill-color: transparent"] {
+                background: none !important;
+                -webkit-background-clip: unset !important;
+                -webkit-text-fill-color: #4c1d95 !important;
+                background-clip: unset !important;
+                color: #4c1d95 !important;
+            }
+            
+            /* Ensure all spans in titles show purple color */
+            h1 span, h2 span, h3 span {
+                color: #4c1d95 !important;
+                background: none !important;
+                -webkit-background-clip: unset !important;
+                -webkit-text-fill-color: #4c1d95 !important;
+                background-clip: unset !important;
+            }
+            
             /* Keep card borders and other legitimate styling intact */
             .card-enhanced {
                 /* Preserve card styling - don't remove borders/shadows */
