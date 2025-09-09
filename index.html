@@ -808,46 +808,66 @@
             transition: width 0.3s ease;
         }
 
-        /* Print styles for PDF generation */
+        /* Print styles for PDF generation - One slide per page */
         @media print {
+            @page {
+                size: A4 landscape;
+                margin: 0;
+            }
+            
             * {
                 -webkit-print-color-adjust: exact !important;
                 color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             
             html, body {
                 height: auto !important;
+                width: auto !important;
                 margin: 0 !important;
                 padding: 0 !important;
                 overflow: visible !important;
+                background: white !important;
             }
             
             .deck-container {
                 height: auto !important;
+                width: auto !important;
                 overflow: visible !important;
                 scroll-snap-type: none !important;
                 display: block !important;
+                background: none !important;
             }
             
             .slide {
-                height: 297mm !important; /* A4 height */
-                min-height: 297mm !important;
-                width: 210mm !important; /* A4 width */
-                max-width: 210mm !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                min-height: 100vh !important;
+                max-height: 100vh !important;
+                page-break-before: always !important;
                 page-break-after: always !important;
                 page-break-inside: avoid !important;
+                break-before: page !important;
                 break-after: page !important;
                 break-inside: avoid !important;
-                scroll-snap-align: none !important;
                 display: flex !important;
-                flex-shrink: 0 !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
                 position: relative !important;
-                overflow: visible !important;
+                overflow: hidden !important;
                 margin: 0 !important;
                 padding: 0 !important;
+                box-sizing: border-box !important;
             }
             
-            /* Last slide shouldn't have page break */
+            /* First slide shouldn't have page break before */
+            .slide:first-child {
+                page-break-before: auto !important;
+                break-before: auto !important;
+            }
+            
+            /* Last slide shouldn't have page break after */
             .slide:last-child {
                 page-break-after: auto !important;
                 break-after: auto !important;
@@ -860,36 +880,77 @@
                 display: none !important;
             }
             
-            /* Make sure images print properly */
-            img {
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-                max-width: 100% !important;
-                height: auto !important;
-                page-break-inside: avoid !important;
+            /* Ensure slide content fits properly */
+            .max {
+                width: 100% !important;
+                height: 100% !important;
+                max-width: none !important;
+                max-height: none !important;
+                padding: 2rem !important;
+                box-sizing: border-box !important;
             }
             
-            /* Ensure watermarks are visible in print */
-            .watermark-logo,
-            .watermark-logo-left {
-                opacity: 0.15 !important;
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-            }
-            
-            /* Ensure all content is visible */
-            .grid, .max, .challenge-section {
+            /* Grid layouts for print */
+            .grid {
+                display: grid !important;
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
             }
             
-            /* Force backgrounds and colors */
+            .grid-cols-2 {
+                grid-template-columns: 1fr 1fr !important;
+            }
+            
+            .grid-cols-3 {
+                grid-template-columns: 1fr 1fr 1fr !important;
+            }
+            
+            .grid-cols-4 {
+                grid-template-columns: 1fr 1fr 1fr 1fr !important;
+            }
+            
+            /* Images for print */
+            img {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                max-width: 100% !important;
+                height: auto !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+            
+            /* Watermarks visible in print */
+            .watermark-logo,
+            .watermark-logo-left {
+                opacity: 0.2 !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            /* Text and styling preservation */
             .highlight-text,
             .gradient-text,
             .card,
             .challenge-section {
                 -webkit-print-color-adjust: exact !important;
                 color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            /* Ensure backgrounds print */
+            .challenge-section,
+            .card {
+                background: rgba(248, 248, 250, 0.8) !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            
+            /* Font sizes for print readability */
+            h1, h2, h3 {
+                page-break-after: avoid !important;
+                break-after: avoid !important;
             }
         }
     </style>
@@ -1097,7 +1158,7 @@
                         <div class="mb-6 text-center">
                             <h2 class="h1 mb-3" style="font-size: 4.5rem; font-weight: 900; animation: fadeIn 0.7s ease-out 0.2s both;"><span class="highlight-text">PERSONAS</span></h2>
                             <p class="text-xl font-light mb-2" style="font-size: 1.75rem; animation: fadeIn 0.7s ease-out 0.4s both;">AI Micro-Influencer Platform</p>
-                            <p class="text-lg" style="color: #4c1d95; font-weight: 600; font-size: 1.25rem; animation: fadeIn 0.7s ease-out 0.6s both;">Zero Human Management • 100% Automated</p>
+                            <p class="text-lg" style="color: #4c1d95; font-weight: 600; font-size: 1.25rem; animation: fadeIn 0.7s ease-out 0.6s both;">Zero Human Management | Automated | Self-Learning</p>
                         </div>
                         
                         <div class="challenge-section" style="background: rgba(248, 248, 250, 0.8); padding: 1.5rem;">
@@ -1297,7 +1358,7 @@
                             </div>
                             <div class="mt-6 p-4 text-center" style="background: rgba(240, 240, 245, 0.5); border-radius: 0.5rem;">
                                 <h3 class="font-black" style="font-family: 'Youth', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.6; font-size: 1.25rem;">
-                                    Despite a decline in brackets entered industry-wide, <span class="highlight-text">Divvy.bet achieved a 15% YoY increase</span> in college basketball bets.
+                                    Despite a decline in brackets entered, <span class="highlight-text">Divvy.bet achieved a 15% YoY increase</span> in college basketball bets.
                                 </h3>
                             </div>
                         </div>
@@ -1485,7 +1546,7 @@
                             </div>
                             <div class="mt-4 p-4 text-center" style="background: rgba(240, 240, 245, 0.5); border-radius: 0.5rem;">
                                 <h3 class="font-black" style="font-family: 'Youth', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.6; font-size: 1.25rem;">
-                                    Near-term growth: <span class="highlight-text">affiliates, agencies, and media networks</span> that can deploy many agents quickly.
+                                    Near-term growth: partnering with <span class="highlight-text">affiliates, agencies, and media networks</span> that can scale quickly.
                                 </h3>
                             </div>
                         </div>
@@ -1579,7 +1640,7 @@
                         
                         <div class="challenge-section" style="background: rgba(248, 248, 250, 0.8); padding: 1.5rem; animation: fadeIn 0.8s ease-out 0.4s both;">
                             <div class="challenge-header mb-3">
-                                <span class="challenge-label">QSTARLABS OFFERS TWO MODELS FOR CLIENTS</span>
+                                <span class="challenge-label">FLEXIBLE PRICING MODELS</span>
                             </div>
                             <div class="grid grid-cols-1 gap-3" style="max-width: 400px; margin: 0 auto;">
                                 <div class="card card-enhanced p-4 text-center" style="display: flex; flex-direction: column; justify-content: center;">
@@ -1587,19 +1648,19 @@
                                         <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
                                     </svg>
                                     <h3 class="font-bold mb-2 gradient-text" style="font-size: 1.25rem;">REVENUE SHARE</h3>
-                                    <p class="muted" style="font-size: 1rem;">Share of influencer-generated revenue<br/>(or CPA) with a monthly minimum<br/>to cover compute</p>
+                                    <p class="muted" style="font-size: 1rem;">Share of generated revenue with monthly minimum to ensure our compute cost coverage</p>
                                 </div>
                                 <div class="card card-enhanced p-4 text-center" style="display: flex; flex-direction: column; justify-content: center;">
                                     <svg style="width: 2.5rem; height: 2.5rem; margin: 0 auto 0.75rem; fill: #4c1d95;" viewBox="0 0 24 24">
                                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5.5-2.5l7.51-3.49L17.5 6.5 9.99 9.99 6.5 17.5zm5.5-6.6c.61 0 1.1.49 1.1 1.1s-.49 1.1-1.1 1.1-1.1-.49-1.1-1.1.49-1.1 1.1-1.1z"/>
                                     </svg>
-                                    <h3 class="font-bold mb-2 gradient-text" style="font-size: 1.25rem;">METERING</h3>
-                                    <p class="muted" style="font-size: 1rem;">Compute cost plus markup</p>
+                                    <h3 class="font-bold mb-2 gradient-text" style="font-size: 1.25rem;">USAGE-BASED PRICING</h3>
+                                    <p class="muted" style="font-size: 1rem;">Pay-per-use model with transparent cost structure</p>
                                 </div>
                             </div>
                             <div class="mt-4 p-4 text-center" style="background: rgba(240, 240, 245, 0.5); border-radius: 0.5rem;">
                                 <h3 class="font-black" style="font-family: 'Youth', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; font-size: 1.25rem;">
-                                    BOTH MODELS ALLOW QSTARLABS TO SCALE <span class="highlight-text">PROFITABLY</span> AND <span class="highlight-text">CAPITAL-EFFICIENTLY</span>
+                                    SCALABLE MODELS DESIGNED FOR <span class="highlight-text">PROFITABLE GROWTH</span> WITH <span class="highlight-text">MINIMAL CAPITAL REQUIREMENTS</span>
                                 </h3>
                             </div>
                         </div>
@@ -1729,7 +1790,7 @@
                     <h2 class="mb-10" style="font-size: 4.5rem; font-weight: 900; font-family: 'Youth', sans-serif; line-height: 1; letter-spacing: -0.03em; animation: fadeInDown 0.8s ease-out; text-transform: uppercase;">
                         <span style="background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 50%, #4c1d95 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; background-size: 200% 200%; animation: gradient 3s ease infinite;">ROUND DETAILS</span>
                     </h2>
-                    <p class="mb-20" style="color: #374151; font-size: 1.5rem; animation: fadeIn 0.8s ease-out 0.3s both; max-width: 800px; margin: 0 auto 5rem;">QStarLabs is raising a strategic round with partners/investors to fuel growth and expand distribution.</p>
+                    <p class="mb-20" style="color: #374151; font-size: 1.5rem; animation: fadeIn 0.8s ease-out 0.3s both; max-width: 800px; margin: 0 auto 5rem;">QStarLabs is raising a strategic round to scale operations and accelerate go-to-market expansion.</p>
                     
                     <div class="grid grid-cols-3 gap-8 mb-24" style="max-width: 1000px; margin: 0 auto;">
                         <div style="position: relative; animation: fadeInUp 0.8s ease-out 0.4s both;">
@@ -1760,7 +1821,7 @@
                     
                     <div style="animation: fadeIn 1.2s ease-out 0.8s both; margin-top: 4rem;">
                         <h3 class="font-black" style="font-family: 'Youth', sans-serif; text-transform: uppercase; letter-spacing: 0.03em; color: #1f2937; text-shadow: 0 2px 4px rgba(0,0,0,0.1); font-size: 2.5rem;">
-                            Join us in building the future of social engagement.
+                            Partner with us to scale the future of AI-powered social engagement.
                         </h3>
                     </div>
                 </div>
