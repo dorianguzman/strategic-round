@@ -402,6 +402,24 @@
         .slide:hover .highlight-text::after {
             transform: scaleX(1);
         }
+        
+        /* Scale underline - same color as parent text, always visible */
+        .scale-underline {
+            position: relative;
+            display: inline-block;
+        }
+        .scale-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-purple);
+            transform: scaleX(1);
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
 
         /* Grid utilities */
         .grid {
@@ -845,20 +863,20 @@
                     <!-- Right column: Content -->
                     <div>
                         <div class="kicker mb-2 text-center" style="font-size: 1rem; animation: fadeIn 0.5s ease-out;">MARKET OPPORTUNITY</div>
-                        <h2 class="mb-6 text-center" style="font-size: 1.75rem; font-weight: 900; font-family: 'Youth', sans-serif; line-height: 1.2; letter-spacing: -0.01em; animation: fadeIn 0.7s ease-out 0.2s both; text-transform: uppercase;">
+                        <h2 class="mb-4 text-center" style="font-size: 1.75rem; font-weight: 900; font-family: 'Youth', sans-serif; line-height: 1.2; letter-spacing: -0.01em; animation: fadeIn 0.7s ease-out 0.2s both; text-transform: uppercase;">
                             <span class="highlight-text">Legalization</span> <span style="background: linear-gradient(135deg, #111827 0%, #374151 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">and</span> <span class="highlight-text">Digital Transformation</span> <span style="background: linear-gradient(135deg, #111827 0%, #374151 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">are driving rapid secular growth in iGaming</span>
                         </h2>
                         
-                        <div class="challenge-section mb-8" style="background: rgba(76, 29, 149, 0.03); padding: 1.5rem; animation: fadeIn 0.8s ease-out 0.4s both;">
+                        <div class="challenge-section mb-6" style="background: rgba(76, 29, 149, 0.03); padding: 1.5rem; animation: fadeIn 0.8s ease-out 0.4s both;">
                             <div class="challenge-header mb-3">
                                 <span class="challenge-label">MARKET INSIGHTS</span>
                             </div>
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="card card-enhanced p-4 text-center">
+                            <div class="grid grid-cols-1 gap-3" style="max-width: 350px; margin: 0 auto;">
+                                <div class="card card-enhanced p-4 text-center" style="display: flex; flex-direction: column; justify-content: center;">
                                     <h3 class="font-bold mb-2 gradient-text">OPPORTUNITY</h3>
                                     <p class="text-sm muted">Digital social experience<br/>meeting players where they are</p>
                                 </div>
-                                <div class="card card-enhanced p-4 text-center">
+                                <div class="card card-enhanced p-4 text-center" style="display: flex; flex-direction: column; justify-content: center;">
                                     <h3 class="font-bold mb-2 gradient-text">INSIGHT</h3>
                                     <p class="text-sm muted">Micro-influencers drive engagement<br/>but hard to scale manually</p>
                                 </div>
@@ -871,7 +889,7 @@
                         </div>
                         
                         <!-- Market data section - 1x4 grid -->
-                        <div class="grid grid-cols-4 gap-1 mt-10" style="animation: fadeIn 1s ease-out 0.8s both;">
+                        <div class="grid grid-cols-4 gap-1" style="margin-top: 2rem; animation: fadeIn 1s ease-out 0.8s both;">
                             <div class="card card-enhanced text-center p-1" style="min-height: auto;">
                                 <div class="text-sm metric-value">$100B+</div>
                                 <div style="font-size: 0.5rem; font-weight: 600; color: #4c1d95; line-height: 1.1;">Global iGaming</div>
@@ -974,20 +992,71 @@
 
         <!-- 5. Scale & Automation -->
         <section class="slide">
-            <div class="max grid grid-cols-2 gap-10" style="align-items: center;">
-                <div>
-                    <img src="images/feed-ui.png" alt="Feed UI" class="rounded-xl w-full object-cover border border-zinc-200" style="height: 60vh;">
-                </div>
-                <div>
-                    <h2 class="h1 mb-4">PERSONAS delivers scale</h2>
-                    <p class="p mb-6">Scale influencer results at a fraction of the cost of traditional campaigns.</p>
-                    <ul class="p space-y-4">
-                        <li>Engage <strong>24/7</strong></li>
-                        <li>Curate content based on audience engagement</li>
-                        <li>Deliver impressions and clicks</li>
-                        <li>Integrate with brand tech stacks</li>
-                        <li>Deploy in days (Co-Pilot or Auto-Pilot)</li>
-                    </ul>
+            <div class="max" style="height: 100vh; display: flex; align-items: center;">
+                <div class="grid grid-cols-2 gap-12" style="width: 100%; align-items: center;">
+                    <!-- Left column: Feed UI image -->
+                    <div style="animation: fadeIn 0.8s ease-out;">
+                        <img src="images/personas_cards.png" 
+                             alt="Personas Cards" 
+                             class="rounded-xl border border-zinc-200" 
+                             style="width: 100%; height: 600px; object-fit: cover; box-shadow: 0 20px 40px rgba(76, 29, 149, 0.15);">
+                    </div>
+                    
+                    <!-- Right column: Content -->
+                    <div>
+                        <div class="kicker mb-2 text-center" style="font-size: 1rem; animation: fadeIn 0.5s ease-out;">PRODUCT OVERVIEW</div>
+                        <h2 class="mb-4 text-center" style="font-size: 1.75rem; font-weight: 900; font-family: 'Youth', sans-serif; line-height: 1.2; letter-spacing: -0.01em; animation: fadeIn 0.7s ease-out 0.2s both; text-transform: uppercase;">
+                            <span class="highlight-text">PERSONAS</span> <span style="background: linear-gradient(135deg, #111827 0%, #374151 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">DELIVERS</span> <span class="scale-underline" style="background: linear-gradient(135deg, #111827 0%, #374151 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">SCALE</span>
+                        </h2>
+                        <p class="text-center mb-8 text-lg" style="color: #6b7280; animation: fadeIn 0.7s ease-out 0.3s both;">We empower brands to scale influencers for results at a fraction of the cost of traditional social campaigns</p>
+                        
+                        <div class="challenge-section" style="background: rgba(76, 29, 149, 0.03); padding: 1.5rem; animation: fadeIn 0.8s ease-out 0.4s both;">
+                            <div class="challenge-header mb-3">
+                                <span class="challenge-label">PERSONAS-powered influencers</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <!-- 24/7 Engagement -->
+                                <div class="card card-enhanced p-4 text-center" style="animation: cardReveal 0.8s ease-out 0.5s both;">
+                                    <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #4c1d95;">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <h3 class="font-bold mb-1 gradient-text">24/7 Engagement</h3>
+                                    <p class="text-xs muted">Always-on influencer<br/>presence</p>
+                                </div>
+                                
+                                <!-- Smart Curation -->
+                                <div class="card card-enhanced p-4 text-center" style="animation: cardReveal 0.8s ease-out 0.6s both;">
+                                    <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #4c1d95;">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                    </svg>
+                                    <h3 class="font-bold mb-1 gradient-text">Smart Curation</h3>
+                                    <p class="text-xs muted">Curate content based on<br/>audience engagement</p>
+                                </div>
+                                
+                                <!-- Performance -->
+                                <div class="card card-enhanced p-4 text-center" style="animation: cardReveal 0.8s ease-out 0.7s both;">
+                                    <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #4c1d95;">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                    </svg>
+                                    <h3 class="font-bold mb-1 gradient-text">Performance</h3>
+                                    <p class="text-xs muted">Measurable impressions<br/>& clicks</p>
+                                </div>
+                                
+                                <!-- Integration -->
+                                <div class="card card-enhanced p-4 text-center" style="animation: cardReveal 0.8s ease-out 0.8s both;">
+                                    <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #4c1d95;">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
+                                    </svg>
+                                    <h3 class="font-bold mb-1 gradient-text">Integration</h3>
+                                    <p class="text-xs muted">Seamless tech stack<br/>compatibility</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 text-center p-3" style="background: rgba(76, 29, 149, 0.05); border-radius: 0.5rem;">
+                                <p class="text-sm font-semibold" style="color: #4c1d95;">Deploy in days • Co-Pilot or Auto-Pilot modes</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
