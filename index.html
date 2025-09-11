@@ -1428,9 +1428,9 @@
             
             /* Slide 3 specific proportions - more compact for print */
             .slide:nth-child(3) h2 {
-                font-size: 2.5rem !important;
-                line-height: 1.1 !important;
-                margin-bottom: 0.8rem !important;
+                font-size: 1.6rem !important;
+                line-height: 1.05 !important;
+                margin-bottom: 0.6rem !important;
             }
             
             .slide:nth-child(3) .kicker {
@@ -1568,6 +1568,58 @@
                 justify-content: space-between !important;
             }
             
+            /* Slide 4 - Left column with cards */
+            .slide:nth-child(4) .grid-cols-2 > div:first-child {
+                position: absolute !important;
+                left: 0 !important;
+                width: 148.5mm !important;
+                height: 210mm !important;
+                padding: 10mm 12mm !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+            }
+            
+            /* Slide 4 - Ensure all content fits */
+            .slide:nth-child(4) h2 {
+                font-size: 1.8rem !important;
+                margin-bottom: 0.3rem !important;
+            }
+            
+            .slide:nth-child(4) p {
+                margin-bottom: 0.2rem !important;
+            }
+            
+            .slide:nth-child(4) .challenge-section {
+                padding: 0.6rem !important;
+                margin: 0.4rem 0 !important;
+            }
+            
+            .slide:nth-child(4) .grid-cols-2.gap-4 {
+                gap: 0.4rem !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced {
+                padding: 0.5rem !important;
+                min-height: 60px !important;
+                max-height: 70px !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced h3 {
+                font-size: 0.6rem !important;
+                margin-bottom: 0.1rem !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced p {
+                font-size: 0.5rem !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced svg {
+                width: 1.2rem !important;
+                height: 1.2rem !important;
+                margin-bottom: 0.2rem !important;
+            }
+            
             /* Slide 4 - Right column image full coverage */
             .slide:nth-child(4) .grid-cols-2 > div:last-child {
                 position: absolute !important;
@@ -1575,23 +1627,17 @@
                 width: 148.5mm !important;
                 height: 210mm !important;
                 top: 0 !important;
-                bottom: 0 !important;
                 padding: 0 !important;
                 margin: 0 !important;
-                overflow: visible !important;
+                overflow: hidden !important;
                 display: block !important;
             }
             
             .slide:nth-child(4) .grid-cols-2 > div:last-child img {
-                position: absolute !important;
-                bottom: 0 !important;
-                left: 0 !important;
-                right: 0 !important;
                 width: 100% !important;
-                height: auto !important;
-                min-height: 210mm !important;
+                height: 100% !important;
                 object-fit: cover !important;
-                object-position: center bottom !important;
+                object-position: center !important;
             }
             
             /* Clean up all decorative elements */
@@ -1735,7 +1781,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v0.1</p>
+                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v0.2</p>
                 </div>
             </div>
         </section>
