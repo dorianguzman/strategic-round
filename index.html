@@ -1690,7 +1690,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p style="font-size: 1rem; color: #666; margin-top: 1rem;">v1</p>
+                    <p style="font-size: 1rem; color: #666; margin-top: 1rem;">v0</p>
                 </div>
             </div>
         </section>
@@ -2630,10 +2630,12 @@
             const currentSlide = Math.round(container.scrollTop / slideHeight);
             const footerLogo = document.getElementById('footerLogo');
             
-            if (currentSlide > 0) {
-                footerLogo.classList.add('visible');
-            } else {
-                footerLogo.classList.remove('visible');
+            if (footerLogo) {
+                if (currentSlide > 0) {
+                    footerLogo.classList.add('visible');
+                } else {
+                    footerLogo.classList.remove('visible');
+                }
             }
         });
     </script>
@@ -2719,32 +2721,60 @@
                 // Hide progress dialog temporarily for screenshot
                 progressDiv.style.display = 'none';
                 
-                // Capture only the deck container to avoid capturing the progress dialog
-                const canvas = await html2canvas(container, {
+                // Wait a moment for display change to take effect
+                await new Promise(resolve => setTimeout(resolve, 50));
+                
+                // Ensure we have valid dimensions
+                if (window.innerWidth === 0 || window.innerHeight === 0) {
+                    console.error('Invalid window dimensions');
+                    progressDiv.style.display = 'block';
+                    continue;
+                }
+                
+                // Make sure the slide is fully visible and opaque
+                slide.style.display = 'flex';
+                slide.style.opacity = '1';
+                slide.style.position = 'relative';
+                slide.style.zIndex = '9999';
+                
+                // Capture only the current slide directly with a white background
+                const canvas = await html2canvas(slide, {
                     scale: 2, // Higher quality
                     useCORS: true,
                     logging: false,
-                    scrollX: 0,
-                    scrollY: -container.scrollTop,
                     width: window.innerWidth,
                     height: window.innerHeight,
-                    windowWidth: window.innerWidth,
-                    windowHeight: window.innerHeight,
-                    backgroundColor: '#ffffff'
+                    backgroundColor: '#ffffff',
+                    removeContainer: false,
+                    imageTimeout: 0,
+                    onclone: (clonedDoc) => {
+                        const clonedSlide = clonedDoc.querySelector('.slide');
+                        if (clonedSlide) {
+                            clonedSlide.style.opacity = '1';
+                            clonedSlide.style.background = '#ffffff';
+                        }
+                    }
                 });
+                
+                // Reset slide styles
+                slide.style.display = '';
+                slide.style.opacity = '';
+                slide.style.position = '';
+                slide.style.zIndex = '';
                 
                 // Show progress dialog again
                 progressDiv.style.display = 'block';
                 
-                // Convertir canvas a imagen
-                const imgData = canvas.toDataURL('image/png');
+                // Convertir canvas a imagen with JPEG for better opacity
+                const imgData = canvas.toDataURL('image/jpeg', 1.0);
                 
                 // Create PDF page with exact canvas dimensions (first page)
                 if (i === 0) {
                     const pdf = new jsPDF({
                         orientation: canvas.width > canvas.height ? 'landscape' : 'portrait',
                         unit: 'px',
-                        format: [canvas.width, canvas.height]
+                        format: [canvas.width, canvas.height],
+                        compress: false
                     });
                     window.pdfDoc = pdf;
                 } else {
@@ -2752,8 +2782,12 @@
                     window.pdfDoc.addPage([canvas.width, canvas.height]);
                 }
                 
+                // Fill white background first
+                window.pdfDoc.setFillColor(255, 255, 255);
+                window.pdfDoc.rect(0, 0, canvas.width, canvas.height, 'F');
+                
                 // Add image at exact size
-                window.pdfDoc.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+                window.pdfDoc.addImage(imgData, 'JPEG', 0, 0, canvas.width, canvas.height);
             }
             
             // Remover indicador de progreso
