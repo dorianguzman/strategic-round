@@ -1384,13 +1384,14 @@
             .slide:nth-child(6),
             .slide:nth-child(7),
             .slide:nth-child(8),
-            .slide:nth-child(9) {
+            .slide:nth-child(9),
+            .slide:nth-child(10) {
                 display: block !important;
                 justify-content: unset !important;
                 align-items: unset !important;
             }
             
-            /* Ensure slide 4 right column (Parlay image) has proper background */
+            /* Slide 4 RIGHT column with Parlay image */
             .slide:nth-child(4) .grid-cols-2 > div:last-child {
                 background: #f9fafb !important;
                 display: flex !important;
@@ -1404,20 +1405,22 @@
                 overflow: hidden !important;
             }
             
-            /* Slide 4 Parlay image specific - full height coverage */
+            /* Slide 4 Parlay image - match screen version */
             .slide:nth-child(4) img[src*="parlay"] {
-                width: 100% !important;
-                height: 100% !important;
+                max-width: 100% !important;
+                max-height: 90% !important;
+                width: auto !important;
+                height: auto !important;
                 object-fit: contain !important;
                 position: relative !important;
             }
             
             /* Slide 4 LIVE EXAMPLE badge */
             .slide:nth-child(4) div[style*="LIVE EXAMPLE"] {
-                font-size: 0.6rem !important;
-                padding: 0.3rem 0.6rem !important;
-                bottom: 15px !important;
-                right: 15px !important;
+                font-size: 0.65rem !important;
+                padding: 0.35rem 0.7rem !important;
+                bottom: 20px !important;
+                right: 20px !important;
             }
             
             /* Full-size wrapper for slides with images */
@@ -1467,8 +1470,9 @@
             }
             
             
+            /* Slide 4 LEFT column with cards */
             .slide:nth-child(4) .grid-cols-2 > div:first-child {
-                padding: 8mm 10mm !important;
+                padding: 10mm !important;
                 height: 210mm !important;
                 display: flex !important;
                 flex-direction: column !important;
@@ -1478,62 +1482,171 @@
                 width: 148.5mm !important;
             }
             
-            .slide:nth-child(5) .grid-cols-2 > div:last-child,
-            .slide:nth-child(6) .grid-cols-2 > div:first-child,
-            .slide:nth-child(7) .grid-cols-2 > div:last-child,
+            /* Slide 5 - image left, content right */
+            .slide:nth-child(5) .grid-cols-2 > div:first-child {
+                position: absolute !important;
+                left: 0 !important;
+                width: 148.5mm !important;
+                height: 210mm !important;
+                padding: 0 !important;
+                top: 0 !important;
+                overflow: visible !important;
+            }
+            
+            .slide:nth-child(5) .grid-cols-2 > div:first-child img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+                object-position: center !important;
+            }
+            
+            .slide:nth-child(5) .grid-cols-2 > div:last-child {
+                position: absolute !important;
+                left: 148.5mm !important;
+                width: 148.5mm !important;
+                padding: 8mm 10mm !important;
+                height: 210mm !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
+            }
+            
+            /* Slide 6 - content left, image right */
+            .slide:nth-child(6) .grid-cols-2 > div:first-child {
+                position: absolute !important;
+                left: 0 !important;
+                width: 148.5mm !important;
+                padding: 8mm 10mm !important;
+                height: 210mm !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
+            }
+            
+            .slide:nth-child(6) .grid-cols-2 > div:last-child {
+                position: absolute !important;
+                left: 148.5mm !important;
+                width: 148.5mm !important;
+                height: 210mm !important;
+                padding: 0 !important;
+                top: 0 !important;
+                overflow: visible !important;
+            }
+            
+            .slide:nth-child(6) .grid-cols-2 > div:last-child img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+                object-position: center !important;
+            }
+            
+            /* Slide 7 - image left, content right */
+            .slide:nth-child(7) .grid-cols-2 > div:first-child {
+                position: absolute !important;
+                left: 0 !important;
+                width: 148.5mm !important;
+                height: 210mm !important;
+                padding: 0 !important;
+                top: 0 !important;
+                overflow: visible !important;
+            }
+            
+            .slide:nth-child(7) .grid-cols-2 > div:first-child img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+                object-position: center !important;
+            }
+            
+            .slide:nth-child(7) .grid-cols-2 > div:last-child {
+                position: absolute !important;
+                left: 148.5mm !important;
+                width: 148.5mm !important;
+                padding: 8mm 10mm !important;
+                height: 210mm !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
+            }
+            
+            /* Slide 8 - content left, image right */
             .slide:nth-child(8) .grid-cols-2 > div:first-child {
-                padding: 10mm 12mm !important;
+                position: absolute !important;
+                left: 0 !important;
+                width: 148.5mm !important;
+                padding: 8mm 10mm !important;
                 height: 210mm !important;
                 display: flex !important;
                 flex-direction: column !important;
-                justify-content: flex-start !important;
+                justify-content: space-between !important;
             }
             
-            /* Slide 9 content column - special case with images */
+            .slide:nth-child(8) .grid-cols-2 > div:last-child {
+                position: absolute !important;
+                left: 148.5mm !important;
+                width: 148.5mm !important;
+                height: 210mm !important;
+                padding: 0 !important;
+                top: 0 !important;
+                overflow: visible !important;
+            }
+            
+            .slide:nth-child(8) .grid-cols-2 > div:last-child img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+                object-position: center !important;
+            }
+            
+            /* Slide 9 - content left, collage right */
             .slide:nth-child(9) .grid-cols-2 > div:first-child {
-                padding: 10mm !important;
+                position: absolute !important;
+                left: 0 !important;
+                width: 148.5mm !important;
+                padding: 8mm 10mm !important;
                 height: 210mm !important;
                 display: flex !important;
                 flex-direction: column !important;
-                justify-content: center !important;
+                justify-content: space-between !important;
             }
             
-            /* Slide 10 (team) - centered layout */
-            .slide:nth-child(10) {
+            .slide:nth-child(9) .grid-cols-2 > div:last-child {
+                position: absolute !important;
+                left: 148.5mm !important;
+                width: 148.5mm !important;
+                height: 210mm !important;
+                padding: 0.5rem !important;
+            }
+            
+            /* Slide 10 - Revenue Model - content left, images right */
+            .slide:nth-child(10) .grid-cols-2 > div:first-child {
+                position: absolute !important;
+                left: 0 !important;
+                width: 148.5mm !important;
+                padding: 8mm 10mm !important;
+                height: 210mm !important;
                 display: flex !important;
-                justify-content: center !important;
-                align-items: center !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
             }
             
-            /* Slide 10 team cards adjustments */
-            .slide:nth-child(10) .grid-cols-3 {
-                gap: 0.8rem !important;
+            .slide:nth-child(10) .grid-cols-2 > div:last-child {
+                position: absolute !important;
+                left: 148.5mm !important;
+                width: 148.5mm !important;
+                height: 210mm !important;
+                padding: 0 !important;
+                display: flex !important;
+                flex-direction: column !important;
             }
             
-            .slide:nth-child(10) .card-enhanced img {
-                width: 80px !important;
-                height: 80px !important;
+            .slide:nth-child(10) .grid-cols-2 > div:last-child img {
+                width: 100% !important;
+                height: 50% !important;
+                object-fit: cover !important;
             }
             
-            .slide:nth-child(10) .card-enhanced h3 {
-                font-size: 0.9rem !important;
-            }
-            
-            .slide:nth-child(10) .card-enhanced div[style*="font-size: 0.75rem"] {
-                font-size: 0.55rem !important;
-                line-height: 1.2 !important;
-            }
-            
-            .slide:nth-child(10) .card-enhanced div[style*="font-size: 0.9rem"] {
-                font-size: 0.65rem !important;
-            }
-            
-            /* Slide 10 logo row */
-            .slide:nth-child(10) .flex img {
-                height: 30px !important;
-            }
-            
-            /* Slide 11 (investment) - centered layout */
+            /* Slide 11 (Team) - centered layout */
             .slide:nth-child(11) {
                 display: flex !important;
                 justify-content: center !important;
@@ -1541,32 +1654,86 @@
             }
             
             .slide:nth-child(11) h2 {
-                font-size: 3rem !important;
+                font-size: 1.8rem !important;
             }
             
-            .slide:nth-child(11) p[style*="font-size: 1.5rem"] {
-                font-size: 1rem !important;
+            .slide:nth-child(11) .kicker {
+                font-size: 0.85rem !important;
+            }
+            
+            .slide:nth-child(11) p[style*="font-size: 1.25rem"] {
+                font-size: 0.95rem !important;
+            }
+            
+            .slide:nth-child(11) .challenge-section {
+                padding: 1.5rem !important;
             }
             
             .slide:nth-child(11) .grid-cols-3 {
+                gap: 1rem !important;
+            }
+            
+            .slide:nth-child(11) .card-enhanced {
+                padding: 0.8rem !important;
+            }
+            
+            .slide:nth-child(11) .card-enhanced img,
+            .slide:nth-child(11) div[style*="width: 120px"] {
+                width: 80px !important;
+                height: 80px !important;
+            }
+            
+            .slide:nth-child(11) .card-enhanced h3 {
+                font-size: 0.9rem !important;
+            }
+            
+            .slide:nth-child(11) div[style*="font-size: 0.75rem"] {
+                font-size: 0.55rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            .slide:nth-child(11) div[style*="font-size: 0.9rem"] {
+                font-size: 0.65rem !important;
+            }
+            
+            .slide:nth-child(11) .flex img {
+                height: 30px !important;
+            }
+            
+            /* Slide 12 (Investment Round) - centered layout */
+            .slide:nth-child(12) {
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+            
+            .slide:nth-child(12) h2 {
+                font-size: 3rem !important;
+            }
+            
+            .slide:nth-child(12) p[style*="font-size: 1.5rem"] {
+                font-size: 1.1rem !important;
+            }
+            
+            .slide:nth-child(12) .grid-cols-3 {
                 gap: 1rem !important;
                 max-width: 800px !important;
                 margin: 0 auto 2rem !important;
             }
             
-            .slide:nth-child(11) .card {
+            .slide:nth-child(12) .card {
                 padding: 1.5rem !important;
             }
             
-            .slide:nth-child(11) div[style*="font-size: 4rem"] {
+            .slide:nth-child(12) div[style*="font-size: 4rem"] {
                 font-size: 2.5rem !important;
             }
             
-            .slide:nth-child(11) div[style*="font-size: 1rem"] {
+            .slide:nth-child(12) div[style*="font-size: 1rem"] {
                 font-size: 0.7rem !important;
             }
             
-            .slide:nth-child(11) h3[style*="font-size: 2.5rem"] {
+            .slide:nth-child(12) h3[style*="font-size: 2.5rem"] {
                 font-size: 1.5rem !important;
             }
             
@@ -1714,235 +1881,301 @@
             
             /* Slide 4 specific proportions - PERSONAS platform slide */
             .slide:nth-child(4) h2 {
-                font-size: 2.8rem !important;
+                font-size: 3rem !important;
             }
             
             .slide:nth-child(4) .kicker {
-                font-size: 0.8rem !important;
+                font-size: 0.85rem !important;
                 margin-bottom: 0.3rem !important;
             }
             
             .slide:nth-child(4) .mb-6 {
-                margin-bottom: 1rem !important;
+                margin-bottom: 1.2rem !important;
             }
             
-            .slide:nth-child(4) p[style*="font-size: 1.75rem"] {
-                font-size: 1.1rem !important;
-            }
-            
-            .slide:nth-child(4) p[style*="font-size: 1.25rem"] {
-                font-size: 0.85rem !important;
-            }
-            
-            .slide:nth-child(4) .challenge-section {
-                padding: 0.8rem !important;
-                margin: 0.5rem 0 !important;
-            }
-            
-            .slide:nth-child(4) .challenge-label {
-                font-size: 0.6rem !important;
+            .slide:nth-child(4) .mb-3 {
                 margin-bottom: 0.5rem !important;
             }
             
-            .slide:nth-child(4) .grid-cols-2.gap-4 {
-                gap: 0.5rem !important;
-            }
-            
-            .slide:nth-child(4) .card-enhanced {
-                padding: 0.5rem !important;
-                min-height: 75px !important;
-            }
-            
-            .slide:nth-child(4) .card-enhanced h3 {
-                font-size: 0.7rem !important;
-                line-height: 1 !important;
-                margin-bottom: 0.2rem !important;
-            }
-            
-            .slide:nth-child(4) .card-enhanced p {
-                font-size: 0.55rem !important;
-                line-height: 1.1 !important;
-            }
-            
-            .slide:nth-child(4) .card-enhanced svg {
-                width: 1.4rem !important;
-                height: 1.4rem !important;
+            .slide:nth-child(4) .mb-2 {
                 margin-bottom: 0.3rem !important;
             }
             
-            /* Slide 5 specific proportions */
+            .slide:nth-child(4) p[style*="font-size: 1.75rem"] {
+                font-size: 1.2rem !important;
+            }
+            
+            .slide:nth-child(4) p[style*="font-size: 1.25rem"] {
+                font-size: 0.9rem !important;
+            }
+            
+            .slide:nth-child(4) .challenge-section {
+                padding: 1rem !important;
+                margin: 0.8rem 0 !important;
+            }
+            
+            .slide:nth-child(4) .challenge-label {
+                font-size: 0.65rem !important;
+                margin-bottom: 0.6rem !important;
+            }
+            
+            .slide:nth-child(4) .grid-cols-2.gap-4 {
+                gap: 0.6rem !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced {
+                padding: 0.6rem !important;
+                min-height: 85px !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced h3 {
+                font-size: 0.75rem !important;
+                line-height: 1.05 !important;
+                margin-bottom: 0.25rem !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced p {
+                font-size: 0.6rem !important;
+                line-height: 1.15 !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced svg {
+                width: 1.5rem !important;
+                height: 1.5rem !important;
+                margin-bottom: 0.35rem !important;
+            }
+            
+            /* Slide 5 specific proportions - PERSONAS DELIVERS SCALE */
             .slide:nth-child(5) h2 {
-                font-size: 1.4rem !important;
+                font-size: 1.6rem !important;
                 line-height: 1.1 !important;
+                margin-bottom: 1rem !important;
             }
             
             .slide:nth-child(5) .kicker {
-                font-size: 0.8rem !important;
+                font-size: 0.85rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            .slide:nth-child(5) .mb-8 {
+                margin-bottom: 1.2rem !important;
             }
             
             .slide:nth-child(5) p[style*="font-size: 1.25rem"] {
-                font-size: 0.85rem !important;
+                font-size: 0.9rem !important;
             }
             
             .slide:nth-child(5) .challenge-section {
                 padding: 1rem !important;
             }
             
+            .slide:nth-child(5) .challenge-label {
+                font-size: 0.65rem !important;
+            }
+            
             .slide:nth-child(5) .card-enhanced {
-                padding: 0.6rem !important;
+                padding: 0.7rem !important;
+                min-height: 80px !important;
             }
             
             .slide:nth-child(5) .card-enhanced h3 {
-                font-size: 0.75rem !important;
+                font-size: 0.8rem !important;
             }
             
             .slide:nth-child(5) .card-enhanced p {
-                font-size: 0.6rem !important;
+                font-size: 0.65rem !important;
+            }
+            
+            .slide:nth-child(5) .card-enhanced svg {
+                width: 1.6rem !important;
+                height: 1.6rem !important;
+            }
+            
+            .slide:nth-child(5) .mt-6 {
+                margin-top: 1rem !important;
             }
             
             .slide:nth-child(5) .mt-6 h3 {
-                font-size: 0.85rem !important;
-            }
-            
-            /* Slide 6 specific proportions - Case study */
-            .slide:nth-child(6) h2 {
-                font-size: 1.5rem !important;
-            }
-            
-            .slide:nth-child(6) .kicker {
-                font-size: 0.8rem !important;
-            }
-            
-            .slide:nth-child(6) p[style*="font-size: 1.25rem"] {
-                font-size: 0.85rem !important;
-            }
-            
-            .slide:nth-child(6) .challenge-section {
-                padding: 0.8rem !important;
-            }
-            
-            .slide:nth-child(6) .metric-value {
-                font-size: 1.5rem !important;
-            }
-            
-            .slide:nth-child(6) .text-sm {
-                font-size: 0.65rem !important;
-            }
-            
-            /* Slide 7 specific proportions - Metrics */
-            .slide:nth-child(7) h2 {
-                font-size: 1.4rem !important;
-            }
-            
-            .slide:nth-child(7) .kicker {
-                font-size: 0.8rem !important;
-            }
-            
-            .slide:nth-child(7) .challenge-section {
-                padding: 0.8rem !important;
-            }
-            
-            .slide:nth-child(7) .metric-value {
-                font-size: 1.8rem !important;
-            }
-            
-            .slide:nth-child(7) .card h3 {
-                font-size: 0.75rem !important;
-            }
-            
-            .slide:nth-child(7) .card p {
-                font-size: 0.6rem !important;
-            }
-            
-            /* Slide 8 specific proportions - Traction */
-            .slide:nth-child(8) h2 {
-                font-size: 1.5rem !important;
-            }
-            
-            .slide:nth-child(8) .kicker {
-                font-size: 0.8rem !important;
-            }
-            
-            .slide:nth-child(8) p[style*="font-size: 1.25rem"] {
-                font-size: 0.85rem !important;
-            }
-            
-            .slide:nth-child(8) .challenge-section {
-                padding: 1rem !important;
-            }
-            
-            .slide:nth-child(8) .card-enhanced {
-                padding: 0.6rem !important;
-            }
-            
-            .slide:nth-child(8) .card-enhanced h3 {
-                font-size: 0.8rem !important;
-            }
-            
-            .slide:nth-child(8) .card-enhanced p {
-                font-size: 0.65rem !important;
-            }
-            
-            /* Slide 9 specific proportions - overlapping images slide */
-            .slide:nth-child(9) h2 {
-                font-size: 1.6rem !important;
-            }
-            
-            .slide:nth-child(9) .kicker {
-                font-size: 0.8rem !important;
-            }
-            
-            .slide:nth-child(9) p[style*="font-size: 1.25rem"] {
-                font-size: 0.85rem !important;
-            }
-            
-            .slide:nth-child(9) .challenge-section {
-                padding: 0.8rem !important;
-            }
-            
-            .slide:nth-child(9) .card {
-                padding: 0.5rem !important;
-            }
-            
-            .slide:nth-child(9) .metric-value {
-                font-size: 1.2rem !important;
-            }
-            
-            .slide:nth-child(9) div[style*="font-size: 0.875rem"] {
-                font-size: 0.6rem !important;
-            }
-            
-            .slide:nth-child(9) div[style*="font-size: 1.25rem"] {
-                font-size: 0.85rem !important;
-            }
-            
-            /* Slide 10 specific proportions - Investment */
-            .slide:nth-child(10) h2 {
-                font-size: 1.8rem !important;
-            }
-            
-            .slide:nth-child(10) .kicker {
                 font-size: 0.9rem !important;
             }
             
-            .slide:nth-child(10) .challenge-section {
-                padding: 1rem !important;
+            /* Slide 6 specific proportions - Case study Divvy.bet */
+            .slide:nth-child(6) h2 {
+                font-size: 1.8rem !important;
+                margin-bottom: 1rem !important;
             }
             
-            .slide:nth-child(10) .card-enhanced {
-                padding: 0.7rem !important;
-            }
-            
-            .slide:nth-child(10) .metric-value {
-                font-size: 1.5rem !important;
-            }
-            
-            .slide:nth-child(10) .card-enhanced h3 {
+            .slide:nth-child(6) .kicker {
                 font-size: 0.85rem !important;
             }
             
-            .slide:nth-child(10) .card-enhanced p {
+            .slide:nth-child(6) p[style*="font-size: 1.25rem"] {
+                font-size: 0.95rem !important;
+            }
+            
+            .slide:nth-child(6) .challenge-section {
+                padding: 1rem !important;
+            }
+            
+            .slide:nth-child(6) .grid-cols-3 .card {
+                padding: 0.8rem !important;
+            }
+            
+            .slide:nth-child(6) h3[style*="font-size: 2.5rem"] {
+                font-size: 1.8rem !important;
+            }
+            
+            .slide:nth-child(6) .text-sm,
+            .slide:nth-child(6) p[style*="font-size: 0.9rem"] {
                 font-size: 0.7rem !important;
+            }
+            
+            .slide:nth-child(6) .mt-6 h3 {
+                font-size: 0.85rem !important;
+            }
+            
+            /* Slide 7 specific proportions - Campaign Results */
+            .slide:nth-child(7) h2 {
+                font-size: 1.6rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .slide:nth-child(7) .kicker {
+                font-size: 0.85rem !important;
+            }
+            
+            .slide:nth-child(7) p[style*="font-size: 1.25rem"] {
+                font-size: 0.95rem !important;
+            }
+            
+            .slide:nth-child(7) .challenge-section {
+                padding: 1rem !important;
+            }
+            
+            .slide:nth-child(7) .grid-cols-2.gap-4 {
+                gap: 0.8rem !important;
+            }
+            
+            .slide:nth-child(7) .card-enhanced {
+                padding: 0.8rem !important;
+            }
+            
+            .slide:nth-child(7) h3[style*="font-size: 2.5rem"] {
+                font-size: 1.8rem !important;
+            }
+            
+            .slide:nth-child(7) p[style*="font-size: 0.9rem"] {
+                font-size: 0.7rem !important;
+            }
+            
+            .slide:nth-child(7) .mt-6 h3 {
+                font-size: 0.85rem !important;
+            }
+            
+            /* Slide 8 specific proportions - Competitive Advantage */
+            .slide:nth-child(8) h2 {
+                font-size: 1.8rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .slide:nth-child(8) .kicker {
+                font-size: 0.85rem !important;
+            }
+            
+            .slide:nth-child(8) p[style*="font-size: 1.25rem"] {
+                font-size: 0.95rem !important;
+            }
+            
+            .slide:nth-child(8) .challenge-section {
+                padding: 1.2rem !important;
+            }
+            
+            .slide:nth-child(8) .grid-cols-3 .card {
+                padding: 0.8rem !important;
+            }
+            
+            .slide:nth-child(8) .metric-value,
+            .slide:nth-child(8) h3[style*="font-size: 2rem"] {
+                font-size: 1.5rem !important;
+            }
+            
+            .slide:nth-child(8) .card p {
+                font-size: 0.7rem !important;
+            }
+            
+            /* Slide 9 specific proportions - Client Traction */
+            .slide:nth-child(9) h2 {
+                font-size: 1.8rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .slide:nth-child(9) .kicker {
+                font-size: 0.85rem !important;
+            }
+            
+            .slide:nth-child(9) p[style*="font-size: 1.25rem"] {
+                font-size: 0.95rem !important;
+            }
+            
+            .slide:nth-child(9) .challenge-section {
+                padding: 1rem !important;
+            }
+            
+            .slide:nth-child(9) .card-enhanced {
+                padding: 0.7rem !important;
+            }
+            
+            .slide:nth-child(9) .card-enhanced h3 {
+                font-size: 0.85rem !important;
+            }
+            
+            .slide:nth-child(9) .card-enhanced p {
+                font-size: 0.7rem !important;
+            }
+            
+            .slide:nth-child(9) .card-enhanced svg {
+                width: 1.8rem !important;
+                height: 1.8rem !important;
+            }
+            
+            .slide:nth-child(9) .mt-4 h3 {
+                font-size: 0.85rem !important;
+            }
+            
+            /* Slide 10 specific proportions - Revenue Model */
+            .slide:nth-child(10) h2 {
+                font-size: 1.8rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .slide:nth-child(10) .kicker {
+                font-size: 0.85rem !important;
+            }
+            
+            .slide:nth-child(10) .challenge-section {
+                padding: 1.2rem !important;
+            }
+            
+            .slide:nth-child(10) .grid-cols-1 .card-enhanced {
+                padding: 0.9rem !important;
+                margin-bottom: 0.8rem !important;
+            }
+            
+            .slide:nth-child(10) .card-enhanced h3 {
+                font-size: 1rem !important;
+            }
+            
+            .slide:nth-child(10) .card-enhanced p {
+                font-size: 0.75rem !important;
+            }
+            
+            .slide:nth-child(10) .card-enhanced svg {
+                width: 1.8rem !important;
+                height: 1.8rem !important;
+            }
+            
+            .slide:nth-child(10) .mt-4 h3 {
+                font-size: 0.85rem !important;
             }
             
             /* Special handling for slide 9 with overlapping images */
@@ -2276,7 +2509,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v1.10</p>
+                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v1.11</p>
                 </div>
             </div>
         </section>
