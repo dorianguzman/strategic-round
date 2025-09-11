@@ -1061,14 +1061,81 @@
                 print-color-adjust: exact !important;
             }
             
-            /* Cards and sections */
-            .card,
+            /* Cards and sections - maintain proper proportions */
+            .card {
+                border: 1px solid #e5e7eb !important;
+                border-radius: 0.75rem !important;
+                padding: 0.75rem !important;
+                background: #ffffff !important;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+            
+            .card-enhanced {
+                border: 1px solid #e5e7eb !important;
+                background: #ffffff !important;
+                min-height: 80px !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                padding: 1rem !important;
+                border-radius: 0.75rem !important;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04) !important;
+            }
+            
             .challenge-section {
                 background: rgba(248, 248, 250, 0.8) !important;
                 -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
+                print-color-adjust: exact !important;
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
+                padding: 1.25rem !important;
+                border-radius: 0.5rem !important;
+            }
+            
+            /* Maintain card grid proportions */
+            .grid-cols-2 .card,
+            .grid-cols-2 .card-enhanced {
+                padding: 0.9rem !important;
+                min-height: 70px !important;
+            }
+            
+            .grid-cols-3 .card,
+            .grid-cols-3 .card-enhanced {
+                padding: 1rem !important;
+                min-height: 90px !important;
+            }
+            
+            .grid-cols-4 .card,
+            .grid-cols-4 .card-enhanced {
+                padding: 0.5rem 0.4rem !important;
+                min-height: 60px !important;
+            }
+            
+            /* Card icons and content */
+            .card svg,
+            .card-enhanced svg {
+                width: 2rem !important;
+                height: 2rem !important;
+                margin-bottom: 0.5rem !important;
+                color: #4c1d95 !important;
+            }
+            
+            .card h3,
+            .card-enhanced h3 {
+                font-size: 1rem !important;
+                margin-bottom: 0.25rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            .card p,
+            .card-enhanced p {
+                font-size: 0.75rem !important;
+                line-height: 1.3 !important;
+                margin: 0 !important;
             }
             
             /* Typography - Print optimized sizes (0.8x ratio from screen) */
@@ -1277,12 +1344,51 @@
             
             .slide:nth-child(3) .grid-cols-2 > div:first-child {
                 height: 210mm !important;
+                padding: 0 !important;
+                margin: 0 !important;
             }
             
             .slide:nth-child(3) .grid-cols-2 > div:last-child {
                 padding: 15mm !important;
                 height: 210mm !important;
                 overflow: visible !important;
+            }
+            
+            /* Fix for images in grid columns to cover full height */
+            .slide .grid-cols-2 > div img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+                max-height: none !important;
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+            }
+            
+            .slide .grid-cols-2 > div:has(img) {
+                position: relative !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                overflow: hidden !important;
+            }
+            
+            /* Ensure content columns still have proper padding */
+            .slide .grid-cols-2 > div:not(:has(img)) {
+                padding: 15mm !important;
+            }
+            
+            /* Fix for slides 3, 4, 5, 6, 7, 8, 9 with side images */
+            .slide:nth-child(3) .grid-cols-2 > div:first-child img,
+            .slide:nth-child(4) .grid-cols-2 > div:last-child img,
+            .slide:nth-child(5) .grid-cols-2 > div:first-child img,
+            .slide:nth-child(6) .grid-cols-2 > div:last-child img,
+            .slide:nth-child(7) .grid-cols-2 > div:first-child img,
+            .slide:nth-child(8) .grid-cols-2 > div:last-child img,
+            .slide:nth-child(9) .grid-cols-2 > div img {
+                width: 100% !important;
+                height: 210mm !important;
+                object-fit: cover !important;
+                max-height: none !important;
             }
             
             /* EXCEPTION 1: Keep slide 1 title line */
@@ -1533,33 +1639,32 @@
                 margin-bottom: 0.75rem !important;
             }
             
-            /* Smaller card sizes for slides 5 and 6 to fit content - print only */
-            .slide:nth-child(5) .card.card-enhanced,
-            .slide:nth-child(6) .card.card-enhanced {
-                padding: 0.75rem !important;
-                min-height: auto !important;
-                margin-bottom: 0.5rem !important;
+            /* Specific adjustments for slides 5 and 6 cards */
+            .slide:nth-child(5) .grid-cols-2 .card-enhanced,
+            .slide:nth-child(6) .grid-cols-2 .card-enhanced {
+                padding: 0.8rem !important;
+                min-height: 65px !important;
+                margin-bottom: 0.4rem !important;
             }
             
-            .slide:nth-child(5) .card.card-enhanced h3,
-            .slide:nth-child(6) .card.card-enhanced h3 {
-                font-size: 1rem !important;
-                margin-bottom: 0.25rem !important;
-                line-height: 1.2 !important;
+            .slide:nth-child(5) .grid-cols-2 .card-enhanced h3,
+            .slide:nth-child(6) .grid-cols-2 .card-enhanced h3 {
+                font-size: 0.95rem !important;
+                margin-bottom: 0.2rem !important;
+                line-height: 1.15 !important;
             }
             
-            .slide:nth-child(5) .card.card-enhanced p,
-            .slide:nth-child(6) .card.card-enhanced p {
-                font-size: 0.8rem !important;
-                line-height: 1.3 !important;
-                margin: 0 !important;
+            .slide:nth-child(5) .grid-cols-2 .card-enhanced p,
+            .slide:nth-child(6) .grid-cols-2 .card-enhanced p {
+                font-size: 0.7rem !important;
+                line-height: 1.25 !important;
             }
             
-            .slide:nth-child(5) .card.card-enhanced svg,
-            .slide:nth-child(6) .card.card-enhanced svg {
-                width: 1.75rem !important;
-                height: 1.75rem !important;
-                margin-bottom: 0.5rem !important;
+            .slide:nth-child(5) .grid-cols-2 .card-enhanced svg,
+            .slide:nth-child(6) .grid-cols-2 .card-enhanced svg {
+                width: 1.8rem !important;
+                height: 1.8rem !important;
+                margin-bottom: 0.4rem !important;
             }
             
             /* Reduce grid gap for tighter layout */
