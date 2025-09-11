@@ -2648,6 +2648,58 @@
     <script>
         // Función para generar PDF
         async function generatePDF() {
+            // Alternative approach: Show a dialog with options
+            const choice = confirm("Choose PDF generation method:\n\nOK = Use browser print (better quality)\nCancel = Use current method");
+            
+            if (choice) {
+                // Use browser print - better for gradients and complex CSS
+                const container = document.querySelector('.deck-container');
+                const slides = document.querySelectorAll('.slide');
+                const originalDisplay = [];
+                
+                // Store original display and show all slides
+                slides.forEach((slide, index) => {
+                    originalDisplay[index] = slide.style.display;
+                    slide.style.display = 'flex';
+                    slide.style.pageBreakAfter = 'always';
+                    slide.style.pageBreakInside = 'avoid';
+                });
+                
+                // Hide PDF button
+                const allButtons = document.querySelectorAll('button');
+                allButtons.forEach(btn => {
+                    if (btn.textContent.includes('Generate PDF')) {
+                        btn.style.display = 'none';
+                    }
+                });
+                
+                // Give time for layout
+                setTimeout(() => {
+                    window.print();
+                    
+                    // Restore original display
+                    slides.forEach((slide, index) => {
+                        slide.style.display = originalDisplay[index];
+                        slide.style.pageBreakAfter = '';
+                        slide.style.pageBreakInside = '';
+                    });
+                    
+                    // Show PDF button again
+                    allButtons.forEach(btn => {
+                        if (btn.textContent.includes('Generate PDF')) {
+                            btn.style.display = 'block';
+                        }
+                    });
+                }, 100);
+                
+                return;
+            }
+            
+            // Otherwise use the canvas method
+            generatePDFWithCanvas();
+        }
+        
+        async function generatePDFWithCanvas() {
             const { jsPDF } = window.jspdf;
             
             // Obtener todos los slides
