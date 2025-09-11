@@ -1690,7 +1690,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p style="font-size: 1rem; color: #666; margin-top: 1rem;">v1</p>
+                    <p style="font-size: 1rem; color: #666; margin-top: 1rem;">v0</p>
                 </div>
             </div>
         </section>
@@ -2673,19 +2673,38 @@
                 <div style="width: 300px; height: 20px; background: #e0e0e0; border-radius: 10px; overflow: hidden;">
                     <div id="pdf-progress-bar" style="width: 0%; height: 100%; background: linear-gradient(135deg, #4c1d95, #3b0f70); transition: width 0.3s;"></div>
                 </div>
+                <button id="pdf-cancel-btn" style="margin-top: 15px; padding: 8px 20px; background: #ef4444; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; font-weight: 500;">Cancel</button>
             `;
             document.body.appendChild(progressDiv);
             
             // Save current slide index to restore later
-            const originalSlideIndex = currentSlide;
+            const container = document.querySelector('.deck-container');
+            const slideHeight = window.innerHeight;
+            const originalSlideIndex = Math.round(container.scrollTop / slideHeight);
+            
+            // Add cancel functionality
+            let cancelled = false;
+            document.getElementById('pdf-cancel-btn').addEventListener('click', () => {
+                cancelled = true;
+                document.body.removeChild(progressDiv);
+                container.scrollTo({
+                    top: originalSlideIndex * slideHeight,
+                    behavior: 'instant'
+                });
+            });
             
             // Procesar cada slide
             for (let i = 0; i < totalSlides; i++) {
+                // Check if cancelled
+                if (cancelled) return;
                 // Navigate to the slide to ensure it's displayed as it appears on screen
-                goToSlide(i);
+                container.scrollTo({
+                    top: i * slideHeight,
+                    behavior: 'instant'
+                });
                 
-                // Wait for slide transition and any animations to complete
-                await new Promise(resolve => setTimeout(resolve, 500));
+                // Wait for scroll to complete
+                await new Promise(resolve => setTimeout(resolve, 100));
                 
                 // Actualizar progreso
                 document.getElementById('pdf-progress').textContent = i + 1;
@@ -2732,7 +2751,10 @@
             document.body.removeChild(progressDiv);
             
             // Restore original slide
-            goToSlide(originalSlideIndex);
+            container.scrollTo({
+                top: originalSlideIndex * slideHeight,
+                behavior: 'instant'
+            });
             
             // Descargar el PDF
             window.pdfDoc.save('QStarLabs_Strategic_Deck_2025.pdf');
