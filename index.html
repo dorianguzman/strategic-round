@@ -2683,36 +2683,37 @@
             `;
             document.body.appendChild(progressDiv);
             
+            // Save current slide index to restore later
+            const originalSlideIndex = currentSlide;
+            
             // Procesar cada slide
             for (let i = 0; i < totalSlides; i++) {
-                const slide = slides[i];
+                // Navigate to the slide to ensure it's displayed as it appears on screen
+                goToSlide(i);
+                
+                // Wait for slide transition and any animations to complete
+                await new Promise(resolve => setTimeout(resolve, 500));
                 
                 // Actualizar progreso
                 document.getElementById('pdf-progress').textContent = i + 1;
                 document.getElementById('pdf-progress-bar').style.width = ((i + 1) / totalSlides * 100) + '%';
                 
-                // Hacer el slide visible temporalmente si está oculto
-                const originalDisplay = slide.style.display;
-                slide.style.display = 'flex';
+                // Get the currently visible slide
+                const slide = slides[i];
                 
-                // Capturar el slide como imagen (versión de pantalla)
-                const canvas = await html2canvas(slide, {
-                    scale: 2, // Mayor calidad
+                // Capture the entire viewport as the user sees it
+                const canvas = await html2canvas(document.body, {
+                    scale: 2, // Higher quality
                     useCORS: true,
                     logging: false,
+                    x: 0,
+                    y: 0,
                     width: window.innerWidth,
                     height: window.innerHeight,
                     windowWidth: window.innerWidth,
                     windowHeight: window.innerHeight,
-                    backgroundColor: '#ffffff',
-                    ignoreElements: (element) => {
-                        // Ignorar elementos específicos de impresión si los hay
-                        return element.classList && element.classList.contains('print-only');
-                    }
+                    backgroundColor: '#ffffff'
                 });
-                
-                // Restaurar display original
-                slide.style.display = originalDisplay;
                 
                 // Convertir canvas a imagen
                 const imgData = canvas.toDataURL('image/png', 1.0);
@@ -2728,6 +2729,9 @@
             
             // Remover indicador de progreso
             document.body.removeChild(progressDiv);
+            
+            // Restore original slide
+            goToSlide(originalSlideIndex);
             
             // Descargar el PDF
             pdf.save('QStarLabs_Strategic_Deck_2025.pdf');
