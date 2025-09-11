@@ -1146,32 +1146,70 @@
                 margin: 0 !important;
             }
             
-            /* Typography - Print optimized sizes (0.7x ratio for better proportions) */
+            /* Typography - Print optimized sizes (0.8x ratio for better proportions) */
             h1, .h1 {
-                font-size: 2.1rem !important;
+                font-size: 2.4rem !important;
                 page-break-after: avoid !important;
                 break-after: avoid !important;
             }
             
             h2 {
-                font-size: 1.5rem !important;
+                font-size: 1.8rem !important;
                 page-break-after: avoid !important;
                 break-after: avoid !important;
             }
             
             h3 {
-                font-size: 1.05rem !important;
+                font-size: 1.2rem !important;
                 page-break-after: avoid !important;
                 break-after: avoid !important;
             }
             
             .title-main {
-                font-size: 2.45rem !important;
+                font-size: 2.8rem !important;
                 position: relative !important;
             }
             
             .kicker {
-                font-size: 0.85rem !important;
+                font-size: 1rem !important;
+            }
+            
+            /* Slide 1 (Title) specific adjustments */
+            .slide:first-child .title-main {
+                font-size: 3rem !important;
+            }
+            
+            .slide:first-child .kicker {
+                font-size: 1.2rem !important;
+            }
+            
+            .slide:first-child p[style*="font-size: 0.9rem"] {
+                font-size: 0.8rem !important;
+            }
+            
+            /* Slide 2 (Executive Summary) specific adjustments */
+            .slide:nth-child(2) h2 {
+                font-size: 2.2rem !important;
+            }
+            
+            .slide:nth-child(2) .kicker {
+                font-size: 1.1rem !important;
+            }
+            
+            .slide:nth-child(2) p[style*="font-size: 1.25rem"] {
+                font-size: 1.05rem !important;
+            }
+            
+            .slide:nth-child(2) .metric-value {
+                font-size: 2rem !important;
+            }
+            
+            .slide:nth-child(2) .card h3 {
+                font-size: 1rem !important;
+            }
+            
+            .slide:nth-child(2) .card p {
+                font-size: 0.75rem !important;
             }
             
             .text-xl, .text-lg {
@@ -1195,45 +1233,45 @@
                 font-size: 1.4rem !important;
             }
             
-            /* Override inline font-size styles (0.7x ratio for consistent proportions) */
+            /* Override inline font-size styles (0.8x ratio for consistent proportions) */
             [style*="font-size: 4.5rem"] {
-                font-size: 3.15rem !important;
+                font-size: 3.6rem !important;
             }
             
             [style*="font-size: 4rem"] {
-                font-size: 2.8rem !important;
+                font-size: 3.2rem !important;
             }
             
             [style*="font-size: 3.5rem"] {
-                font-size: 2.45rem !important;
+                font-size: 2.8rem !important;
             }
             
             [style*="font-size: 2.75rem"] {
-                font-size: 1.93rem !important;
+                font-size: 2.2rem !important;
             }
             
             [style*="font-size: 2.5rem"] {
-                font-size: 1.75rem !important;
+                font-size: 2rem !important;
             }
             
             [style*="font-size: 2.25rem"] {
-                font-size: 1.58rem !important;
+                font-size: 1.8rem !important;
             }
             
             [style*="font-size: 1.75rem"] {
-                font-size: 1.23rem !important;
+                font-size: 1.4rem !important;
             }
             
             [style*="font-size: 1.5rem"] {
-                font-size: 1.05rem !important;
+                font-size: 1.2rem !important;
             }
             
             [style*="font-size: 1.25rem"] {
-                font-size: 0.88rem !important;
+                font-size: 1rem !important;
             }
             
             [style*="font-size: 0.9rem"] {
-                font-size: 0.63rem !important;
+                font-size: 0.72rem !important;
             }
             
             /* Remove ALL decorative pseudo-elements EXCEPT slide 1 title line */
@@ -1417,14 +1455,6 @@
                 overflow: hidden !important;
             }
             
-            /* Content columns - reduced padding for better density */
-            .slide:nth-child(3) .grid-cols-2 > div:last-child {
-                padding: 8mm 10mm !important;
-                height: 210mm !important;
-                display: flex !important;
-                flex-direction: column !important;
-                justify-content: space-between !important;
-            }
             
             .slide:nth-child(4) .grid-cols-2 > div:first-child {
                 padding: 10mm !important;
@@ -1548,19 +1578,19 @@
             }
             
             .slide:nth-child(3) .card-enhanced {
-                padding: 0.5rem !important;
-                min-height: auto !important;
+                padding: 0.8rem !important;
+                min-height: 90px !important;
             }
             
             .slide:nth-child(3) .card-enhanced svg {
-                width: 1.25rem !important;
-                height: 1.25rem !important;
-                margin-bottom: 0.25rem !important;
+                width: 1.75rem !important;
+                height: 1.75rem !important;
+                margin-bottom: 0.4rem !important;
             }
             
             .slide:nth-child(3) .card-enhanced p {
-                font-size: 0.55rem !important;
-                line-height: 1.1 !important;
+                font-size: 0.65rem !important;
+                line-height: 1.2 !important;
             }
             
             .slide:nth-child(3) .mt-4.p-4 {
@@ -1581,19 +1611,20 @@
             }
             
             .slide:nth-child(3) .grid-cols-4 .card {
-                padding: 0.25rem !important;
+                padding: 0.35rem !important;
+                min-height: 75px !important;
             }
             
             .slide:nth-child(3) .grid-cols-4 .metric-value {
-                font-size: 0.95rem !important;
+                font-size: 1.2rem !important;
             }
             
             .slide:nth-child(3) .grid-cols-4 div[style*="font-size: 0.8rem"] {
-                font-size: 0.5rem !important;
+                font-size: 0.6rem !important;
             }
             
             .slide:nth-child(3) .grid-cols-4 div[style*="font-size: 0.75rem"] {
-                font-size: 0.45rem !important;
+                font-size: 0.55rem !important;
             }
             
             /* Images in grid columns - full coverage */
@@ -1630,13 +1661,15 @@
                 object-position: center center !important;
             }
             
-            /* Slide 3 image specific - ensure full coverage like screen */
+            /* Slide 3 image specific - full width coverage like screen */
             .slide:nth-child(3) .grid-cols-2 > div:first-child {
-                position: relative !important;
-                width: 50% !important;
+                position: absolute !important;
+                width: 148.5mm !important; /* Half of A4 landscape width */
                 height: 210mm !important;
                 padding: 0 !important;
                 margin: 0 !important;
+                left: 0 !important;
+                top: 0 !important;
                 overflow: hidden !important;
             }
             
@@ -1651,6 +1684,18 @@
                 left: 0 !important;
                 bottom: 0 !important;
                 right: 0 !important;
+            }
+            
+            /* Ensure right column is positioned correctly */
+            .slide:nth-child(3) .grid-cols-2 > div:last-child {
+                position: absolute !important;
+                left: 148.5mm !important;
+                width: 148.5mm !important;
+                padding: 8mm 10mm !important;
+                height: 210mm !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
             }
             
             /* Slide 4 specific proportions - PERSONAS platform slide */
@@ -2197,7 +2242,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v1.6</p>
+                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v1.7</p>
                 </div>
             </div>
         </section>
