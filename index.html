@@ -1578,19 +1578,20 @@
                 bottom: 0 !important;
                 padding: 0 !important;
                 margin: 0 !important;
-                overflow: hidden !important;
+                overflow: visible !important;
                 display: block !important;
             }
             
             .slide:nth-child(4) .grid-cols-2 > div:last-child img {
                 position: absolute !important;
-                top: 0 !important;
+                bottom: 0 !important;
                 left: 0 !important;
+                right: 0 !important;
                 width: 100% !important;
-                height: 100% !important;
-                object-fit: cover !important;
-                object-position: center !important;
+                height: auto !important;
                 min-height: 210mm !important;
+                object-fit: cover !important;
+                object-position: center bottom !important;
             }
             
             /* Clean up all decorative elements */
