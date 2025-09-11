@@ -1569,6 +1569,30 @@
                 justify-content: space-between !important;
             }
             
+            /* Slide 4 - Fix card sizing to match screen version */
+            .slide:nth-child(4) .card-enhanced {
+                min-height: auto !important;
+                padding: 0.6rem !important;
+                margin: 0 !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced h3 {
+                font-size: 0.7rem !important;
+                margin-bottom: 0.3rem !important;
+                line-height: 1.1 !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced p {
+                font-size: 0.55rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced svg {
+                width: 1.5rem !important;
+                height: 1.5rem !important;
+                margin-bottom: 0.4rem !important;
+            }
+            
             /* Slide 4 - Simple approach like screen version */
             .slide:nth-child(4) .grid-cols-2 > div:last-child {
                 height: 210mm !important;
@@ -1578,6 +1602,15 @@
                 align-items: center !important;
                 justify-content: center !important;
                 padding: 0 !important;
+            }
+            
+            /* Slide 4 - Make image fill more of the container */
+            .slide:nth-child(4) .grid-cols-2 > div:last-child img {
+                max-width: 95% !important;
+                max-height: 95% !important;
+                width: auto !important;
+                height: auto !important;
+                object-fit: contain !important;
             }
             
             /* Clean up all decorative elements */
