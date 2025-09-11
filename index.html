@@ -1339,7 +1339,54 @@
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
             }
             
-            /* Simplified approach for slides with side images (3-9) */
+            /* Override flexbox centering for slides with side images */
+            .slide:nth-child(3),
+            .slide:nth-child(4),
+            .slide:nth-child(5),
+            .slide:nth-child(6),
+            .slide:nth-child(7),
+            .slide:nth-child(8),
+            .slide:nth-child(9) {
+                display: block !important;
+                justify-content: unset !important;
+                align-items: unset !important;
+            }
+            
+            /* Ensure slide 4 right column (Parlay image) has proper background */
+            .slide:nth-child(4) .grid-cols-2 > div:last-child {
+                background: #f9fafb !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                padding: 2rem !important;
+            }
+            
+            /* Slide 4 Parlay image specific */
+            .slide:nth-child(4) img[src*="parlay"] {
+                max-width: 90% !important;
+                max-height: 85% !important;
+                width: auto !important;
+                height: auto !important;
+                object-fit: contain !important;
+                position: relative !important;
+            }
+            
+            /* Full-size wrapper for slides with images */
+            .slide:nth-child(3) > div,
+            .slide:nth-child(4) > div,
+            .slide:nth-child(5) > div,
+            .slide:nth-child(6) > div,
+            .slide:nth-child(7) > div,
+            .slide:nth-child(8) > div,
+            .slide:nth-child(9) > div {
+                width: 297mm !important;
+                height: 210mm !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                display: flex !important;
+            }
+            
+            /* Grid layout for slides with side images */
             .slide:nth-child(3) .grid-cols-2,
             .slide:nth-child(4) .grid-cols-2,
             .slide:nth-child(5) .grid-cols-2,
@@ -1370,92 +1417,186 @@
                 overflow: hidden !important;
             }
             
-            /* Content columns - maintain padding */
-            .slide:nth-child(3) .grid-cols-2 > div:last-child,
-            .slide:nth-child(4) .grid-cols-2 > div:first-child,
-            .slide:nth-child(5) .grid-cols-2 > div:last-child,
-            .slide:nth-child(6) .grid-cols-2 > div:first-child,
-            .slide:nth-child(7) .grid-cols-2 > div:last-child,
-            .slide:nth-child(8) .grid-cols-2 > div:first-child {
-                padding: 12mm !important;
+            /* Content columns - reduced padding for better density */
+            .slide:nth-child(3) .grid-cols-2 > div:last-child {
+                padding: 8mm 10mm !important;
                 height: 210mm !important;
                 display: flex !important;
                 flex-direction: column !important;
                 justify-content: flex-start !important;
             }
             
-            /* Slide 3 specific proportions - matching screen version */
-            .slide:nth-child(3) h2 {
-                font-size: 1.4rem !important;
-                line-height: 1.1 !important;
-                margin-bottom: 0.75rem !important;
+            .slide:nth-child(4) .grid-cols-2 > div:first-child {
+                padding: 10mm !important;
+                height: 210mm !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
             }
             
-            .slide:nth-child(3) .kicker {
-                font-size: 0.8rem !important;
-                margin-bottom: 0.5rem !important;
+            .slide:nth-child(5) .grid-cols-2 > div:last-child,
+            .slide:nth-child(6) .grid-cols-2 > div:first-child,
+            .slide:nth-child(7) .grid-cols-2 > div:last-child,
+            .slide:nth-child(8) .grid-cols-2 > div:first-child {
+                padding: 10mm 12mm !important;
+                height: 210mm !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: flex-start !important;
             }
             
-            .slide:nth-child(3) .challenge-section {
-                padding: 1rem !important;
-                margin-top: 0.5rem !important;
+            /* Slide 9 content column - special case with images */
+            .slide:nth-child(9) .grid-cols-2 > div:first-child {
+                padding: 10mm !important;
+                height: 210mm !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
             }
             
-            .slide:nth-child(3) .challenge-label {
+            /* Slide 10 (team) - centered layout */
+            .slide:nth-child(10) {
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+            
+            /* Slide 10 team cards adjustments */
+            .slide:nth-child(10) .grid-cols-3 {
+                gap: 0.8rem !important;
+            }
+            
+            .slide:nth-child(10) .card-enhanced img {
+                width: 80px !important;
+                height: 80px !important;
+            }
+            
+            .slide:nth-child(10) .card-enhanced h3 {
+                font-size: 0.9rem !important;
+            }
+            
+            .slide:nth-child(10) .card-enhanced div[style*="font-size: 0.75rem"] {
+                font-size: 0.55rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            .slide:nth-child(10) .card-enhanced div[style*="font-size: 0.9rem"] {
                 font-size: 0.65rem !important;
             }
             
+            /* Slide 10 logo row */
+            .slide:nth-child(10) .flex img {
+                height: 30px !important;
+            }
+            
+            /* Slide 11 (investment) - centered layout */
+            .slide:nth-child(11) {
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+            
+            .slide:nth-child(11) h2 {
+                font-size: 3rem !important;
+            }
+            
+            .slide:nth-child(11) p[style*="font-size: 1.5rem"] {
+                font-size: 1rem !important;
+            }
+            
+            .slide:nth-child(11) .grid-cols-3 {
+                gap: 1rem !important;
+                max-width: 800px !important;
+                margin: 0 auto 2rem !important;
+            }
+            
+            .slide:nth-child(11) .card {
+                padding: 1.5rem !important;
+            }
+            
+            .slide:nth-child(11) div[style*="font-size: 4rem"] {
+                font-size: 2.5rem !important;
+            }
+            
+            .slide:nth-child(11) div[style*="font-size: 1rem"] {
+                font-size: 0.7rem !important;
+            }
+            
+            .slide:nth-child(11) h3[style*="font-size: 2.5rem"] {
+                font-size: 1.5rem !important;
+            }
+            
+            /* Slide 3 specific proportions - more compact for print */
+            .slide:nth-child(3) h2 {
+                font-size: 1.15rem !important;
+                line-height: 1.05 !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            .slide:nth-child(3) .kicker {
+                font-size: 0.7rem !important;
+                margin-bottom: 0.3rem !important;
+            }
+            
+            .slide:nth-child(3) .challenge-section {
+                padding: 0.75rem !important;
+                margin-top: 0.25rem !important;
+            }
+            
+            .slide:nth-child(3) .challenge-label {
+                font-size: 0.55rem !important;
+            }
+            
             .slide:nth-child(3) .card-enhanced {
-                padding: 0.6rem !important;
+                padding: 0.5rem !important;
                 min-height: auto !important;
             }
             
             .slide:nth-child(3) .card-enhanced svg {
-                width: 1.5rem !important;
-                height: 1.5rem !important;
-                margin-bottom: 0.3rem !important;
+                width: 1.25rem !important;
+                height: 1.25rem !important;
+                margin-bottom: 0.25rem !important;
             }
             
             .slide:nth-child(3) .card-enhanced p {
-                font-size: 0.6rem !important;
-                line-height: 1.15 !important;
+                font-size: 0.55rem !important;
+                line-height: 1.1 !important;
             }
             
             .slide:nth-child(3) .mt-4.p-4 {
-                padding: 0.6rem !important;
-                margin-top: 0.5rem !important;
+                padding: 0.5rem !important;
+                margin-top: 0.25rem !important;
             }
             
             .slide:nth-child(3) .mt-4.p-4 h3 {
-                font-size: 0.7rem !important;
-                line-height: 1.15 !important;
+                font-size: 0.6rem !important;
+                line-height: 1.1 !important;
             }
             
-            /* Slide 3 1x4 grid - smaller, positioned lower */
+            /* Slide 3 1x4 grid - more compact */
             .slide:nth-child(3) .grid-cols-4 {
-                margin-top: 0.75rem !important;
-                gap: 0.4rem !important;
+                margin-top: 0.5rem !important;
+                gap: 0.3rem !important;
             }
             
             .slide:nth-child(3) .grid-cols-4 .card {
-                padding: 0.3rem !important;
+                padding: 0.25rem !important;
             }
             
             .slide:nth-child(3) .grid-cols-4 .metric-value {
-                font-size: 1.1rem !important;
+                font-size: 0.95rem !important;
             }
             
             .slide:nth-child(3) .grid-cols-4 div[style*="font-size: 0.8rem"] {
-                font-size: 0.55rem !important;
+                font-size: 0.5rem !important;
             }
             
             .slide:nth-child(3) .grid-cols-4 div[style*="font-size: 0.75rem"] {
-                font-size: 0.5rem !important;
+                font-size: 0.45rem !important;
             }
             
             /* Images in grid columns - full coverage */
             .slide:nth-child(3) .grid-cols-2 > div:first-child img,
-            .slide:nth-child(4) .grid-cols-2 > div:last-child img,
             .slide:nth-child(5) .grid-cols-2 > div:first-child img,
             .slide:nth-child(6) .grid-cols-2 > div:last-child img,
             .slide:nth-child(7) .grid-cols-2 > div:first-child img,
@@ -1468,12 +1609,261 @@
                 left: 0 !important;
             }
             
-            /* Slide 3 image specific - show bottom part like screen version */
-            .slide:nth-child(3) .grid-cols-2 > div:first-child img {
-                object-position: 50% 100% !important;
+            /* Slide 5 image - personas cards */
+            .slide:nth-child(5) .grid-cols-2 > div:first-child img {
+                object-position: center center !important;
             }
             
-            /* Special handling for slide 9 with stacked images */
+            /* Slide 6 image - divvy app */
+            .slide:nth-child(6) .grid-cols-2 > div:last-child img {
+                object-position: center center !important;
+            }
+            
+            /* Slide 7 image - campaign metrics */
+            .slide:nth-child(7) .grid-cols-2 > div:first-child img {
+                object-position: center top !important;
+            }
+            
+            /* Slide 8 image - campaign interface */
+            .slide:nth-child(8) .grid-cols-2 > div:last-child img {
+                object-position: center center !important;
+            }
+            
+            /* Slide 3 image specific - ensure full coverage */
+            .slide:nth-child(3) .grid-cols-2 > div:first-child img {
+                object-position: 50% 100% !important;
+                width: 100% !important;
+                height: 100% !important;
+                min-height: 210mm !important;
+                object-fit: cover !important;
+            }
+            
+            /* Slide 4 specific proportions - PERSONAS platform slide */
+            .slide:nth-child(4) h2 {
+                font-size: 2.8rem !important;
+            }
+            
+            .slide:nth-child(4) .kicker {
+                font-size: 0.8rem !important;
+            }
+            
+            .slide:nth-child(4) p[style*="font-size: 1.75rem"] {
+                font-size: 1.2rem !important;
+            }
+            
+            .slide:nth-child(4) p[style*="font-size: 1.25rem"] {
+                font-size: 0.85rem !important;
+            }
+            
+            .slide:nth-child(4) .challenge-section {
+                padding: 1rem !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced {
+                padding: 0.6rem !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced h3 {
+                font-size: 0.75rem !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced p {
+                font-size: 0.6rem !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced svg {
+                width: 1.5rem !important;
+                height: 1.5rem !important;
+            }
+            
+            /* Slide 5 specific proportions */
+            .slide:nth-child(5) h2 {
+                font-size: 1.4rem !important;
+                line-height: 1.1 !important;
+            }
+            
+            .slide:nth-child(5) .kicker {
+                font-size: 0.8rem !important;
+            }
+            
+            .slide:nth-child(5) p[style*="font-size: 1.25rem"] {
+                font-size: 0.85rem !important;
+            }
+            
+            .slide:nth-child(5) .challenge-section {
+                padding: 1rem !important;
+            }
+            
+            .slide:nth-child(5) .card-enhanced {
+                padding: 0.6rem !important;
+            }
+            
+            .slide:nth-child(5) .card-enhanced h3 {
+                font-size: 0.75rem !important;
+            }
+            
+            .slide:nth-child(5) .card-enhanced p {
+                font-size: 0.6rem !important;
+            }
+            
+            .slide:nth-child(5) .mt-6 h3 {
+                font-size: 0.85rem !important;
+            }
+            
+            /* Slide 6 specific proportions - Case study */
+            .slide:nth-child(6) h2 {
+                font-size: 1.5rem !important;
+            }
+            
+            .slide:nth-child(6) .kicker {
+                font-size: 0.8rem !important;
+            }
+            
+            .slide:nth-child(6) p[style*="font-size: 1.25rem"] {
+                font-size: 0.85rem !important;
+            }
+            
+            .slide:nth-child(6) .challenge-section {
+                padding: 0.8rem !important;
+            }
+            
+            .slide:nth-child(6) .metric-value {
+                font-size: 1.5rem !important;
+            }
+            
+            .slide:nth-child(6) .text-sm {
+                font-size: 0.65rem !important;
+            }
+            
+            /* Slide 7 specific proportions - Metrics */
+            .slide:nth-child(7) h2 {
+                font-size: 1.4rem !important;
+            }
+            
+            .slide:nth-child(7) .kicker {
+                font-size: 0.8rem !important;
+            }
+            
+            .slide:nth-child(7) .challenge-section {
+                padding: 0.8rem !important;
+            }
+            
+            .slide:nth-child(7) .metric-value {
+                font-size: 1.8rem !important;
+            }
+            
+            .slide:nth-child(7) .card h3 {
+                font-size: 0.75rem !important;
+            }
+            
+            .slide:nth-child(7) .card p {
+                font-size: 0.6rem !important;
+            }
+            
+            /* Slide 8 specific proportions - Traction */
+            .slide:nth-child(8) h2 {
+                font-size: 1.5rem !important;
+            }
+            
+            .slide:nth-child(8) .kicker {
+                font-size: 0.8rem !important;
+            }
+            
+            .slide:nth-child(8) p[style*="font-size: 1.25rem"] {
+                font-size: 0.85rem !important;
+            }
+            
+            .slide:nth-child(8) .challenge-section {
+                padding: 1rem !important;
+            }
+            
+            .slide:nth-child(8) .card-enhanced {
+                padding: 0.6rem !important;
+            }
+            
+            .slide:nth-child(8) .card-enhanced h3 {
+                font-size: 0.8rem !important;
+            }
+            
+            .slide:nth-child(8) .card-enhanced p {
+                font-size: 0.65rem !important;
+            }
+            
+            /* Slide 9 specific proportions - overlapping images slide */
+            .slide:nth-child(9) h2 {
+                font-size: 1.6rem !important;
+            }
+            
+            .slide:nth-child(9) .kicker {
+                font-size: 0.8rem !important;
+            }
+            
+            .slide:nth-child(9) p[style*="font-size: 1.25rem"] {
+                font-size: 0.85rem !important;
+            }
+            
+            .slide:nth-child(9) .challenge-section {
+                padding: 0.8rem !important;
+            }
+            
+            .slide:nth-child(9) .card {
+                padding: 0.5rem !important;
+            }
+            
+            .slide:nth-child(9) .metric-value {
+                font-size: 1.2rem !important;
+            }
+            
+            .slide:nth-child(9) div[style*="font-size: 0.875rem"] {
+                font-size: 0.6rem !important;
+            }
+            
+            .slide:nth-child(9) div[style*="font-size: 1.25rem"] {
+                font-size: 0.85rem !important;
+            }
+            
+            /* Slide 10 specific proportions - Investment */
+            .slide:nth-child(10) h2 {
+                font-size: 1.8rem !important;
+            }
+            
+            .slide:nth-child(10) .kicker {
+                font-size: 0.9rem !important;
+            }
+            
+            .slide:nth-child(10) .challenge-section {
+                padding: 1rem !important;
+            }
+            
+            .slide:nth-child(10) .card-enhanced {
+                padding: 0.7rem !important;
+            }
+            
+            .slide:nth-child(10) .metric-value {
+                font-size: 1.5rem !important;
+            }
+            
+            .slide:nth-child(10) .card-enhanced h3 {
+                font-size: 0.85rem !important;
+            }
+            
+            .slide:nth-child(10) .card-enhanced p {
+                font-size: 0.7rem !important;
+            }
+            
+            /* Special handling for slide 9 with overlapping images */
+            .slide:nth-child(9) .grid-cols-2 > div:first-child {
+                padding: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+            
+            .slide:nth-child(9) .grid-cols-2 > div:first-child > div {
+                transform: scale(0.8) !important;
+            }
+            
+            /* Slide 9 stacked images in right column */
             .slide:nth-child(9) .grid-cols-2 > div:last-child {
                 padding: 0 !important;
                 display: flex !important;
@@ -1792,7 +2182,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v1.4</p>
+                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v1.5</p>
                 </div>
             </div>
         </section>
