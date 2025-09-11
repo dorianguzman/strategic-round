@@ -1690,7 +1690,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p style="font-size: 1rem; color: #666; margin-top: 1rem;">v0</p>
+                    <p style="font-size: 1rem; color: #666; margin-top: 1rem;">v1</p>
                 </div>
             </div>
         </section>
@@ -2697,33 +2697,35 @@
                 });
             });
             
-            // Hide the PDF button first
-            const pdfButton = document.querySelector('button[onclick="generatePDF()"]');
-            if (pdfButton) {
-                pdfButton.style.display = 'none';
-            }
+            // Hide ALL PDF buttons (find by any method)
+            const allButtons = document.querySelectorAll('button');
+            let pdfBtn = null;
+            allButtons.forEach(btn => {
+                if (btn.textContent.includes('Generate PDF') || btn.innerHTML.includes('Generate PDF')) {
+                    pdfBtn = btn;
+                    btn.style.display = 'none';
+                }
+            });
             
             // Procesar cada slide
             for (let i = 0; i < totalSlides; i++) {
                 // Check if cancelled
                 if (cancelled) {
                     // Show PDF button again if cancelled
-                    if (pdfButton) pdfButton.style.display = 'block';
+                    if (pdfBtn) pdfBtn.style.display = 'block';
                     return;
                 }
                 
-                // Navigate to the slide to ensure it's displayed as it appears on screen
-                const targetScroll = i * slideHeight;
-                container.scrollTo({
-                    top: targetScroll,
-                    behavior: 'instant'
+                // Force display the specific slide and hide others
+                slides.forEach((s, index) => {
+                    s.style.display = index === i ? 'flex' : 'none';
                 });
                 
-                // Wait longer for scroll and any animations to complete
-                await new Promise(resolve => setTimeout(resolve, 500));
+                // Wait for display change to take effect
+                await new Promise(resolve => setTimeout(resolve, 300));
                 
                 // Verify we're on the correct slide
-                console.log(`Capturing slide ${i + 1} of ${totalSlides}, scroll position: ${container.scrollTop}, target: ${targetScroll}`);
+                console.log(`Capturing slide ${i + 1} of ${totalSlides}`);
                 
                 // Actualizar progreso
                 document.getElementById('pdf-progress').textContent = i + 1;
@@ -2735,8 +2737,8 @@
                 // Wait a moment for display change to take effect
                 await new Promise(resolve => setTimeout(resolve, 100));
                 
-                // Capture the entire viewport as displayed
-                const canvas = await html2canvas(document.body, {
+                // Capture only the current visible slide
+                const canvas = await html2canvas(slides[i], {
                     scale: 2, // Higher quality
                     useCORS: true,
                     logging: false,
@@ -2773,9 +2775,14 @@
             // Remover indicador de progreso
             document.body.removeChild(progressDiv);
             
+            // Restore all slides to normal display
+            slides.forEach((s, index) => {
+                s.style.display = index === originalSlideIndex ? 'flex' : 'none';
+            });
+            
             // Show PDF button again
-            if (pdfButton) {
-                pdfButton.style.display = 'block';
+            if (pdfBtn) {
+                pdfBtn.style.display = 'block';
             }
             
             // Restore original slide
