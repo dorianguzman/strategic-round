@@ -1433,9 +1433,9 @@
                 margin-bottom: 0.6rem !important;
             }
             
-            /* Slide 3 - Add space at top of 1x4 grid cards */
-            .slide:nth-child(3) .grid[style*="grid-template-columns: 1fr"] {
-                margin-top: 2.5rem !important;
+            /* Slide 3 - Add space below Market insights box */
+            .slide:nth-child(3) .challenge-section {
+                margin-bottom: 2rem !important;
             }
             
             .slide:nth-child(3) .kicker {
@@ -1573,39 +1573,11 @@
                 justify-content: space-between !important;
             }
             
-            /* Slide 4 - Ensure all 4 cards are visible on left side */
-            .slide:nth-child(4) .grid-cols-2 > div:first-child {
-                padding: 8mm 10mm !important;
-            }
-            
-            .slide:nth-child(4) .grid-cols-2 > div:first-child .grid-cols-2 {
-                display: grid !important;
-                grid-template-columns: 1fr 1fr !important;
-                gap: 0.5rem !important;
-            }
-            
+            /* Slide 4 - Keep default layout for left side, just ensure visibility */
             .slide:nth-child(4) .card-enhanced {
-                display: block !important;
+                display: flex !important;
                 visibility: visible !important;
                 opacity: 1 !important;
-                min-height: auto !important;
-                padding: 0.6rem !important;
-            }
-            
-            .slide:nth-child(4) .card-enhanced h3 {
-                font-size: 0.65rem !important;
-                margin-bottom: 0.2rem !important;
-            }
-            
-            .slide:nth-child(4) .card-enhanced p {
-                font-size: 0.5rem !important;
-                line-height: 1.2 !important;
-            }
-            
-            .slide:nth-child(4) .card-enhanced svg {
-                width: 1.3rem !important;
-                height: 1.3rem !important;
-                margin-bottom: 0.3rem !important;
             }
             
             /* Slide 4 - Right column matches screen version exactly */
@@ -1787,7 +1759,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v1</p>
+                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v0</p>
                 </div>
             </div>
         </section>
