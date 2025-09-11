@@ -807,6 +807,43 @@
             width: 0%;
             transition: width 0.3s ease;
         }
+        
+        /* Slide 3 specific adjustments for screen */
+        .slide:nth-child(3) .mb-6 {
+            margin-bottom: 1rem;
+        }
+        
+        .slide:nth-child(3) .challenge-section {
+            margin-top: 0.75rem;
+            padding: 1.25rem;
+        }
+        
+        /* Make 1x4 grid smaller in slide 3 */
+        .slide:nth-child(3) .grid-cols-4 {
+            margin-top: 1rem;
+        }
+        
+        .slide:nth-child(3) .grid-cols-4 .card {
+            padding: 0.4rem 0.3rem;
+        }
+        
+        .slide:nth-child(3) .grid-cols-4 div[style*="font-size: 1.75rem"] {
+            font-size: 1.25rem !important;
+        }
+        
+        .slide:nth-child(3) .grid-cols-4 div[style*="font-size: 0.8rem"] {
+            font-size: 0.65rem !important;
+        }
+        
+        .slide:nth-child(3) .grid-cols-4 div[style*="font-size: 0.75rem"] {
+            font-size: 0.6rem !important;
+        }
+        
+        /* Move QStarLabs watermark to the left for slide 3 */
+        .slide:nth-child(3) .watermark-logo {
+            left: 2% !important;
+            right: auto !important;
+        }
 
         /* PRINT-ONLY OPTIMIZED STYLES - Complete PDF Generation */
         @media print {
@@ -1034,74 +1071,90 @@
                 break-inside: avoid !important;
             }
             
-            /* Typography - MATCHED TO SCREEN SIZES */
+            /* Typography - Print optimized sizes (0.8x ratio from screen) */
             h1, .h1 {
-                font-size: 3rem !important;
+                font-size: 2.5rem !important;
                 page-break-after: avoid !important;
                 break-after: avoid !important;
             }
             
             h2 {
-                font-size: 2rem !important;
+                font-size: 1.8rem !important;
                 page-break-after: avoid !important;
                 break-after: avoid !important;
             }
             
             h3 {
-                font-size: 1.5rem !important;
+                font-size: 1.3rem !important;
                 page-break-after: avoid !important;
                 break-after: avoid !important;
             }
             
             .title-main {
-                font-size: 3.5rem !important;
+                font-size: 2.8rem !important;
                 position: relative !important;
             }
             
             .kicker {
-                font-size: 1.25rem !important;
+                font-size: 1rem !important;
             }
             
-            .text-xl {
-                font-size: 1.5rem !important;
-            }
-            
-            .text-lg {
-                font-size: 1.25rem !important;
+            .text-xl, .text-lg {
+                font-size: 1.1rem !important;
             }
             
             .metric-value {
-                font-size: 3rem !important;
+                font-size: 2rem !important;
             }
             
             .card p, .muted {
-                font-size: 1rem !important;
+                font-size: 0.9rem !important;
             }
             
             /* Market data grid specific */
             .grid-cols-4 .card {
-                font-size: 0.85rem !important;
+                font-size: 0.8rem !important;
             }
             
             .grid-cols-4 .metric-value {
-                font-size: 1.75rem !important;
+                font-size: 1.4rem !important;
             }
             
-            /* Override inline font-size styles */
+            /* Override inline font-size styles (0.8x ratio) */
             [style*="font-size: 4.5rem"] {
-                font-size: 3.5rem !important;
+                font-size: 3.6rem !important;
             }
             
             [style*="font-size: 4rem"] {
-                font-size: 3rem !important;
+                font-size: 3.2rem !important;
+            }
+            
+            [style*="font-size: 3.5rem"] {
+                font-size: 2.8rem !important;
             }
             
             [style*="font-size: 2.75rem"] {
-                font-size: 2.25rem !important;
+                font-size: 2.2rem !important;
             }
             
             [style*="font-size: 2.5rem"] {
                 font-size: 2rem !important;
+            }
+            
+            [style*="font-size: 2.25rem"] {
+                font-size: 1.8rem !important;
+            }
+            
+            [style*="font-size: 1.75rem"] {
+                font-size: 1.4rem !important;
+            }
+            
+            [style*="font-size: 1.5rem"] {
+                font-size: 1.2rem !important;
+            }
+            
+            [style*="font-size: 1.25rem"] {
+                font-size: 1rem !important;
             }
             
             /* Remove ALL decorative pseudo-elements EXCEPT slide 1 title line */
