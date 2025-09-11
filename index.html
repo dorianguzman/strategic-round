@@ -920,19 +920,18 @@
                 display: none !important;
             }
             
-            /* Content containers - MORE FORCEFUL OVERRIDES */
+            /* Content containers - PROPER SCALING FOR PRINT */
             .max {
                 width: 100% !important;
                 height: auto !important;
                 max-width: 100% !important;
                 max-height: 100% !important;
-                padding: 20mm 25mm !important;
                 overflow: visible !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
                 justify-content: center !important;
-                transform: scale(0.95) !important;
+                transform: scale(0.75) !important;
                 transform-origin: center center !important;
             }
             
@@ -942,12 +941,11 @@
                 width: 100% !important;
                 height: auto !important;
                 max-width: 100% !important;
-                padding: 20mm 25mm !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
                 justify-content: center !important;
-                transform: scale(0.95) !important;
+                transform: scale(0.75) !important;
                 transform-origin: center center !important;
             }
             
@@ -1148,40 +1146,40 @@
                 margin: 0 !important;
             }
             
-            /* Typography - Print optimized sizes (0.8x ratio from screen) */
+            /* Typography - Print optimized sizes (0.7x ratio for better proportions) */
             h1, .h1 {
-                font-size: 2.5rem !important;
+                font-size: 2.1rem !important;
                 page-break-after: avoid !important;
                 break-after: avoid !important;
             }
             
             h2 {
-                font-size: 1.8rem !important;
+                font-size: 1.5rem !important;
                 page-break-after: avoid !important;
                 break-after: avoid !important;
             }
             
             h3 {
-                font-size: 1.3rem !important;
+                font-size: 1.05rem !important;
                 page-break-after: avoid !important;
                 break-after: avoid !important;
             }
             
             .title-main {
-                font-size: 2.8rem !important;
+                font-size: 2.45rem !important;
                 position: relative !important;
             }
             
             .kicker {
-                font-size: 1rem !important;
+                font-size: 0.85rem !important;
             }
             
             .text-xl, .text-lg {
-                font-size: 1.1rem !important;
+                font-size: 0.95rem !important;
             }
             
             .metric-value {
-                font-size: 2rem !important;
+                font-size: 1.75rem !important;
             }
             
             .card p, .muted {
@@ -1197,41 +1195,45 @@
                 font-size: 1.4rem !important;
             }
             
-            /* Override inline font-size styles (0.8x ratio) */
+            /* Override inline font-size styles (0.7x ratio for consistent proportions) */
             [style*="font-size: 4.5rem"] {
-                font-size: 3.6rem !important;
+                font-size: 3.15rem !important;
             }
             
             [style*="font-size: 4rem"] {
-                font-size: 3.2rem !important;
-            }
-            
-            [style*="font-size: 3.5rem"] {
                 font-size: 2.8rem !important;
             }
             
+            [style*="font-size: 3.5rem"] {
+                font-size: 2.45rem !important;
+            }
+            
             [style*="font-size: 2.75rem"] {
-                font-size: 2.2rem !important;
+                font-size: 1.93rem !important;
             }
             
             [style*="font-size: 2.5rem"] {
-                font-size: 2rem !important;
+                font-size: 1.75rem !important;
             }
             
             [style*="font-size: 2.25rem"] {
-                font-size: 1.8rem !important;
+                font-size: 1.58rem !important;
             }
             
             [style*="font-size: 1.75rem"] {
-                font-size: 1.4rem !important;
+                font-size: 1.23rem !important;
             }
             
             [style*="font-size: 1.5rem"] {
-                font-size: 1.2rem !important;
+                font-size: 1.05rem !important;
             }
             
             [style*="font-size: 1.25rem"] {
-                font-size: 1rem !important;
+                font-size: 0.88rem !important;
+            }
+            
+            [style*="font-size: 0.9rem"] {
+                font-size: 0.63rem !important;
             }
             
             /* Remove ALL decorative pseudo-elements EXCEPT slide 1 title line */
@@ -1366,16 +1368,49 @@
                 overflow: hidden !important;
             }
             
-            /* Content columns - with padding */
-            .slide:nth-child(3) .grid-cols-2 > div:last-child,
+            /* Content columns - maintain original padding */
             .slide:nth-child(4) .grid-cols-2 > div:first-child,
             .slide:nth-child(5) .grid-cols-2 > div:last-child,
             .slide:nth-child(6) .grid-cols-2 > div:first-child,
             .slide:nth-child(7) .grid-cols-2 > div:last-child,
             .slide:nth-child(8) .grid-cols-2 > div:first-child {
-                padding: 15mm !important;
                 height: 210mm !important;
                 overflow: visible !important;
+            }
+            
+            /* Specific fixes for slide 3 content */
+            .slide:nth-child(3) .grid-cols-2 > div:last-child {
+                transform: scale(0.9) !important;
+                transform-origin: center center !important;
+                height: 210mm !important;
+                overflow: visible !important;
+            }
+            
+            /* Fix the 2 main cards in slide 3 */
+            .slide:nth-child(3) .card-enhanced p {
+                font-size: 0.65rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            .slide:nth-child(3) .card-enhanced svg {
+                width: 1.75rem !important;
+                height: 1.75rem !important;
+                margin-bottom: 0.4rem !important;
+            }
+            
+            .slide:nth-child(3) .challenge-section {
+                padding: 0.9rem !important;
+            }
+            
+            .slide:nth-child(3) .grid-cols-1 .card-enhanced {
+                padding: 0.7rem !important;
+                min-height: auto !important;
+            }
+            
+            /* Fix the "THERE'S A CRITICAL GAP" text box */
+            .slide:nth-child(3) .mt-4.p-4 h3 {
+                font-size: 0.85rem !important;
+                line-height: 1.2 !important;
             }
             
             /* Fix for images in grid columns to cover full height */
@@ -1415,6 +1450,29 @@
                 position: absolute !important;
                 top: 0 !important;
                 left: 0 !important;
+                bottom: auto !important;
+            }
+            
+            /* Specific fix for slide 3 - ensure full coverage */
+            .slide:nth-child(3) .grid-cols-2 > div:first-child {
+                height: 210mm !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                position: relative !important;
+                overflow: hidden !important;
+            }
+            
+            .slide:nth-child(3) .grid-cols-2 > div:first-child img {
+                width: 100% !important;
+                height: 100% !important;
+                min-height: 210mm !important;
+                object-fit: cover !important;
+                object-position: center center !important;
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
             }
             
             /* Special handling for slide 9 with stacked images */
@@ -1749,7 +1807,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v1.0</p>
+                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v1.1</p>
                 </div>
             </div>
         </section>
