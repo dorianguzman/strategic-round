@@ -1690,7 +1690,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p style="font-size: 1rem; color: #666; margin-top: 1rem;">v0</p>
+                    <p style="font-size: 1rem; color: #666; margin-top: 1rem;">v1</p>
                 </div>
             </div>
         </section>
@@ -2621,7 +2621,9 @@
             const scrolled = container.scrollTop;
             const maxScroll = container.scrollHeight - container.clientHeight;
             const progress = (scrolled / maxScroll) * 100;
-            progressFill.style.width = progress + '%';
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
             
             // Show/hide footer logo based on current slide
             const slideHeight = window.innerHeight;
@@ -2697,14 +2699,15 @@
             for (let i = 0; i < totalSlides; i++) {
                 // Check if cancelled
                 if (cancelled) return;
+                
                 // Navigate to the slide to ensure it's displayed as it appears on screen
                 container.scrollTo({
                     top: i * slideHeight,
                     behavior: 'instant'
                 });
                 
-                // Wait for scroll to complete
-                await new Promise(resolve => setTimeout(resolve, 100));
+                // Wait longer for scroll and any animations to complete
+                await new Promise(resolve => setTimeout(resolve, 300));
                 
                 // Actualizar progreso
                 document.getElementById('pdf-progress').textContent = i + 1;
@@ -2713,19 +2716,25 @@
                 // Get the currently visible slide
                 const slide = slides[i];
                 
-                // Capture the entire viewport as the user sees it
-                const canvas = await html2canvas(document.body, {
+                // Hide progress dialog temporarily for screenshot
+                progressDiv.style.display = 'none';
+                
+                // Capture only the deck container to avoid capturing the progress dialog
+                const canvas = await html2canvas(container, {
                     scale: 2, // Higher quality
                     useCORS: true,
                     logging: false,
-                    x: 0,
-                    y: 0,
+                    scrollX: 0,
+                    scrollY: -container.scrollTop,
                     width: window.innerWidth,
                     height: window.innerHeight,
                     windowWidth: window.innerWidth,
                     windowHeight: window.innerHeight,
                     backgroundColor: '#ffffff'
                 });
+                
+                // Show progress dialog again
+                progressDiv.style.display = 'block';
                 
                 // Convertir canvas a imagen
                 const imgData = canvas.toDataURL('image/png');
