@@ -1690,7 +1690,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p style="font-size: 1rem; color: #666; margin-top: 1rem;">v1</p>
+                    <p style="font-size: 1rem; color: #666; margin-top: 1rem;">v0</p>
                 </div>
             </div>
         </section>
@@ -2697,75 +2697,86 @@
                 });
             });
             
+            // Hide the PDF button first
+            const pdfButton = document.querySelector('button[onclick="generatePDF()"]');
+            if (pdfButton) {
+                pdfButton.style.display = 'none';
+            }
+            
             // Procesar cada slide
             for (let i = 0; i < totalSlides; i++) {
                 // Check if cancelled
-                if (cancelled) return;
+                if (cancelled) {
+                    // Show PDF button again if cancelled
+                    if (pdfButton) pdfButton.style.display = 'block';
+                    return;
+                }
                 
                 // Navigate to the slide to ensure it's displayed as it appears on screen
+                const targetScroll = i * slideHeight;
                 container.scrollTo({
-                    top: i * slideHeight,
+                    top: targetScroll,
                     behavior: 'instant'
                 });
                 
                 // Wait longer for scroll and any animations to complete
                 await new Promise(resolve => setTimeout(resolve, 500));
                 
+                // Verify we're on the correct slide
+                console.log(`Capturing slide ${i + 1} of ${totalSlides}, scroll position: ${container.scrollTop}, target: ${targetScroll}`);
+                
                 // Actualizar progreso
                 document.getElementById('pdf-progress').textContent = i + 1;
                 document.getElementById('pdf-progress-bar').style.width = ((i + 1) / totalSlides * 100) + '%';
                 
                 // Hide progress dialog temporarily for screenshot
-                progressDiv.style.visibility = 'hidden';
+                progressDiv.style.display = 'none';
                 
-                // Wait a moment for visibility change to take effect
+                // Wait a moment for display change to take effect
                 await new Promise(resolve => setTimeout(resolve, 100));
                 
-                // Capture the entire document body as it appears on screen
+                // Capture the entire viewport as displayed
                 const canvas = await html2canvas(document.body, {
                     scale: 2, // Higher quality
                     useCORS: true,
                     logging: false,
-                    x: 0,
-                    y: 0,
                     width: window.innerWidth,
                     height: window.innerHeight,
                     windowWidth: window.innerWidth,
                     windowHeight: window.innerHeight,
-                    backgroundColor: null, // Keep the actual background
-                    imageTimeout: 15000,
-                    allowTaint: true
+                    backgroundColor: '#ffffff'
                 });
                 
                 // Show progress dialog again
-                progressDiv.style.visibility = 'visible';
+                progressDiv.style.display = 'block';
                 
                 // Convertir canvas a imagen
                 const imgData = canvas.toDataURL('image/png');
                 
-                // Create PDF with A4 landscape format
+                // Create PDF with exact screen dimensions
                 if (i === 0) {
                     const pdf = new jsPDF({
-                        orientation: 'landscape',
-                        unit: 'mm',
-                        format: 'a4'
+                        orientation: canvas.width > canvas.height ? 'landscape' : 'portrait',
+                        unit: 'px',
+                        format: [canvas.width, canvas.height]
                     });
                     window.pdfDoc = pdf;
                 } else {
-                    // Add new page
-                    window.pdfDoc.addPage();
+                    // Add new page with same dimensions
+                    window.pdfDoc.addPage([canvas.width, canvas.height]);
                 }
                 
-                // Calculate dimensions to fit the image to A4 landscape (297mm x 210mm)
-                const pdfWidth = 297;
-                const pdfHeight = 210;
-                
-                // Add image to fill the entire page
-                window.pdfDoc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                // Add image at exact size
+                window.pdfDoc.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
             }
             
             // Remover indicador de progreso
             document.body.removeChild(progressDiv);
+            
+            // Show PDF button again
+            if (pdfButton) {
+                pdfButton.style.display = 'block';
+            }
             
             // Restore original slide
             container.scrollTo({
