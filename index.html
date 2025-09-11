@@ -1435,7 +1435,7 @@
             
             /* Slide 3 - Add space at top of 1x4 grid cards */
             .slide:nth-child(3) .grid[style*="grid-template-columns: 1fr"] {
-                margin-top: 1.5rem !important;
+                margin-top: 2.5rem !important;
             }
             
             .slide:nth-child(3) .kicker {
@@ -1573,6 +1573,41 @@
                 justify-content: space-between !important;
             }
             
+            /* Slide 4 - Ensure all 4 cards are visible on left side */
+            .slide:nth-child(4) .grid-cols-2 > div:first-child {
+                padding: 8mm 10mm !important;
+            }
+            
+            .slide:nth-child(4) .grid-cols-2 > div:first-child .grid-cols-2 {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 0.5rem !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                min-height: auto !important;
+                padding: 0.6rem !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced h3 {
+                font-size: 0.65rem !important;
+                margin-bottom: 0.2rem !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced p {
+                font-size: 0.5rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            .slide:nth-child(4) .card-enhanced svg {
+                width: 1.3rem !important;
+                height: 1.3rem !important;
+                margin-bottom: 0.3rem !important;
+            }
+            
             /* Slide 4 - Right column matches screen version exactly */
             .slide:nth-child(4) .grid-cols-2 > div:last-child {
                 position: absolute !important;
@@ -1586,19 +1621,29 @@
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
+                position: relative !important;
             }
             
             .slide:nth-child(4) .grid-cols-2 > div:last-child img {
-                max-width: 90% !important;
-                max-height: 85% !important;
+                max-width: 95% !important;
+                max-height: 95% !important;
                 width: auto !important;
                 height: auto !important;
                 object-fit: contain !important;
             }
             
-            /* Hide the LIVE EXAMPLE button in print */
-            .slide:nth-child(4) .grid-cols-2 > div:last-child > div {
-                display: none !important;
+            /* Show the LIVE EXAMPLE button in print */
+            .slide:nth-child(4) .grid-cols-2 > div:last-child > div[style*="position: absolute"] {
+                display: block !important;
+                position: absolute !important;
+                bottom: 20mm !important;
+                right: 20mm !important;
+                background: linear-gradient(135deg, #4c1d95, #3b0f70) !important;
+                color: white !important;
+                padding: 4mm 8mm !important;
+                border-radius: 9mm !important;
+                font-size: 0.7rem !important;
+                font-weight: 600 !important;
             }
             
             /* Clean up all decorative elements */
@@ -1742,7 +1787,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v0</p>
+                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v1</p>
                 </div>
             </div>
         </section>
