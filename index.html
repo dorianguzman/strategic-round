@@ -2652,7 +2652,33 @@
             const choice = confirm("Choose PDF generation method:\n\nOK = Use browser print (better quality)\nCancel = Use current method");
             
             if (choice) {
-                // Use browser print - better for gradients and complex CSS
+                // Temporarily disable print styles by adding a class
+                document.body.classList.add('printing-screen-version');
+                
+                // Add temporary styles to override print CSS
+                const tempStyle = document.createElement('style');
+                tempStyle.id = 'temp-print-styles';
+                tempStyle.innerHTML = `
+                    @media print {
+                        body.printing-screen-version * {
+                            all: revert !important;
+                        }
+                        body.printing-screen-version .slide {
+                            width: 100vw !important;
+                            height: 100vh !important;
+                            display: flex !important;
+                            page-break-after: always !important;
+                            page-break-inside: avoid !important;
+                        }
+                        body.printing-screen-version .progress-bar,
+                        body.printing-screen-version .scroll-hint,
+                        body.printing-screen-version button {
+                            display: none !important;
+                        }
+                    }
+                `;
+                document.head.appendChild(tempStyle);
+                
                 const container = document.querySelector('.deck-container');
                 const slides = document.querySelectorAll('.slide');
                 const originalDisplay = [];
@@ -2661,8 +2687,6 @@
                 slides.forEach((slide, index) => {
                     originalDisplay[index] = slide.style.display;
                     slide.style.display = 'flex';
-                    slide.style.pageBreakAfter = 'always';
-                    slide.style.pageBreakInside = 'avoid';
                 });
                 
                 // Hide PDF button
@@ -2677,11 +2701,12 @@
                 setTimeout(() => {
                     window.print();
                     
-                    // Restore original display
+                    // Restore everything
+                    document.body.classList.remove('printing-screen-version');
+                    document.getElementById('temp-print-styles').remove();
+                    
                     slides.forEach((slide, index) => {
                         slide.style.display = originalDisplay[index];
-                        slide.style.pageBreakAfter = '';
-                        slide.style.pageBreakInside = '';
                     });
                     
                     // Show PDF button again
