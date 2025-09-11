@@ -2646,13 +2646,6 @@
         async function generatePDF() {
             const { jsPDF } = window.jspdf;
             
-            // Crear nueva instancia de jsPDF en formato landscape A4
-            const pdf = new jsPDF({
-                orientation: 'landscape',
-                unit: 'mm',
-                format: 'a4'
-            });
-            
             // Obtener todos los slides
             const slides = document.querySelectorAll('.slide');
             const totalSlides = slides.length;
@@ -2716,15 +2709,23 @@
                 });
                 
                 // Convertir canvas a imagen
-                const imgData = canvas.toDataURL('image/png', 1.0);
+                const imgData = canvas.toDataURL('image/png');
                 
-                // Agregar nueva página (excepto para la primera)
-                if (i > 0) {
-                    pdf.addPage();
+                // Create PDF page with exact canvas dimensions (first page)
+                if (i === 0) {
+                    const pdf = new jsPDF({
+                        orientation: canvas.width > canvas.height ? 'landscape' : 'portrait',
+                        unit: 'px',
+                        format: [canvas.width, canvas.height]
+                    });
+                    window.pdfDoc = pdf;
+                } else {
+                    // Add new page with same dimensions
+                    window.pdfDoc.addPage([canvas.width, canvas.height]);
                 }
                 
-                // Agregar imagen al PDF (A4 landscape: 297mm x 210mm)
-                pdf.addImage(imgData, 'PNG', 0, 0, 297, 210);
+                // Add image at exact size
+                window.pdfDoc.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
             }
             
             // Remover indicador de progreso
@@ -2734,7 +2735,7 @@
             goToSlide(originalSlideIndex);
             
             // Descargar el PDF
-            pdf.save('QStarLabs_Strategic_Deck_2025.pdf');
+            window.pdfDoc.save('QStarLabs_Strategic_Deck_2025.pdf');
         }
         
         // Agregar botón para generar PDF
