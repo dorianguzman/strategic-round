@@ -1433,9 +1433,14 @@
                 margin-bottom: 0.6rem !important;
             }
             
-            /* Slide 3 - Add space below Market insights box */
-            .slide:nth-child(3) .challenge-section {
-                margin-bottom: 2rem !important;
+            /* Slide 3 - Position 1x4 grid at bottom */
+            .slide:nth-child(3) .grid[style*="grid-template-columns: 1fr"] {
+                position: absolute !important;
+                bottom: 10mm !important;
+                left: 148.5mm !important;
+                right: 0 !important;
+                width: calc(148.5mm - 20mm) !important;
+                margin: 0 10mm !important;
             }
             
             .slide:nth-child(3) .kicker {
@@ -1573,12 +1578,6 @@
                 justify-content: space-between !important;
             }
             
-            /* Slide 4 - Keep default layout for left side, just ensure visibility */
-            .slide:nth-child(4) .card-enhanced {
-                display: flex !important;
-                visibility: visible !important;
-                opacity: 1 !important;
-            }
             
             /* Slide 4 - Right column matches screen version exactly */
             .slide:nth-child(4) .grid-cols-2 > div:last-child {
@@ -1759,7 +1758,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v0</p>
+                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v1</p>
                 </div>
             </div>
         </section>
