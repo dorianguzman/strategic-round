@@ -818,6 +818,11 @@
             padding: 1.25rem;
         }
         
+        /* Move slide 3 content down vertically */
+        .slide:nth-child(3) .grid-cols-2 > div:last-child {
+            padding-top: 2rem;
+        }
+        
         /* Make 1x4 grid smaller in slide 3 */
         .slide:nth-child(3) .grid-cols-4 {
             margin-top: 1rem;
@@ -2733,7 +2738,7 @@
                 <line x1="16" y1="17" x2="8" y2="17"/>
                 <polyline points="10 9 9 9 8 9"/>
             </svg>
-            Generar PDF
+            Generate PDF
         `;
         pdfButton.style.cssText = `
             position: fixed;
