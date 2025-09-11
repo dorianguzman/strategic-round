@@ -1610,23 +1610,26 @@
             
             /* Ensure slide 3 container doesn't overflow */
             
-            /* Slide 5 - Left column image only, cover top to bottom */
+            /* Slide 5 - Image container with absolute positioning */
             .slide:nth-child(5) .grid-cols-2 > div:first-child {
+                position: static !important;
+            }
+            
+            .slide:nth-child(5) .grid-cols-2 > div:first-child::after {
+                content: "" !important;
                 position: absolute !important;
                 left: 0 !important;
                 top: 0 !important;
                 width: 148.5mm !important;
                 height: 210mm !important;
-                padding: 0 !important;
-                margin: 0 !important;
-                overflow: hidden !important;
+                background-image: url('images/personas_cards.png') !important;
+                background-size: cover !important;
+                background-position: center center !important;
+                z-index: 1 !important;
             }
             
             .slide:nth-child(5) .grid-cols-2 > div:first-child img {
-                width: 100% !important;
-                height: 100% !important;
-                object-fit: cover !important;
-                object-position: center center !important;
+                visibility: hidden !important;
             }
             
             /* Specific adjustments for slide 6 cards only */
@@ -1687,7 +1690,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v1</p>
+                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v0</p>
                 </div>
             </div>
         </section>
