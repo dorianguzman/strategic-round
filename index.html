@@ -856,7 +856,7 @@
             /* Universal color preservation */
             * {
                 -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
+                print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
                 box-sizing: border-box !important;
             }
@@ -1007,17 +1007,7 @@
                 transform-origin: center center !important;
             }
             
-            .slide:nth-child(4) .grid-cols-2 > div:first-child {
-                padding: 15mm !important;
-            }
             
-            .slide:nth-child(4) .grid-cols-2 > div:last-child {
-                height: 100% !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                padding: 10mm !important;
-            }
             
             /* Override inline flex properties */
             .slide div[style*="display: flex"] {
@@ -1065,7 +1055,7 @@
             .watermark-logo-left {
                 opacity: 0.15 !important;
                 -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
+                print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
             
@@ -1391,7 +1381,7 @@
                 align-items: unset !important;
             }
             
-            /* Slide 4 RIGHT column with Parlay image - match screen version */
+            /* Slide 4 RIGHT column with Parlay image - FULL HEIGHT */
             .slide:nth-child(4) .grid-cols-2 > div:last-child {
                 background: #f9fafb !important;
                 padding: 0 !important;
@@ -1400,18 +1390,16 @@
                 width: 148.5mm !important;
                 height: 210mm !important;
                 top: 0 !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
+                bottom: 0 !important;
+                overflow: hidden !important;
             }
             
-            /* Slide 4 Parlay image - centered like screen */
+            /* Slide 4 Parlay image - COVER FULL HEIGHT */
             .slide:nth-child(4) .grid-cols-2 > div:last-child img {
-                max-width: 90% !important;
-                max-height: 85vh !important;
-                width: auto !important;
-                height: auto !important;
-                object-fit: contain !important;
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+                object-position: center !important;
             }
             
             /* Slide 4 LIVE EXAMPLE badge */
@@ -1470,9 +1458,9 @@
             }
             
             
-            /* Slide 4 LEFT column with cards - match screen version */
+            /* Slide 4 LEFT column with cards - compact to fit all */
             .slide:nth-child(4) .grid-cols-2 > div:first-child {
-                padding: 20mm 15mm !important;
+                padding: 8mm 10mm !important;
                 height: 210mm !important;
                 display: flex !important;
                 flex-direction: column !important;
@@ -1481,6 +1469,7 @@
                 left: 0 !important;
                 width: 148.5mm !important;
                 top: 0 !important;
+                bottom: 0 !important;
             }
             
             /* Slide 5 - image left, content right - match screen */
@@ -1886,9 +1875,9 @@
             
             /* Slide 4 specific proportions - PERSONAS platform slide */
             .slide:nth-child(4) h2 {
-                font-size: 3rem !important;
-                line-height: 1.1 !important;
-                margin-bottom: 0.5rem !important;
+                font-size: 1.6rem !important;
+                line-height: 0.95 !important;
+                margin-bottom: 0.2rem !important;
                 font-weight: 900 !important;
             }
             
@@ -1897,8 +1886,8 @@
             }
             
             .slide:nth-child(4) .kicker {
-                font-size: 0.8rem !important;
-                margin-bottom: 0.3rem !important;
+                font-size: 0.65rem !important;
+                margin-bottom: 0.15rem !important;
             }
             
             .slide:nth-child(4) div[style*="font-size: 1.25rem"] {
@@ -1906,50 +1895,53 @@
             }
             
             .slide:nth-child(4) .mb-6 {
-                margin-bottom: 1.2rem !important;
-            }
-            
-            .slide:nth-child(4) .mb-3 {
                 margin-bottom: 0.5rem !important;
             }
             
+            .slide:nth-child(4) .mb-3 {
+                margin-bottom: 0.2rem !important;
+            }
+            
             .slide:nth-child(4) .mb-2 {
-                margin-bottom: 0.3rem !important;
+                margin-bottom: 0.1rem !important;
             }
             
             .slide:nth-child(4) p[style*="font-size: 1.75rem"] {
-                font-size: 1.4rem !important;
-                line-height: 1.2 !important;
-                margin-bottom: 0.3rem !important;
+                font-size: 0.85rem !important;
+                line-height: 1 !important;
+                margin-bottom: 0.1rem !important;
             }
             
             .slide:nth-child(4) p[style*="font-size: 1.25rem"] {
-                font-size: 1rem !important;
-                line-height: 1.2 !important;
-                margin-bottom: 0.3rem !important;
+                font-size: 0.65rem !important;
+                line-height: 1 !important;
+                margin-bottom: 0.1rem !important;
                 font-weight: 600 !important;
             }
             
             .slide:nth-child(4) .challenge-section {
-                padding: 1.5rem !important;
-                margin: 1rem 0 !important;
+                padding: 0.5rem !important;
+                margin: 0.3rem 0 !important;
                 background: rgba(248, 248, 250, 0.8) !important;
             }
             
             .slide:nth-child(4) .challenge-label {
-                font-size: 0.65rem !important;
-                margin-bottom: 0.6rem !important;
+                font-size: 0.5rem !important;
+                margin-bottom: 0.3rem !important;
+                font-weight: 600 !important;
+                letter-spacing: 0.05em !important;
             }
             
             .slide:nth-child(4) .grid-cols-2.gap-4 {
-                gap: 0.6rem !important;
+                gap: 0.35rem !important;
                 display: grid !important;
                 grid-template-columns: 1fr 1fr !important;
             }
             
             .slide:nth-child(4) .card-enhanced {
-                padding: 1rem !important;
-                min-height: 110px !important;
+                padding: 0.4rem !important;
+                min-height: 55px !important;
+                max-height: 65px !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
@@ -1958,21 +1950,21 @@
             }
             
             .slide:nth-child(4) .card-enhanced h3 {
-                font-size: 0.9rem !important;
-                line-height: 1.1 !important;
-                margin-bottom: 0.3rem !important;
+                font-size: 0.5rem !important;
+                line-height: 0.9 !important;
+                margin-bottom: 0.1rem !important;
                 font-weight: bold !important;
             }
             
             .slide:nth-child(4) .card-enhanced p {
-                font-size: 0.75rem !important;
-                line-height: 1.2 !important;
+                font-size: 0.4rem !important;
+                line-height: 0.95 !important;
             }
             
             .slide:nth-child(4) .card-enhanced svg {
-                width: 2rem !important;
-                height: 2rem !important;
-                margin-bottom: 0.5rem !important;
+                width: 1rem !important;
+                height: 1rem !important;
+                margin-bottom: 0.15rem !important;
             }
             
             /* Slide 5 specific proportions - PERSONAS DELIVERS SCALE */
@@ -2550,7 +2542,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v2.0</p>
+                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v2.1</p>
                 </div>
             </div>
         </section>
