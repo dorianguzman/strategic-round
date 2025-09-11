@@ -1690,7 +1690,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p style="font-size: 1rem; color: #666; margin-top: 1rem;">v1</p>
+                    <p style="font-size: 1rem; color: #666; margin-top: 1rem;">v0</p>
                 </div>
             </div>
         </section>
@@ -2721,8 +2721,8 @@
                     s.style.display = index === i ? 'flex' : 'none';
                 });
                 
-                // Wait for display change to take effect
-                await new Promise(resolve => setTimeout(resolve, 300));
+                // Wait longer for slide to fully load and render (images, animations, etc.)
+                await new Promise(resolve => setTimeout(resolve, 1500));
                 
                 // Verify we're on the correct slide
                 console.log(`Capturing slide ${i + 1} of ${totalSlides}`);
@@ -2734,19 +2734,53 @@
                 // Hide progress dialog temporarily for screenshot
                 progressDiv.style.display = 'none';
                 
-                // Wait a moment for display change to take effect
-                await new Promise(resolve => setTimeout(resolve, 100));
+                // Wait a moment for display change to take effect and images to load
+                await new Promise(resolve => setTimeout(resolve, 500));
                 
                 // Capture only the current visible slide
                 const canvas = await html2canvas(slides[i], {
                     scale: 2, // Higher quality
                     useCORS: true,
+                    allowTaint: true,
                     logging: false,
                     width: window.innerWidth,
                     height: window.innerHeight,
                     windowWidth: window.innerWidth,
                     windowHeight: window.innerHeight,
-                    backgroundColor: '#ffffff'
+                    backgroundColor: '#ffffff',
+                    foreignObjectRendering: true,
+                    onclone: (clonedDoc) => {
+                        // Fix gradient text by converting to solid purple color
+                        const elements = clonedDoc.querySelectorAll('.gradient-text, h1, h2, h3, .metric-value, .kicker');
+                        elements.forEach(el => {
+                            const computed = window.getComputedStyle(el);
+                            if (computed.backgroundImage.includes('gradient') || 
+                                computed.webkitBackgroundClip === 'text' || 
+                                computed.backgroundClip === 'text' ||
+                                el.classList.contains('gradient-text')) {
+                                // Reset all gradient-related styles
+                                el.style.background = 'none !important';
+                                el.style.backgroundImage = 'none !important';
+                                el.style.webkitBackgroundClip = 'unset !important';
+                                el.style.backgroundClip = 'unset !important';
+                                el.style.webkitTextFillColor = 'unset !important';
+                                el.style.color = '#7c3aed !important';
+                            }
+                        });
+                        
+                        // Also fix any inline styles with gradients
+                        const allElements = clonedDoc.querySelectorAll('*');
+                        allElements.forEach(el => {
+                            if (el.style && el.style.cssText.includes('background-clip: text')) {
+                                el.style.background = 'none !important';
+                                el.style.backgroundImage = 'none !important';
+                                el.style.webkitBackgroundClip = 'unset !important';
+                                el.style.backgroundClip = 'unset !important';
+                                el.style.webkitTextFillColor = 'unset !important';
+                                el.style.color = '#7c3aed !important';
+                            }
+                        });
+                    }
                 });
                 
                 // Show progress dialog again
