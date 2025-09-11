@@ -1569,26 +1569,13 @@
                 justify-content: space-between !important;
             }
             
-            /* Slide 4 - Maintain grid layout properly */
-            .slide:nth-child(4) .grid-cols-2 {
-                display: grid !important;
-                grid-template-columns: 148.5mm 148.5mm !important;
-                width: 297mm !important;
-                height: 210mm !important;
-                gap: 0 !important;
-            }
-            
-            /* Slide 4 - Right column container full height without absolute positioning */
+            /* Slide 4 - Only style right column, leave left content with default */
             .slide:nth-child(4) .grid-cols-2 > div:last-child {
-                width: 148.5mm !important;
-                height: 210mm !important;
-                padding: 0 !important;
-                margin: 0 !important;
                 background: #f9fafb !important;
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
-                position: relative !important;
+                padding: 0 !important;
             }
             
             /* Clean up all decorative elements */
@@ -1732,7 +1719,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v2</p>
+                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v0</p>
                 </div>
             </div>
         </section>
