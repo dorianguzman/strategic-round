@@ -1428,14 +1428,14 @@
             
             /* Slide 3 specific proportions - more compact for print */
             .slide:nth-child(3) h2 {
-                font-size: 1.15rem !important;
-                line-height: 1.05 !important;
-                margin-bottom: 0.5rem !important;
+                font-size: 2.5rem !important;
+                line-height: 1.1 !important;
+                margin-bottom: 0.8rem !important;
             }
             
             .slide:nth-child(3) .kicker {
-                font-size: 0.7rem !important;
-                margin-bottom: 0.3rem !important;
+                font-size: 1.1rem !important;
+                margin-bottom: 0.5rem !important;
             }
             
             .slide:nth-child(3) .challenge-section {
@@ -1444,13 +1444,13 @@
             }
             
             .slide:nth-child(3) .challenge-label {
-                font-size: 0.75rem !important;
+                font-size: 1rem !important;
                 font-weight: 600 !important;
             }
             
             .slide:nth-child(3) .card-enhanced {
-                padding: 1rem !important;
-                min-height: 100px !important;
+                padding: 1.2rem !important;
+                min-height: 110px !important;
             }
             
             .slide:nth-child(3) .card-enhanced svg {
@@ -1460,8 +1460,8 @@
             }
             
             .slide:nth-child(3) .card-enhanced p {
-                font-size: 0.75rem !important;
-                line-height: 1.25 !important;
+                font-size: 1rem !important;
+                line-height: 1.3 !important;
             }
             
             .slide:nth-child(3) .mt-4.p-4 {
@@ -1470,8 +1470,8 @@
             }
             
             .slide:nth-child(3) .mt-4.p-4 h3 {
-                font-size: 0.7rem !important;
-                line-height: 1.15 !important;
+                font-size: 0.9rem !important;
+                line-height: 1.2 !important;
             }
             
             /* Slide 3 1x4 grid - positioned at bottom */
@@ -1566,6 +1566,26 @@
                 display: flex !important;
                 flex-direction: column !important;
                 justify-content: space-between !important;
+            }
+            
+            /* Slide 4 - Right column image full coverage */
+            .slide:nth-child(4) .grid-cols-2 > div:last-child {
+                position: absolute !important;
+                left: 148.5mm !important;
+                width: 148.5mm !important;
+                height: 210mm !important;
+                top: 0 !important;
+                bottom: 0 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                overflow: hidden !important;
+            }
+            
+            .slide:nth-child(4) .grid-cols-2 > div:last-child img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+                object-position: center !important;
             }
             
             /* Clean up all decorative elements */
@@ -1709,7 +1729,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v0</p>
+                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v0.1</p>
                 </div>
             </div>
         </section>
