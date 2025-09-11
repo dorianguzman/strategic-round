@@ -2722,7 +2722,7 @@
                 });
                 
                 // Wait longer for slide to fully load and render (images, animations, etc.)
-                await new Promise(resolve => setTimeout(resolve, 1500));
+                await new Promise(resolve => setTimeout(resolve, 3000));
                 
                 // Verify we're on the correct slide
                 console.log(`Capturing slide ${i + 1} of ${totalSlides}`);
@@ -2735,52 +2735,21 @@
                 progressDiv.style.display = 'none';
                 
                 // Wait a moment for display change to take effect and images to load
-                await new Promise(resolve => setTimeout(resolve, 500));
+                await new Promise(resolve => setTimeout(resolve, 1000));
                 
-                // Capture only the current visible slide
-                const canvas = await html2canvas(slides[i], {
+                // Capture the entire document body exactly as displayed
+                const canvas = await html2canvas(document.body, {
                     scale: 2, // Higher quality
                     useCORS: true,
                     allowTaint: true,
                     logging: false,
+                    x: 0,
+                    y: 0,
                     width: window.innerWidth,
                     height: window.innerHeight,
                     windowWidth: window.innerWidth,
                     windowHeight: window.innerHeight,
-                    backgroundColor: '#ffffff',
-                    foreignObjectRendering: true,
-                    onclone: (clonedDoc) => {
-                        // Fix gradient text by converting to solid purple color
-                        const elements = clonedDoc.querySelectorAll('.gradient-text, h1, h2, h3, .metric-value, .kicker');
-                        elements.forEach(el => {
-                            const computed = window.getComputedStyle(el);
-                            if (computed.backgroundImage.includes('gradient') || 
-                                computed.webkitBackgroundClip === 'text' || 
-                                computed.backgroundClip === 'text' ||
-                                el.classList.contains('gradient-text')) {
-                                // Reset all gradient-related styles
-                                el.style.background = 'none !important';
-                                el.style.backgroundImage = 'none !important';
-                                el.style.webkitBackgroundClip = 'unset !important';
-                                el.style.backgroundClip = 'unset !important';
-                                el.style.webkitTextFillColor = 'unset !important';
-                                el.style.color = '#7c3aed !important';
-                            }
-                        });
-                        
-                        // Also fix any inline styles with gradients
-                        const allElements = clonedDoc.querySelectorAll('*');
-                        allElements.forEach(el => {
-                            if (el.style && el.style.cssText.includes('background-clip: text')) {
-                                el.style.background = 'none !important';
-                                el.style.backgroundImage = 'none !important';
-                                el.style.webkitBackgroundClip = 'unset !important';
-                                el.style.backgroundClip = 'unset !important';
-                                el.style.webkitTextFillColor = 'unset !important';
-                                el.style.color = '#7c3aed !important';
-                            }
-                        });
-                    }
+                    backgroundColor: null // Keep actual background
                 });
                 
                 // Show progress dialog again
