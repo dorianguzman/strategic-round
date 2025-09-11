@@ -1690,7 +1690,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p style="font-size: 1rem; color: #666; margin-top: 1rem;">v0</p>
+                    <p style="font-size: 1rem; color: #666; margin-top: 1rem;">v1</p>
                 </div>
             </div>
         </section>
@@ -2709,85 +2709,59 @@
                 });
                 
                 // Wait longer for scroll and any animations to complete
-                await new Promise(resolve => setTimeout(resolve, 300));
+                await new Promise(resolve => setTimeout(resolve, 500));
                 
                 // Actualizar progreso
                 document.getElementById('pdf-progress').textContent = i + 1;
                 document.getElementById('pdf-progress-bar').style.width = ((i + 1) / totalSlides * 100) + '%';
                 
-                // Get the currently visible slide
-                const slide = slides[i];
-                
                 // Hide progress dialog temporarily for screenshot
-                progressDiv.style.display = 'none';
+                progressDiv.style.visibility = 'hidden';
                 
-                // Wait a moment for display change to take effect
-                await new Promise(resolve => setTimeout(resolve, 50));
+                // Wait a moment for visibility change to take effect
+                await new Promise(resolve => setTimeout(resolve, 100));
                 
-                // Ensure we have valid dimensions
-                if (window.innerWidth === 0 || window.innerHeight === 0) {
-                    console.error('Invalid window dimensions');
-                    progressDiv.style.display = 'block';
-                    continue;
-                }
-                
-                // Make sure the slide is fully visible and opaque
-                slide.style.display = 'flex';
-                slide.style.opacity = '1';
-                slide.style.position = 'relative';
-                slide.style.zIndex = '9999';
-                
-                // Capture only the current slide directly with a white background
-                const canvas = await html2canvas(slide, {
+                // Capture the entire document body as it appears on screen
+                const canvas = await html2canvas(document.body, {
                     scale: 2, // Higher quality
                     useCORS: true,
                     logging: false,
+                    x: 0,
+                    y: 0,
                     width: window.innerWidth,
                     height: window.innerHeight,
-                    backgroundColor: '#ffffff',
-                    removeContainer: false,
-                    imageTimeout: 0,
-                    onclone: (clonedDoc) => {
-                        const clonedSlide = clonedDoc.querySelector('.slide');
-                        if (clonedSlide) {
-                            clonedSlide.style.opacity = '1';
-                            clonedSlide.style.background = '#ffffff';
-                        }
-                    }
+                    windowWidth: window.innerWidth,
+                    windowHeight: window.innerHeight,
+                    backgroundColor: null, // Keep the actual background
+                    imageTimeout: 15000,
+                    allowTaint: true
                 });
                 
-                // Reset slide styles
-                slide.style.display = '';
-                slide.style.opacity = '';
-                slide.style.position = '';
-                slide.style.zIndex = '';
-                
                 // Show progress dialog again
-                progressDiv.style.display = 'block';
+                progressDiv.style.visibility = 'visible';
                 
-                // Convertir canvas a imagen with JPEG for better opacity
-                const imgData = canvas.toDataURL('image/jpeg', 1.0);
+                // Convertir canvas a imagen
+                const imgData = canvas.toDataURL('image/png');
                 
-                // Create PDF page with exact canvas dimensions (first page)
+                // Create PDF with A4 landscape format
                 if (i === 0) {
                     const pdf = new jsPDF({
-                        orientation: canvas.width > canvas.height ? 'landscape' : 'portrait',
-                        unit: 'px',
-                        format: [canvas.width, canvas.height],
-                        compress: false
+                        orientation: 'landscape',
+                        unit: 'mm',
+                        format: 'a4'
                     });
                     window.pdfDoc = pdf;
                 } else {
-                    // Add new page with same dimensions
-                    window.pdfDoc.addPage([canvas.width, canvas.height]);
+                    // Add new page
+                    window.pdfDoc.addPage();
                 }
                 
-                // Fill white background first
-                window.pdfDoc.setFillColor(255, 255, 255);
-                window.pdfDoc.rect(0, 0, canvas.width, canvas.height, 'F');
+                // Calculate dimensions to fit the image to A4 landscape (297mm x 210mm)
+                const pdfWidth = 297;
+                const pdfHeight = 210;
                 
-                // Add image at exact size
-                window.pdfDoc.addImage(imgData, 'JPEG', 0, 0, canvas.width, canvas.height);
+                // Add image to fill the entire page
+                window.pdfDoc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
             }
             
             // Remover indicador de progreso
