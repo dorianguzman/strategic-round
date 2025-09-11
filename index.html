@@ -1393,18 +1393,23 @@
             
             /* Slide 4 RIGHT column with Parlay image */
             .slide:nth-child(4) .grid-cols-2 > div:last-child {
-                background: #f9fafb !important;
+                background: transparent !important;
                 padding: 0 !important;
                 position: absolute !important;
                 left: 148.5mm !important;
                 width: 148.5mm !important;
                 height: 210mm !important;
                 top: 0 !important;
-                overflow: visible !important;
+                bottom: 0 !important;
+                overflow: hidden !important;
+                display: block !important;
             }
             
             /* Slide 4 Parlay image - full coverage */
             .slide:nth-child(4) .grid-cols-2 > div:last-child img {
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
                 width: 100% !important;
                 height: 100% !important;
                 object-fit: cover !important;
@@ -1678,26 +1683,29 @@
             }
             
             .slide:nth-child(11) .card-enhanced {
-                padding: 0.8rem !important;
+                padding: 0.35rem !important;
+                max-height: 55px !important;
             }
             
             .slide:nth-child(11) .card-enhanced img,
             .slide:nth-child(11) div[style*="width: 120px"] {
-                width: 80px !important;
-                height: 80px !important;
+                width: 40px !important;
+                height: 40px !important;
             }
             
             .slide:nth-child(11) .card-enhanced h3 {
-                font-size: 0.9rem !important;
+                font-size: 0.5rem !important;
+                line-height: 1.05 !important;
             }
             
             .slide:nth-child(11) div[style*="font-size: 0.75rem"] {
-                font-size: 0.55rem !important;
-                line-height: 1.2 !important;
+                font-size: 0.35rem !important;
+                line-height: 1.1 !important;
             }
             
             .slide:nth-child(11) div[style*="font-size: 0.9rem"] {
-                font-size: 0.65rem !important;
+                font-size: 0.4rem !important;
+                line-height: 1.1 !important;
             }
             
             .slide:nth-child(11) .flex img {
@@ -1726,15 +1734,16 @@
             }
             
             .slide:nth-child(12) .card {
-                padding: 1.5rem !important;
+                padding: 0.6rem !important;
+                max-height: 70px !important;
             }
             
             .slide:nth-child(12) div[style*="font-size: 4rem"] {
-                font-size: 2.5rem !important;
+                font-size: 1.5rem !important;
             }
             
             .slide:nth-child(12) div[style*="font-size: 1rem"] {
-                font-size: 0.7rem !important;
+                font-size: 0.5rem !important;
             }
             
             .slide:nth-child(12) h3[style*="font-size: 2.5rem"] {
@@ -1939,8 +1948,8 @@
             }
             
             .slide:nth-child(4) .challenge-section {
-                padding: 0.6rem !important;
-                margin: 0.4rem 0 !important;
+                padding: 0.5rem !important;
+                margin: 0.3rem 0 !important;
             }
             
             .slide:nth-child(4) .challenge-label {
@@ -1949,14 +1958,15 @@
             }
             
             .slide:nth-child(4) .grid-cols-2.gap-4 {
-                gap: 0.5rem !important;
+                gap: 0.4rem !important;
                 display: grid !important;
                 grid-template-columns: 1fr 1fr !important;
             }
             
             .slide:nth-child(4) .card-enhanced {
-                padding: 0.5rem !important;
-                min-height: 70px !important;
+                padding: 0.4rem !important;
+                min-height: 60px !important;
+                max-height: 65px !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
@@ -1964,20 +1974,20 @@
             }
             
             .slide:nth-child(4) .card-enhanced h3 {
-                font-size: 0.65rem !important;
-                line-height: 1.05 !important;
-                margin-bottom: 0.2rem !important;
+                font-size: 0.55rem !important;
+                line-height: 1.0 !important;
+                margin-bottom: 0.15rem !important;
             }
             
             .slide:nth-child(4) .card-enhanced p {
-                font-size: 0.55rem !important;
-                line-height: 1.1 !important;
+                font-size: 0.45rem !important;
+                line-height: 1.05 !important;
             }
             
             .slide:nth-child(4) .card-enhanced svg {
-                width: 1.2rem !important;
-                height: 1.2rem !important;
-                margin-bottom: 0.25rem !important;
+                width: 1rem !important;
+                height: 1rem !important;
+                margin-bottom: 0.2rem !important;
             }
             
             /* Slide 5 specific proportions - PERSONAS DELIVERS SCALE */
@@ -2009,21 +2019,25 @@
             }
             
             .slide:nth-child(5) .card-enhanced {
-                padding: 0.7rem !important;
-                min-height: 80px !important;
+                padding: 0.35rem !important;
+                min-height: 45px !important;
+                max-height: 55px !important;
             }
             
             .slide:nth-child(5) .card-enhanced h3 {
-                font-size: 0.8rem !important;
+                font-size: 0.5rem !important;
+                line-height: 1.0 !important;
             }
             
             .slide:nth-child(5) .card-enhanced p {
-                font-size: 0.65rem !important;
+                font-size: 0.4rem !important;
+                line-height: 1.05 !important;
             }
             
             .slide:nth-child(5) .card-enhanced svg {
-                width: 1.6rem !important;
-                height: 1.6rem !important;
+                width: 0.9rem !important;
+                height: 0.9rem !important;
+                margin-bottom: 0.15rem !important;
             }
             
             .slide:nth-child(5) .mt-6 {
@@ -2053,7 +2067,8 @@
             }
             
             .slide:nth-child(6) .grid-cols-3 .card {
-                padding: 0.8rem !important;
+                padding: 0.4rem !important;
+                max-height: 60px !important;
             }
             
             .slide:nth-child(6) h3[style*="font-size: 2.5rem"] {
@@ -2092,7 +2107,8 @@
             }
             
             .slide:nth-child(7) .card-enhanced {
-                padding: 0.8rem !important;
+                padding: 0.4rem !important;
+                max-height: 60px !important;
             }
             
             .slide:nth-child(7) h3[style*="font-size: 2.5rem"] {
@@ -2126,7 +2142,8 @@
             }
             
             .slide:nth-child(8) .grid-cols-3 .card {
-                padding: 0.8rem !important;
+                padding: 0.4rem !important;
+                max-height: 60px !important;
             }
             
             .slide:nth-child(8) .metric-value,
@@ -2135,7 +2152,7 @@
             }
             
             .slide:nth-child(8) .card p {
-                font-size: 0.7rem !important;
+                font-size: 0.5rem !important;
             }
             
             /* Slide 9 specific proportions - Client Traction */
@@ -2157,20 +2174,24 @@
             }
             
             .slide:nth-child(9) .card-enhanced {
-                padding: 0.7rem !important;
+                padding: 0.35rem !important;
+                max-height: 55px !important;
             }
             
             .slide:nth-child(9) .card-enhanced h3 {
-                font-size: 0.85rem !important;
+                font-size: 0.5rem !important;
+                line-height: 1.05 !important;
             }
             
             .slide:nth-child(9) .card-enhanced p {
-                font-size: 0.7rem !important;
+                font-size: 0.4rem !important;
+                line-height: 1.05 !important;
             }
             
             .slide:nth-child(9) .card-enhanced svg {
-                width: 1.8rem !important;
-                height: 1.8rem !important;
+                width: 0.9rem !important;
+                height: 0.9rem !important;
+                margin-bottom: 0.15rem !important;
             }
             
             .slide:nth-child(9) .mt-4 h3 {
@@ -2192,21 +2213,25 @@
             }
             
             .slide:nth-child(10) .grid-cols-1 .card-enhanced {
-                padding: 0.9rem !important;
-                margin-bottom: 0.8rem !important;
+                padding: 0.4rem !important;
+                margin-bottom: 0.4rem !important;
+                max-height: 55px !important;
             }
             
             .slide:nth-child(10) .card-enhanced h3 {
-                font-size: 1rem !important;
+                font-size: 0.55rem !important;
+                line-height: 1.05 !important;
             }
             
             .slide:nth-child(10) .card-enhanced p {
-                font-size: 0.75rem !important;
+                font-size: 0.45rem !important;
+                line-height: 1.1 !important;
             }
             
             .slide:nth-child(10) .card-enhanced svg {
-                width: 1.8rem !important;
-                height: 1.8rem !important;
+                width: 1rem !important;
+                height: 1rem !important;
+                margin-bottom: 0.15rem !important;
             }
             
             .slide:nth-child(10) .mt-4 h3 {
@@ -2478,29 +2503,30 @@
             /* Specific adjustments for slides 5 and 6 cards */
             .slide:nth-child(5) .grid-cols-2 .card-enhanced,
             .slide:nth-child(6) .grid-cols-2 .card-enhanced {
-                padding: 0.8rem !important;
-                min-height: 65px !important;
-                margin-bottom: 0.4rem !important;
+                padding: 0.35rem !important;
+                min-height: 45px !important;
+                max-height: 55px !important;
+                margin-bottom: 0.25rem !important;
             }
             
             .slide:nth-child(5) .grid-cols-2 .card-enhanced h3,
             .slide:nth-child(6) .grid-cols-2 .card-enhanced h3 {
-                font-size: 0.95rem !important;
-                margin-bottom: 0.2rem !important;
-                line-height: 1.15 !important;
+                font-size: 0.55rem !important;
+                margin-bottom: 0.15rem !important;
+                line-height: 1.05 !important;
             }
             
             .slide:nth-child(5) .grid-cols-2 .card-enhanced p,
             .slide:nth-child(6) .grid-cols-2 .card-enhanced p {
-                font-size: 0.7rem !important;
-                line-height: 1.25 !important;
+                font-size: 0.45rem !important;
+                line-height: 1.1 !important;
             }
             
             .slide:nth-child(5) .grid-cols-2 .card-enhanced svg,
             .slide:nth-child(6) .grid-cols-2 .card-enhanced svg {
-                width: 1.8rem !important;
-                height: 1.8rem !important;
-                margin-bottom: 0.4rem !important;
+                width: 1rem !important;
+                height: 1rem !important;
+                margin-bottom: 0.2rem !important;
             }
             
             /* Reduce grid gap for tighter layout */
@@ -2544,7 +2570,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
-                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v1.12</p>
+                    <p class="kicker mt-4" style="font-size: 0.9rem; color: #9ca3af;">v1.13</p>
                 </div>
             </div>
         </section>
