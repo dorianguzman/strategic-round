@@ -1567,7 +1567,7 @@
                 position: absolute !important;
                 left: 148.5mm !important;
                 width: 148.5mm !important;
-                padding: 8mm 10mm !important;
+                padding: 25mm 10mm 8mm 10mm !important;
                 height: 210mm !important;
                 display: flex !important;
                 flex-direction: column !important;
@@ -1690,6 +1690,7 @@
                     </svg>
                     <h1 class="h1 mb-6 title-main" style="font-size: 3.5rem; font-weight: 900; line-height: 1.1;">AI (micro-influencers)-as-a-Service</h1>
                     <p class="kicker mt-8" style="font-size: 1.5rem;">Strategic Funding Round — September 2025</p>
+                    <p style="font-size: 1rem; color: #666; margin-top: 1rem;">v1</p>
                 </div>
             </div>
         </section>
@@ -2672,9 +2673,9 @@
                 font-family: system-ui, -apple-system, sans-serif;
             `;
             progressDiv.innerHTML = `
-                <h3 style="margin: 0 0 10px 0;">Generando PDF...</h3>
+                <h3 style="margin: 0 0 10px 0;">Generating PDF...</h3>
                 <div style="margin-bottom: 10px;">
-                    <span id="pdf-progress">0</span> / ${totalSlides} páginas
+                    <span id="pdf-progress">0</span> / ${totalSlides} pages
                 </div>
                 <div style="width: 300px; height: 20px; background: #e0e0e0; border-radius: 10px; overflow: hidden;">
                     <div id="pdf-progress-bar" style="width: 0%; height: 100%; background: linear-gradient(135deg, #4c1d95, #3b0f70); transition: width 0.3s;"></div>
@@ -2694,16 +2695,20 @@
                 const originalDisplay = slide.style.display;
                 slide.style.display = 'flex';
                 
-                // Capturar el slide como imagen
+                // Capturar el slide como imagen (versión de pantalla)
                 const canvas = await html2canvas(slide, {
                     scale: 2, // Mayor calidad
                     useCORS: true,
                     logging: false,
-                    width: slide.scrollWidth,
-                    height: slide.scrollHeight,
-                    windowWidth: slide.scrollWidth,
-                    windowHeight: slide.scrollHeight,
-                    backgroundColor: '#ffffff'
+                    width: window.innerWidth,
+                    height: window.innerHeight,
+                    windowWidth: window.innerWidth,
+                    windowHeight: window.innerHeight,
+                    backgroundColor: '#ffffff',
+                    ignoreElements: (element) => {
+                        // Ignorar elementos específicos de impresión si los hay
+                        return element.classList && element.classList.contains('print-only');
+                    }
                 });
                 
                 // Restaurar display original
