@@ -1,0 +1,52 @@
+name: Generate PDF
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'index.html'
+      - 'images/**'
+      - 'assets/**'
+      - 'generate-pdf.js'
+  workflow_dispatch:
+
+jobs:
+  generate-pdf:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Generate PDF
+      run: npm run generate-pdf
+    
+    - name: Check if PDF changed
+      id: check_changes
+      run: |
+        git add -A
+        if git diff --staged --quiet; then
+          echo "changed=false" >> $GITHUB_OUTPUT
+        else
+          echo "changed=true" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Commit and push PDF
+      if: steps.check_changes.outputs.changed == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add QStarLabs_Strategic_Deck_2025.pdf
+        git commit -m "Update PDF deck [skip ci]"
+        git push

@@ -4,13 +4,9 @@
   "description": "QStarLabs Strategic Round Deck",
   "scripts": {
     "generate-pdf": "node generate-pdf.js",
-    "serve": "npx serve .",
-    "prepare": "husky install"
+    "serve": "npx serve ."
   },
   "devDependencies": {
-    "husky": "^8.0.0",
-    "jspdf": "^3.0.2",
-    "pdf-lib": "^1.17.1",
     "puppeteer": "^24.20.0"
   }
 }
