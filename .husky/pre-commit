@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Generate PDF before committing
+echo "Generating PDF..."
+npm run generate-pdf
+
+# Add the generated PDF to the commit
+git add QStarLabs_Strategic_Deck_2025.pdf
+
+echo "PDF generated and added to commit"
