@@ -23,8 +23,8 @@ async function generatePDF() {
             deviceScaleFactor: 1.5 // Higher quality capture
         });
         
-        // Load the HTML file
-        const htmlPath = `file://${path.resolve(__dirname, 'index.html')}`;
+        // Load the HTML file (now deck.html with access token to bypass email wall)
+        const htmlPath = `file://${path.resolve(__dirname, 'deck.html')}?access=pdf-generator`;
         console.log('Loading HTML from:', htmlPath);
         await page.goto(htmlPath, {
             waitUntil: 'networkidle0',
