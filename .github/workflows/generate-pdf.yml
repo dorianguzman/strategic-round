@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main, master ]
     paths:
-      - 'index.html'
+      - 'deck.html'
       - 'images/**'
       - 'assets/**'
       - 'generate-pdf.js'
