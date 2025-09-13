@@ -1,6 +1,8 @@
 # QStarLabs
 
 <div align="center">
+  <img src="assets/qstarlabs-logo.svg" alt="QStarLabs" width="300" style="margin-bottom: 20px;">
+  
   
   ### Ready to explore something amazing?
   

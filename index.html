@@ -27,7 +27,7 @@
 
         body {
             font-family: 'Youth', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
+            background: linear-gradient(135deg, #1e0936 0%, #4c1d95 100%);
             color: #ffffff;
             min-height: 100vh;
             display: flex;
@@ -60,13 +60,13 @@
         }
 
         .logo {
-            font-size: 3rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            height: 4rem;
+        }
+        
+        .logo svg {
+            height: 100%;
+            width: auto;
         }
 
         h2 {
@@ -110,8 +110,8 @@
 
         input:focus {
             outline: none;
-            border-color: #FFD700;
-            background: rgba(255, 255, 255, 0.08);
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.08);
         }
 
         input::placeholder {
@@ -121,10 +121,10 @@
         .submit-btn {
             width: 100%;
             padding: 1rem 2rem;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
             border: none;
             border-radius: 8px;
-            color: #0A0A0A;
+            color: #ffffff;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
@@ -132,11 +132,12 @@
             font-family: inherit;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
         }
 
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
         }
 
         .submit-btn:disabled {
@@ -156,7 +157,7 @@
         }
 
         .success-message h3 {
-            color: #FFD700;
+            color: #a855f7;
             font-size: 1.5rem;
             margin-bottom: 1rem;
         }
@@ -164,7 +165,7 @@
         .countdown {
             font-size: 3rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -182,10 +183,10 @@
             gap: 0.5rem;
             margin-top: 1.5rem;
             padding: 1rem 2rem;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
             border: none;
             border-radius: 50px;
-            color: #0A0A0A;
+            color: #ffffff;
             text-decoration: none;
             font-family: 'Youth', 'SF Pro Display', -apple-system, sans-serif;
             font-size: 1.1rem;
@@ -196,25 +197,25 @@
             position: relative;
             overflow: hidden;
             animation: pulse 2s infinite;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
         }
 
         @keyframes pulse {
             0% {
-                box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+                box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
             }
             50% {
-                box-shadow: 0 4px 25px rgba(255, 215, 0, 0.6);
+                box-shadow: 0 4px 25px rgba(124, 58, 237, 0.6);
             }
             100% {
-                box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+                box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
             }
         }
 
 
         .manual-link:hover {
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.7);
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.7);
             animation: bounce 0.6s;
         }
 
@@ -252,7 +253,9 @@
 <body>
     <div class="container">
         <div id="formSection">
-            <div class="logo">QStarLabs</div>
+            <div class="logo">
+                <img src="assets/qstarlabs-logo.svg" alt="QStarLabs" style="filter: brightness(0) invert(1);">
+            </div>
             <h2>Strategic Round Deck</h2>
             <p class="subtitle">Please enter your details to access the deck</p>
             
