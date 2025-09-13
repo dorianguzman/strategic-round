@@ -36,10 +36,10 @@ async function generatePDF() {
         
         // Get slide count and hide PDF button
         const slideCount = await page.evaluate(() => {
-            // Hide the PDF button if it exists
-            const buttons = document.querySelectorAll('button');
+            // Hide the PDF button if it exists (both button and anchor elements)
+            const buttons = document.querySelectorAll('button, a');
             buttons.forEach(btn => {
-                if (btn.textContent.includes('Generate PDF')) {
+                if (btn.textContent.includes('Generate PDF') || btn.textContent.includes('Download PDF')) {
                     btn.style.display = 'none';
                 }
             });
