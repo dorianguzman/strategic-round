@@ -130,6 +130,14 @@
         input::placeholder {
             color: rgba(255, 255, 255, 0.3);
         }
+        
+        input:invalid:not(:focus):not(:placeholder-shown) {
+            border-color: #ef4444;
+        }
+        
+        input:valid:not(:focus):not(:placeholder-shown) {
+            border-color: #10b981;
+        }
 
         .submit-btn {
             width: 100%;
@@ -284,8 +292,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="company">Company / Organization</label>
-                    <input type="text" id="company" name="company" placeholder="ABC Ventures">
+                    <label for="company">Company / Organization *</label>
+                    <input type="text" id="company" name="company" placeholder="ABC Ventures" required>
                 </div>
                 
                 <button type="submit" class="submit-btn" id="submitBtn">Request Access</button>
@@ -306,6 +314,52 @@
 
     <script>
         // No automatic redirect - always show the email wall
+        
+        // Retry failed submissions on page load
+        function retryFailedSubmissions() {
+            const failedSubmissions = JSON.parse(localStorage.getItem('failedSubmissions') || '[]');
+            
+            if (failedSubmissions.length > 0) {
+                console.log(`Retrying ${failedSubmissions.length} failed submissions...`);
+                
+                const remaining = [];
+                
+                failedSubmissions.forEach(submission => {
+                    // Only retry if less than 7 days old and less than 5 attempts
+                    const lastAttempt = new Date(submission.lastAttempt);
+                    const daysSince = (new Date() - lastAttempt) / (1000 * 60 * 60 * 24);
+                    
+                    if (daysSince < 7 && submission.attempts < 5) {
+                        // Retry the submission
+                        fetch('https://script.google.com/macros/s/AKfycbwwT03GDmUZUCUNpDVFAd8t6xHZLJ1QRGbLx_wy6mn-c5RBlddh_J8YogFWnVtU5qM5hw/exec', {
+                            method: 'POST',
+                            mode: 'no-cors',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(submission.data)
+                        })
+                        .then(() => {
+                            console.log('Successfully retried submission for:', submission.data.name);
+                        })
+                        .catch(() => {
+                            // If still failing, keep for next retry
+                            submission.attempts++;
+                            submission.lastAttempt = new Date().toISOString();
+                            remaining.push(submission);
+                        });
+                    }
+                });
+                
+                // Update failed submissions list
+                setTimeout(() => {
+                    localStorage.setItem('failedSubmissions', JSON.stringify(remaining));
+                }, 2000);
+            }
+        }
+        
+        // Run retry mechanism on page load
+        retryFailedSubmissions();
 
         // Handle form submission
         document.getElementById('accessForm').addEventListener('submit', function(e) {
@@ -313,22 +367,47 @@
             
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
-            const company = document.getElementById('company').value.trim() || 'Not provided';
+            const company = document.getElementById('company').value.trim();
             const timestamp = new Date().toISOString();
+            
+            // Validate all fields are filled
+            if (!name || !email || !company) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                document.getElementById('email').focus();
+                return;
+            }
+            
+            // Validate minimum lengths
+            if (name.length < 2) {
+                alert('Please enter your full name.');
+                document.getElementById('name').focus();
+                return;
+            }
+            
+            if (company.length < 2) {
+                alert('Please enter a valid company or organization name.');
+                document.getElementById('company').focus();
+                return;
+            }
             
             // Create expiry date (30 days from now)
             const expiry = new Date();
             expiry.setDate(expiry.getDate() + 30);
             
-            // Store visitor data in localStorage for analytics (but don't use for access control)
-            // Create unique key based on timestamp to store multiple visits
+            // Store visitor data in localStorage for analytics
             const visitKey = `deckVisit_${timestamp}`;
             const visitData = {
                 name: name,
                 email: email,
                 company: company,
-                timestamp: timestamp,
-                referrer: document.referrer || 'Direct'
+                timestamp: timestamp
             };
             
             // Store this visit
@@ -339,23 +418,55 @@
             allVisits.push(visitKey);
             localStorage.setItem('allDeckVisits', JSON.stringify(allVisits));
             
-            // Create email body
-            const emailBody = `New deck access request:
-
-Name: ${name}
-Email: ${email}
-Company: ${company}
-Time: ${new Date(timestamp).toLocaleString()}
-Browser: ${navigator.userAgent.split('(')[1].split(')')[0]}
-
-This is an automated notification from the QStarLabs Strategic Round deck.`;
+            // Disable submit button while sending
+            const submitButton = document.getElementById('submitBtn');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
             
-            // Create mailto link
-            const subject = `Strategic Round Deck Viewer - ${company}`;
-            const mailtoLink = `mailto:dorian@qstarlabs.ai,yang@qstarlabs.ai?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            // Prepare submission data
+            const submissionData = {
+                name: name,
+                email: email,
+                company: company,
+                timestamp: timestamp
+            };
             
-            // Open email client
-            window.open(mailtoLink, '_blank');
+            // Send data to Google Apps Script
+            fetch('https://script.google.com/macros/s/AKfycbwwT03GDmUZUCUNpDVFAd8t6xHZLJ1QRGbLx_wy6mn-c5RBlddh_J8YogFWnVtU5qM5hw/exec', {
+                method: 'POST',
+                mode: 'no-cors', // Required for Google Apps Script
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(submissionData)
+            })
+            .then(() => {
+                // Mark as successfully sent
+                visitData.sent = true;
+                localStorage.setItem(visitKey, JSON.stringify(visitData));
+                console.log('Form submitted successfully');
+            })
+            .catch((error) => {
+                console.error('Error submitting form:', error);
+                
+                // Store failed submission for retry
+                const failedSubmissions = JSON.parse(localStorage.getItem('failedSubmissions') || '[]');
+                failedSubmissions.push({
+                    data: submissionData,
+                    attempts: 1,
+                    lastAttempt: new Date().toISOString()
+                });
+                localStorage.setItem('failedSubmissions', JSON.stringify(failedSubmissions));
+                
+                // Still allow access even if email fails
+                console.log('Email sending failed, but access granted. Will retry later.');
+            })
+            .finally(() => {
+                // Re-enable button
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            });
             
             // Show success message and countdown
             document.getElementById('formSection').style.display = 'none';
