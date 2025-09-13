@@ -11,7 +11,7 @@
   </a>
   
   
-  <sub>Experience the PERSONAS platform</sub>
+  <sub>Be part of PERSONAS platform</sub>
   
 </div>
 
