@@ -13,7 +13,7 @@ function doPost(e) {
     const timestamp = data.timestamp || new Date().toISOString();
     
     // Email recipients
-    const recipients = 'dorian@qstarlabs.ai,yang@qstarlabs.ai';
+    const recipients = 'dorian@qstarlabs.ai,yang@qstarlabs.ai,mattrobinson@qstarlabs.ai';
     
     // Create email subject
     const subject = `Strategic Round Deck Viewer - ${company}`;
